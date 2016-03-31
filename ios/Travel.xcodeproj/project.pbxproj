@@ -532,7 +532,7 @@
 				INFOPLIST_FILE = Travel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nxy801111.Helloworld;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nxy801111.Travel;
 				PRODUCT_NAME = Travel;
 			};
 			name = Debug;
@@ -555,7 +555,7 @@
 				INFOPLIST_FILE = Travel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nxy801111.Helloworld;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nxy801111.Travel;
 				PRODUCT_NAME = Travel;
 			};
 			name = Release;
