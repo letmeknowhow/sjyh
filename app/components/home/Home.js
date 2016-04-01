@@ -33,8 +33,8 @@ const MockData_ICON = [
 import React from 'react-native';
 const { Component, View, StyleSheet, Platform, Text, Image } = React;
 import Banner from '../../baseComponents/Banner';
-import Grid from '../../baseComponents/Grid';
 import Button from '../../baseComponents/Button';
+import GridView from 'react-native-grid-view';
 var Actions = require('react-native-router-flux').Actions;
 
 const styles = StyleSheet.create(
@@ -56,7 +56,7 @@ const styles = StyleSheet.create(
       top: 0,
       right: 0
     },
-    button: {flex: 1, marginBottom: 0, borderWidth: 0}
+    button: {flex: 1, marginBottom: 0, borderWidth: 0, height: 80}
   }
 );
 
@@ -81,7 +81,11 @@ export default class Home extends Component {
             style={{height: 140, overflow: 'hidden', marginBottom: 10}}
             source={MockData_banner}
           />
-          <Grid column={3} gridLine={true} gridData={this.gridData()} scroll={false}/>
+          <GridView
+            items={MockData_ICON}
+            itemsPerRow={3}
+            renderItem={this.renderItem.bind(this)}
+          />
           <View style={{flex: 1, marginHorizontal: 3}}>
             <Text>首页</Text>
           </View>
@@ -89,18 +93,16 @@ export default class Home extends Component {
     );
   }
 
-  gridData() {
-    return MockData_ICON.map(item => {
-      return (
-        <Button style={styles.button}>
-          <Image source={item.icon}>
-            { item.badge && (<View style={styles.badge}/>) }
-          </Image>
-          <Text style={{marginTop: 10}}>
-            {item.name}
-          </Text>
-        </Button>
-      );
-    });
+  renderItem(item) {
+    return (
+      <Button key={item.name} style={styles.button} onPress={Actions.searchList}>
+        <Image source={item.icon}>
+          { item.badge && (<View style={styles.badge}/>) }
+        </Image>
+        <Text style={{marginTop: 10}}>
+          {item.name}
+        </Text>
+      </Button>
+    );
   }
 }
