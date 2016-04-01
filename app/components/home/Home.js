@@ -17,10 +17,14 @@ const MockData_region1 = [
   {id: '4', url: require('../../../assets/banner/4.png'), text: '曼哈顿, 文艺彻骨'}
 ];
 const MockData_region2 = [
-  {id: '1', url: require('../../../assets/icons/1.png'), text: '芬兰'},
-  {id: '2', url: require('../../../assets/icons/2.png'), text: '丹麦'},
-  {id: '3', url: require('../../../assets/icons/3.png'), text: '日本'},
-  {id: '4', url: require('../../../assets/icons/4.png'), text: '英国'}
+  {id: '1', url: require('../../../assets/banner/1.png'), text: '桑拿, 蒸腾芬兰'},
+  {id: '2', url: require('../../../assets/banner/2.png'), text: '伦敦, 新西区时代'},
+  {id: '3', url: require('../../../assets/banner/3.png'), text: '马里, 西非DNA'},
+  {id: '4', url: require('../../../assets/banner/4.png'), text: '曼哈顿, 文艺彻骨'},
+  {id: '5', url: require('../../../assets/banner/1.png'), text: '桑拿, 蒸腾芬兰'},
+  {id: '6', url: require('../../../assets/banner/2.png'), text: '伦敦, 新西区时代'},
+  {id: '7', url: require('../../../assets/banner/3.png'), text: '马里, 西非DNA'},
+  {id: '8', url: require('../../../assets/banner/4.png'), text: '曼哈顿, 文艺彻骨'}
 ];
 const MockData_ICON = [
   {name: '跟团游', icon: require('../../../assets/icons/1.png')},
@@ -117,7 +121,7 @@ export default class Home extends Component {
 
   renderItem(item) {
     return (
-      <Button key={item.name} style={[styles.button, {}]} onPress={Actions.searchList}>
+      <Button key={item.name} style={[styles.button, {}]} >
         <Image source={item.icon}>
           { item.badge && (<View style={styles.badge}/>) }
         </Image>
@@ -130,7 +134,7 @@ export default class Home extends Component {
 
   renderRegion1(item) {
     return (
-      <TouchableOpacity key={item.id} style={styles.region1} onPress={Actions.searchList}>
+      <TouchableOpacity key={item.id} style={styles.region1} onPress={() => Actions.bannerDetail({data: item.text})}>
         <Image style={{flex: 1, width: deviceWidth / 2 - 20}} source={item.url} resizeMode={'stretch'} >
           <Text style={styles.nestedText}>
             {item.text}
@@ -141,7 +145,7 @@ export default class Home extends Component {
   }
 
   renderRegion2() {
-    return MockData_region1.map((item) => {
+    return MockData_region2.map((item) => {
       return (
         <View key={item.id} style={{height: 80, width: deviceWidth - 10, flexDirection: 'row', marginVertical:3}}>
           <Image style={{width: 80, height: 80}} source={item.url} />

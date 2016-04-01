@@ -6,7 +6,17 @@
  */
 import React from 'react-native';
 
-const { Component, View, Text } = React;
+const { Component, View, Text, StyleSheet, Platform } = React;
+
+const styles = StyleSheet.create(
+  {
+    page: {
+      flex: 1,
+      backgroundColor: '#f3f2f3'
+    },
+
+  }
+);
 
 export default class BannerDetail extends Component {
   // 默认属性
@@ -30,9 +40,9 @@ export default class BannerDetail extends Component {
   // 渲染
   render() {
     return (
-      <View>
+      <View style={[styles.page, {marginTop: Platform.OS === 'ios' ? 20 : 0}]}>
         <Text>
-          BannerDetail
+          {this.props.data}
         </Text>
       </View>
     );

@@ -64,7 +64,7 @@ class Banner extends Component {
         dataSource={this.state.dataSource}
         renderPage={this._renderPage.bind(this)}
         isLoop={this.state.isLoop}
-        autoPlay={true}/>
+        autoPlay={false}/>
     );
 
   }
