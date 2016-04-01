@@ -61,7 +61,6 @@ export default class Home extends Component {
           <Banner
             style={{height: 140, overflow: 'hidden', marginBottom: 10}}
             source={mockData_banner}
-            {...this.props}
           />
           <View style={{flex: 1, marginHorizontal: 3}}>
             <Text>首页</Text>

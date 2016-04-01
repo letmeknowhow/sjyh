@@ -14,7 +14,7 @@ import Order from '../components/order/container';
 import Favourite from '../components/favourite/container';
 import Mine from '../components/mine/container';
 
-
+import BannerDetail from '../components/BannerDetail';
 
 const styles = StyleSheet.create({
   modal: {
@@ -52,16 +52,17 @@ export default class Application extends Component {
 
   render() {
     return (
-        <Router createReducer={reducerCreate} sceneStyle={{backgroundColor:'#F7F7F7'}}>
-          <Scene key="root" hideNavBar={true}>
-             <Scene key="tabBar" tabs={true} default="home" initial={true}>
-               <Scene key="home" component={Home} title="首页" hideNavBar={true} icon={TabIcon}/>
-               <Scene key="order" component={Order} title="订单" hideNavBar={hideNavBar} icon={TabIcon}/>
-               <Scene key="favourite" component={Favourite} title="收藏" hideNavBar={true} icon={TabIcon}/>
-               <Scene key="mine" component={Mine} title="我的" hideNavBar={hideNavBar} icon={TabIcon}/>
-              </Scene>
+      <Router createReducer={reducerCreate} sceneStyle={{backgroundColor:'#F7F7F7'}}>
+        <Scene key="root" hideNavBar={true}>
+          <Scene key="bannerDetail" component={BannerDetail} title="详情" />
+          <Scene key="tabBar" tabs={true} default="home" initial={true}>
+            <Scene key="home" component={Home} title="首页" hideNavBar={true} icon={TabIcon}/>
+            <Scene key="order" component={Order} title="订单" hideNavBar={hideNavBar} icon={TabIcon}/>
+            <Scene key="favourite" component={Favourite} title="收藏" hideNavBar={true} icon={TabIcon}/>
+            <Scene key="mine" component={Mine} title="我的" hideNavBar={hideNavBar} icon={TabIcon}/>
           </Scene>
-        </Router>
+        </Scene>
+      </Router>
     );
   }
 }
