@@ -6,7 +6,8 @@
  */
 import React from 'react-native';
 
-const { Component, View, Text, StyleSheet, Platform } = React;
+const { Component, View, Text, StyleSheet, Platform, TouchableOpacity } = React;
+var Actions = require('react-native-router-flux').Actions;
 
 const styles = StyleSheet.create(
   {
@@ -41,6 +42,11 @@ export default class BannerDetail extends Component {
   render() {
     return (
       <View style={[styles.page, {marginTop: Platform.OS === 'ios' ? 20 : 0}]}>
+        <View style={{height: 30, paddingLeft: 5}}>
+          <TouchableOpacity onPress={Actions.pop}>
+            <Text style={{fontSize: 28, color: 'red'}}>{'<'}</Text>
+          </TouchableOpacity>
+        </View>
         <Text>
           {this.props.data}
         </Text>

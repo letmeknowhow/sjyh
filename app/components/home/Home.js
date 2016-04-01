@@ -17,14 +17,63 @@ const MockData_region1 = [
   {id: '4', url: require('../../../assets/banner/4.png'), text: '曼哈顿, 文艺彻骨'}
 ];
 const MockData_region2 = [
-  {id: '1', url: require('../../../assets/banner/1.png'), text: '桑拿, 蒸腾芬兰'},
-  {id: '2', url: require('../../../assets/banner/2.png'), text: '伦敦, 新西区时代'},
-  {id: '3', url: require('../../../assets/banner/3.png'), text: '马里, 西非DNA'},
-  {id: '4', url: require('../../../assets/banner/4.png'), text: '曼哈顿, 文艺彻骨'},
-  {id: '5', url: require('../../../assets/banner/1.png'), text: '桑拿, 蒸腾芬兰'},
-  {id: '6', url: require('../../../assets/banner/2.png'), text: '伦敦, 新西区时代'},
-  {id: '7', url: require('../../../assets/banner/3.png'), text: '马里, 西非DNA'},
-  {id: '8', url: require('../../../assets/banner/4.png'), text: '曼哈顿, 文艺彻骨'}
+  {
+    id: '1', url: require('../../../assets/banner/1.png'),
+    title: `<曼谷+芭提雅6日跟团游>万人折服谁定大会/五族城堡/千年云石公园/地道美食一价全含`,
+    text: '1.全国独家万人水灯祈福 | 2.浪漫夜游湄南河...',
+    starting: '深圳',
+    price: '￥1999.0起'
+
+  },
+  {
+    id: '2', url: require('../../../assets/banner/2.png'),
+    title: `<曼谷+芭提雅6日跟团游>万人折服谁定大会/五族城堡/千年云石公园/地道美食一价全含`,
+    text: '1.全国独家万人水灯祈福 | 2.浪漫夜游湄南河...',
+    starting: '广州',
+    price: '￥599.0起'
+  },
+  {
+    id: '3', url: require('../../../assets/banner/3.png'),
+    title: `<曼谷+芭提雅6日跟团游>万人折服谁定大会/五族城堡/千年云石公园/地道美食一价全含`,
+    text: '1.全国独家万人水灯祈福 | 2.浪漫夜游湄南河...',
+    starting: '大连',
+    price: '￥2999.0起'
+  },
+  {
+    id: '4', url: require('../../../assets/banner/4.png'),
+    title: `<曼谷+芭提雅6日跟团游>万人折服谁定大会/五族城堡/千年云石公园/地道美食一价全含`,
+    text: '1.全国独家万人水灯祈福 | 2.浪漫夜游湄南河...',
+    starting: '焦作',
+    price: '￥999.0起'
+  },
+  {
+    id: '5', url: require('../../../assets/banner/1.png'),
+    title: `<曼谷+芭提雅6日跟团游>万人折服谁定大会/五族城堡/千年云石公园/地道美食一价全含`,
+    text: '1.全国独家万人水灯祈福 | 2.浪漫夜游湄南河...',
+    starting: '郑州',
+    price: '￥1999.0起'
+  },
+  {
+    id: '6', url: require('../../../assets/banner/2.png'),
+    title: `<曼谷+芭提雅6日跟团游>万人折服谁定大会/五族城堡/千年云石公园/地道美食一价全含`,
+    text: '1.全国独家万人水灯祈福 | 2.浪漫夜游湄南河...',
+    starting: '北京',
+    price: '￥1999.0起'
+  },
+  {
+    id: '7', url: require('../../../assets/banner/3.png'),
+    title: `<曼谷+芭提雅6日跟团游>万人折服谁定大会/五族城堡/千年云石公园/地道美食一价全含`,
+    text: '1.全国独家万人水灯祈福 | 2.浪漫夜游湄南河...',
+    starting: '珠海',
+    price: '￥699.0起'
+  },
+  {
+    id: '8', url: require('../../../assets/banner/4.png'),
+    title: `<曼谷+芭提雅6日跟团游>万人折服谁定大会/五族城堡/千年云石公园/地道美食一价全含`,
+    text: '1.全国独家万人水灯祈福 | 2.浪漫夜游湄南河...',
+    starting: '天津',
+    price: '￥3999.0起'
+  }
 ];
 const MockData_ICON = [
   {name: '跟团游', icon: require('../../../assets/icons/1.png')},
@@ -91,7 +140,9 @@ export default class Home extends Component {
   render() {
     return (
         <View style={[styles.page, {marginTop: Platform.OS === 'ios' ? 20 : 0}]}>
-          <ScrollView showsVerticalScrollIndicator={false} directionalLockEnabled={true}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            directionalLockEnabled={true}>
             <Banner
               style={{height: 140, overflow: 'hidden', marginBottom: 10}}
               source={MockData_banner}
@@ -102,7 +153,7 @@ export default class Home extends Component {
               scrollEnabled={false}
               renderItem={this.renderItem.bind(this)}
             />
-            <Text style={{margin: 10}}>旅行家</Text>
+            {this.renderSeparator('旅行家')}
             <GridView style={{marginHorizontal: 5}}
               items={MockData_region1}
               scrollEnabled={false}
@@ -110,12 +161,21 @@ export default class Home extends Component {
               renderItem={this.renderRegion1.bind(this)}
             />
             <View style={{height: 3, marginVertical: 5, backgroundColor: 'gray'}} />
-            <Text style={{margin: 10}}>优惠专区</Text>
+            {this.renderSeparator('优惠专区')}
             <View style={{marginHorizontal: 5, height: 600}}>
               {this.renderRegion2()}
             </View>
           </ScrollView>
         </View>
+    );
+  }
+
+  renderSeparator(text) {
+    return (
+      <View style={{height: 15,flexDirection: 'row', margin: 10}}>
+        <View style={{width: 8, backgroundColor: 'red'}} />
+        <Text style={{marginLeft: 10}}>{text}</Text>
+      </View>
     );
   }
 
@@ -149,7 +209,14 @@ export default class Home extends Component {
       return (
         <View key={item.id} style={{height: 80, width: deviceWidth - 10, flexDirection: 'row', marginVertical:3}}>
           <Image style={{width: 80, height: 80}} source={item.url} />
-          <Text>{item.text}</Text>
+          <View style={{flex: 1, marginHorizontal: 10}}>
+            <Text style={{fontWeight: '400', fontSize: 13}}>{item.title}</Text>
+            <Text style={{fontWeight: '200', fontSize: 12}}>{item.text}</Text>
+            <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between'}}>
+              <Text style={{fontSize: 12, fontWeight: '200'}}>{`出发地: ${item.starting}`}</Text>
+              <Text style={{fontSize: 16, color: 'red'}}>{item.price}</Text>
+            </View>
+          </View>
         </View>
       );
     });
