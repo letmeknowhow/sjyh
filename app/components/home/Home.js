@@ -4,13 +4,7 @@
  *  Date: 16/3/31.
  *  Description: 首页
  */
-import React from 'react-native';
-
-import Banner from '../../baseComponents/Banner';
-
-const { Component, View, StyleSheet, Platform, Text } = React;
-
-const mockData_banner = [
+const MockData_banner = [
   {
     id: '1',
     url: require('../../../assets/banner/1.png')
@@ -28,6 +22,20 @@ const mockData_banner = [
     url: require('../../../assets/banner/4.png')
   }
 ];
+const MockData_ICON = [
+  {name: '国内1', icon: require('../../../assets/icons/1.png')},
+  {name: '国内2', icon: require('../../../assets/icons/2.png')},
+  {name: '国内3', icon: require('../../../assets/icons/3.png')},
+  {name: '国内4', icon: require('../../../assets/icons/4.png')},
+  {name: '国内5', icon: require('../../../assets/icons/1.png')},
+  {name: '国内6', icon: require('../../../assets/icons/2.png')},
+];
+import React from 'react-native';
+const { Component, View, StyleSheet, Platform, Text, Image } = React;
+import Banner from '../../baseComponents/Banner';
+import Grid from '../../baseComponents/Grid';
+import Button from '../../baseComponents/Button';
+var Actions = require('react-native-router-flux').Actions;
 
 const styles = StyleSheet.create(
   {
@@ -37,7 +45,18 @@ const styles = StyleSheet.create(
     },
     header: {
       backgroundColor: '#ffda44'
-    }
+    },
+    badge: {
+      borderRadius: 5,
+      borderWidth: 0,
+      width: 10,
+      height: 10,
+      backgroundColor: '#dd2b37',
+      position: 'absolute',
+      top: 0,
+      right: 0
+    },
+    button: {flex: 1, marginBottom: 0, borderWidth: 0}
   }
 );
 
@@ -57,15 +76,31 @@ export default class Home extends Component {
   // 渲染
   render() {
     return (
-        <View style={styles.page}>
+        <View style={[styles.page, {marginTop: Platform.OS === 'ios' ? 20 : 0}]}>
           <Banner
             style={{height: 140, overflow: 'hidden', marginBottom: 10}}
-            source={mockData_banner}
+            source={MockData_banner}
           />
+          <Grid column={3} gridLine={true} gridData={this.gridData()} scroll={false}/>
           <View style={{flex: 1, marginHorizontal: 3}}>
             <Text>首页</Text>
           </View>
         </View>
     );
+  }
+
+  gridData() {
+    return MockData_ICON.map(item => {
+      return (
+        <Button style={styles.button}>
+          <Image source={item.icon}>
+            { item.badge && (<View style={styles.badge}/>) }
+          </Image>
+          <Text style={{marginTop: 10}}>
+            {item.name}
+          </Text>
+        </Button>
+      );
+    });
   }
 }
