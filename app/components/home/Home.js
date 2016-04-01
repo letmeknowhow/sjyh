@@ -21,7 +21,7 @@ const MockData_region2 = [
     id: '1', url: require('../../../assets/banner/1.png'),
     title: `<曼谷+芭提雅6日跟团游>万人折服谁定大会/五族城堡/千年云石公园/地道美食一价全含`,
     text: '1.全国独家万人水灯祈福 | 2.浪漫夜游湄南河...',
-    starting: '深圳',
+    starting: '焦作',
     price: '￥1999.0起'
 
   },
@@ -29,7 +29,7 @@ const MockData_region2 = [
     id: '2', url: require('../../../assets/banner/2.png'),
     title: `<曼谷+芭提雅6日跟团游>万人折服谁定大会/五族城堡/千年云石公园/地道美食一价全含`,
     text: '1.全国独家万人水灯祈福 | 2.浪漫夜游湄南河...',
-    starting: '广州',
+    starting: '深圳',
     price: '￥599.0起'
   },
   {
@@ -207,8 +207,9 @@ export default class Home extends Component {
   renderRegion2() {
     return MockData_region2.map((item) => {
       return (
-        <View key={item.id} style={{height: 80, width: deviceWidth - 10, flexDirection: 'row', marginVertical:3}}>
-          <Image style={{width: 80, height: 80}} source={item.url} />
+        <TouchableOpacity key={item.id} onPress={() => Actions.bannerDetail({data: item.title})}
+                          style={{height: 80, width: deviceWidth - 10, flexDirection: 'row', marginVertical:3}}>
+          <Image style={{width: 80, height: 80}} source={item.url}/>
           <View style={{flex: 1, marginHorizontal: 10}}>
             <Text style={{fontWeight: '400', fontSize: 13}}>{item.title}</Text>
             <Text style={{fontWeight: '200', fontSize: 12}}>{item.text}</Text>
@@ -217,7 +218,7 @@ export default class Home extends Component {
               <Text style={{fontSize: 16, color: 'red'}}>{item.price}</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       );
     });
   }
