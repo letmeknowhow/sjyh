@@ -5,15 +5,23 @@
  *  Description: 轮播图
  */
 import React from 'react-native';
-import ViewPager from 'react-native-viewpager';
+//import ViewPager from 'react-native-viewpager';
+import Swiper from 'react-native-swiper';
 var Actions = require('react-native-router-flux').Actions;
-const { Component, Dimensions, View, Image, TouchableOpacity, InteractionManager } = React;
+const { Component, Dimensions, View, Image, TouchableOpacity, InteractionManager, StyleSheet } = React;
 
 const deviceWidth = Dimensions.get('window').width;
-
-const dataSource = new ViewPager.DataSource({
-  pageHasChanged: (p1, p2) => p1.id !== p2.id,
+const styles = StyleSheet.create({
+  banner: {
+    overflow: 'hidden',
+    //marginBottom: 10,
+    backgroundColor: '#FFF'
+  },
 });
+
+//const dataSource = new ViewPager.DataSource({
+//  pageHasChanged: (p1, p2) => p1.id !== p2.id,
+//});
 
 class Banner extends Component {
 
@@ -22,60 +30,68 @@ class Banner extends Component {
     super(props);
     // 初始状态
     this.state = {
-      dataSource: dataSource.cloneWithPages([]),
+      //dataSource: dataSource.cloneWithPages([]),
     };
   }
+  //use view_pager start
+  //render() {
+  //  return (
+  //    <View style={this.props.style}>
+  //      {this._renderViewPager()}
+  //    </View>
+  //  );
+  //}
+  //
+  //_renderPage(data, pageID) {
+  //  return (
+  //    <TouchableOpacity onPress={Actions.commodityDetail}>
+  //      <Image
+  //        source={data.url}
+  //        style={{width: deviceWidth, height:140, resizeMode: Image.resizeMode.cover}}/>
+  //    </TouchableOpacity>
+  //  );
+  //}
+  //
+  //
+  //_renderViewPager() {
+  //
+  //  return (
+  //    <ViewPager
+  //      dataSource={this.state.dataSource}
+  //      renderPage={this._renderPage.bind(this)}
+  //      isLoop={this.state.isLoop}
+  //      autoPlay={false}/>
+  //  );
+  //}
+  //use view_pager end
 
-  componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      if(this.props.source && this.props.source.length > 0) {
-        this.setState({
-          dataSource: dataSource.cloneWithPages(this.props.source),
-          isLoop: this.props.source.length > 1
-        });
-      }
-    });
-  }
-
-  componentWillReceiveProps(next) {
-    if(next.source && next.source.length > 0) {
-      this.setState({
-        dataSource: dataSource.cloneWithPages(next.source),
-        isLoop: next.source.length > 1
-      });
-    }
-  }
-
+  //use swiper start
   render() {
     return (
       <View style={this.props.style}>
-        {this._renderViewPager()}
+        <Swiper style={styles.banner} showsButtons={false} height={this.props.height}
+                dot={<View style={{backgroundColor:'gray', width: 20, height: 3,borderRadius: 0, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+                activeDot={<View style={{backgroundColor: '#FFF', width: 20, height: 3, borderRadius: 0, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+                paginationStyle={{bottom: 0 }}
+        >
+          {this.renderHot(this.props.source)}
+        </Swiper>
       </View>
     );
   }
 
-  _renderPage(data, pageID) {
-    return (
-      <TouchableOpacity onPress={Actions.commodityDetail}>
-        <Image
-          source={data.url}
-          style={{width: deviceWidth, height:140, resizeMode: Image.resizeMode.cover}}/>
-      </TouchableOpacity>
-    );
+  renderHot(source) {
+    return source.map((item) => {
+      return (
+        <TouchableOpacity key={item.id} onPress={Actions.commodityDetail}>
+          <Image
+            source={item.uri}
+            style={{width: deviceWidth, height:this.props.height, resizeMode: Image.resizeMode.cover}}/>
+        </TouchableOpacity>
+      );
+    });
   }
-
-
-  _renderViewPager() {
-
-    return (
-      <ViewPager
-        dataSource={this.state.dataSource}
-        renderPage={this._renderPage.bind(this)}
-        isLoop={this.state.isLoop}
-        autoPlay={false}/>
-    );
-
-  }
+  //use swiper end
 }
 
 export default Banner;

@@ -153,6 +153,7 @@ export default class Home extends Component {
             <Banner
               style={styles.banner}
               source={MockData_banner}
+              height={140}
             />
             <GridView style={{height: 190}}
               items={MockData_ICON}

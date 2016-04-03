@@ -29,7 +29,7 @@ const MockData_hot = [
 
 const MockData_gangao = [
   {
-    id: '1', url: require('../../assets/banner/1.png'),
+    id: '1', uri: require('../../assets/banner/1.png'),
     title: `[澳门]1日游 纯玩观光`,
     date: '多个团期',
     starting: '',
@@ -37,14 +37,14 @@ const MockData_gangao = [
 
   },
   {
-    id: '2', url: require('../../assets/banner/2.png'),
+    id: '2', uri: require('../../assets/banner/2.png'),
     title: `[香港]1日游 深圳湾口岸出发/星光花园/太平山顶狮子厅/维多利亚海港...`,
     date: '多个团期',
     starting: '',
     price: '￥263.0起/人'
   },
   {
-    id: '3', url: require('../../assets/banner/3.png'),
+    id: '3', uri: require('../../assets/banner/3.png'),
     title: `[香港]1日游 迪士尼乐园+澳门3日游 畅玩香港迪士尼乐园/夜游维多利亚海港...`,
     date: '多个团期',
     starting: '',
@@ -54,7 +54,7 @@ const MockData_gangao = [
 
 const MockData_mainland = [
   {
-    id: '1', url: require('../../assets/banner/1.png'),
+    id: '1', uri: require('../../assets/banner/1.png'),
     title: `<张家界+天门山+凤凰4日跟团游>深圳高铁往返/纯玩/黄龙洞...`,
     date: '多个团期',
     starting: '深圳',
@@ -62,14 +62,14 @@ const MockData_mainland = [
 
   },
   {
-    id: '2', url: require('../../assets/banner/2.png'),
+    id: '2', uri: require('../../assets/banner/2.png'),
     title: `<九寨沟+牟尼沟+绵阳5日跟团游>深圳双飞往返/杜鹃山+特色藏寨+中...`,
     date: '多个团期',
     starting: '深圳',
     price: '￥1399.0起/人'
   },
   {
-    id: '3', url: require('../../assets/banner/3.png'),
+    id: '3', uri: require('../../assets/banner/3.png'),
     title: `<三亚4日跟团游>深圳双飞+三亚进出+入住蜈支洲岛木楼别墅+海岛...`,
     date: '多个团期',
     starting: '深圳',
@@ -213,7 +213,7 @@ export default class ProductList extends Component {
       return (
         <TouchableOpacity key={item.id} onPress={() => Actions.bannerDetail({data: item.title})}
                           style={{height: 80, width: deviceWidth - 10, flexDirection: 'row', marginVertical:3}}>
-          <Image style={{width: 80, height: 80}} source={item.url}/>
+          <Image style={{width: 80, height: 80}} source={item.uri}/>
           <View style={{flex: 1, marginHorizontal: 10}}>
             <Text style={{fontWeight: '400', fontSize: 13}}>{item.title}</Text>
             <Text style={{fontWeight: '200', fontSize: 12}}>{`出发城市: ${item.starting}`}</Text>
