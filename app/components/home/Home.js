@@ -100,11 +100,12 @@ const styles = StyleSheet.create(
     page: {
       flex: 1,
       backgroundColor: '#f3f2f3',
-      marginTop: Platform.OS === 'ios' ? 20 : 0
+      marginTop: Platform.OS === 'ios' ? 20 : 0,
+      paddingHorizontal: 5
     },
     banner: {height: 140, overflow: 'hidden', marginBottom: 10},
     button: {flex: 1, margin: 5, borderWidth: 0, height: 80},
-    region1: {flex: 1, margin: 5, borderWidth: 0, height: 160, alignItems: 'stretch'},
+    region1: {flex: 1, margin: 2, borderWidth: 0, height: 160, alignItems: 'stretch', justifyContent: 'center'},
     nestedText: {
       marginLeft: 12,
       marginTop: 140,
@@ -146,7 +147,7 @@ export default class Home extends Component {
               renderItem={this.renderItem.bind(this)}
             />
             <CategoryTitle title='旅行家'/>
-            <GridView style={{marginHorizontal: 5}}
+            <GridView style={{marginHorizontal: 0}}
               items={MockData_region1}
               scrollEnabled={false}
               itemsPerRow={2}
@@ -178,7 +179,7 @@ export default class Home extends Component {
   renderRegion1(item) {
     return (
       <TouchableOpacity key={item.id} style={styles.region1} onPress={() => Actions.bannerDetail({data: item.text})}>
-        <Image style={{flex: 1, width: deviceWidth / 2 - 20}} source={item.url} resizeMode={'stretch'} >
+        <Image style={{flex: 1, width: deviceWidth / 2 - 10}} source={item.url} resizeMode={'stretch'} >
           <Text style={styles.nestedText}>
             {item.text}
           </Text>

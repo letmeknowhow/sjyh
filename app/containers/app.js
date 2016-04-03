@@ -64,8 +64,8 @@ class TabIcon extends React.Component {
     }
     return (
       <View>
-        <Image source={uri} style={{marginLeft: 3, tintColor: this.props.selected ? 'red' : null}} />
-        <Text style={{color: this.props.selected ? 'red' :'black'}}>{this.props.title}</Text>
+        <Image source={uri} style={{marginLeft: 0, tintColor: this.props.selected ? 'red' : null}} />
+        <Text style={{color: this.props.selected ? 'red' :'black', fontSize: 12}}>{this.props.title}</Text>
       </View>
     );
   }
