@@ -46,6 +46,14 @@ class Banner extends Component {
     }
   }
 
+  render() {
+    return (
+      <View style={this.props.style}>
+        {this._renderViewPager()}
+      </View>
+    );
+  }
+
   _renderPage(data, pageID) {
     return (
       <TouchableOpacity onPress={Actions.commodityDetail}>
@@ -68,17 +76,6 @@ class Banner extends Component {
     );
 
   }
-
-// 渲染
-  render() {
-    return (
-      <View style={this.props.style}>
-        {this._renderViewPager()}
-      </View>
-    );
-  }
-
-
 }
 
 export default Banner;

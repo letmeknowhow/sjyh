@@ -91,6 +91,7 @@ const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 import Banner from '../../baseComponents/Banner';
 import Button from '../../baseComponents/Button';
+import CategoryTitle from '../CategoryTitle';
 import GridView from 'react-native-grid-view';
 var Actions = require('react-native-router-flux').Actions;
 
@@ -101,6 +102,7 @@ const styles = StyleSheet.create(
       backgroundColor: '#f3f2f3',
       marginTop: Platform.OS === 'ios' ? 20 : 0
     },
+    banner: {height: 140, overflow: 'hidden', marginBottom: 10},
     button: {flex: 1, margin: 5, borderWidth: 0, height: 80},
     region1: {flex: 1, margin: 5, borderWidth: 0, height: 160, alignItems: 'stretch'},
     nestedText: {
@@ -134,7 +136,7 @@ export default class Home extends Component {
             showsVerticalScrollIndicator={false}
             directionalLockEnabled={true}>
             <Banner
-              style={{height: 140, overflow: 'hidden', marginBottom: 10}}
+              style={styles.banner}
               source={MockData_banner}
             />
             <GridView style={{height: 190}}
@@ -143,7 +145,7 @@ export default class Home extends Component {
               scrollEnabled={false}
               renderItem={this.renderItem.bind(this)}
             />
-            {this.renderSeparator('旅行家')}
+            <CategoryTitle title='旅行家'/>
             <GridView style={{marginHorizontal: 5}}
               items={MockData_region1}
               scrollEnabled={false}
@@ -151,7 +153,7 @@ export default class Home extends Component {
               renderItem={this.renderRegion1.bind(this)}
             />
             <View style={{height: 3, marginVertical: 5, backgroundColor: 'gray'}} />
-            {this.renderSeparator('优惠专区')}
+            <CategoryTitle title='优惠专区'/>
             <View style={{marginHorizontal: 5, height: 600}}>
               {this.renderRegion2()}
             </View>
@@ -160,18 +162,9 @@ export default class Home extends Component {
     );
   }
 
-  renderSeparator(text) {
-    return (
-      <View style={{height: 15,flexDirection: 'row', margin: 10}}>
-        <View style={{width: 8, backgroundColor: 'red'}} />
-        <Text style={{marginLeft: 10}}>{text}</Text>
-      </View>
-    );
-  }
-
   renderItem(item) {
     return (
-      <Button key={item.name} style={[styles.button, {}]} >
+      <Button key={item.name} style={[styles.button]} onPress={() => Actions.productList({data: item.name})}>
         <Image source={item.icon}>
           { item.badge && (<View style={styles.badge}/>) }
         </Image>

@@ -15,6 +15,7 @@ import Favourite from '../components/favours/container';
 import Mine from '../components/mine/container';
 
 import BannerDetail from '../components/BannerDetail';
+import ProductList from '../components/ProductList';
 
 const styles = StyleSheet.create({
   modal: {
@@ -76,10 +77,11 @@ export default class Application extends Component {
     return (
       <Router createReducer={reducerCreate} sceneStyle={{backgroundColor:'#F7F7F7'}}>
         <Scene key="root" hideNavBar={true}>
-          <Scene key="bannerDetail" component={BannerDetail} title="详情" />
+          <Scene key="bannerDetail" component={BannerDetail} />
+          <Scene key="productList" component={ProductList} />
           <Scene key="tabBar" tabs={true} default="home" initial={true}>
-            <Scene key="home" component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
-            <Scene key="order" initial={true} component={Order} title={TAB_TITLE_ORDER} hideNavBar={hideNavBar} icon={TabIcon}/>
+            <Scene key="home" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
+            <Scene key="order" component={Order} title={TAB_TITLE_ORDER} hideNavBar={hideNavBar} icon={TabIcon}/>
             <Scene key="favours" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={hideNavBar} icon={TabIcon}/>
             <Scene key="mine" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true} icon={TabIcon}/>
           </Scene>
