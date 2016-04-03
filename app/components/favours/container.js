@@ -4,17 +4,21 @@
  *  Date: 16/3/31.
  *  Description: 收藏主页
  */
+
+const MockData = [
+  {id: 0, uri: require('../../../assets/icons/1.png'), text: '酒店收藏'},
+  {id: 1, uri: require('../../../assets/icons/2.png'), text: '跟团游收藏'},
+  {id: 2, uri: require('../../../assets/icons/3.png'), text: '游轮收藏'},
+  {id: 3, uri: require('../../../assets/icons/4.png'), text: '门票收藏'},
+  {id: 4, uri: require('../../../assets/icons/1.png'), text: '自助游收藏'}
+];
+
 import React from 'react-native';
 
-const { Component, View, Text } = React;
+const { Component } = React;
+import ButtonList from '../ButtonList';
 
 export default class container extends Component {
-  // 默认属性
-  static defaultProps = {};
-
-  // 属性类型
-  static propTypes = {};
-
   // 构造
   constructor(props) {
     super(props);
@@ -30,11 +34,7 @@ export default class container extends Component {
   // 渲染
   render() {
     return (
-      <View>
-        <Text>
-          container
-        </Text>
-      </View>
+      <ButtonList style={{marginTop: 64, flex: 1}} buttons={MockData} />
     );
   }
 }

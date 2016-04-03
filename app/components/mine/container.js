@@ -4,17 +4,41 @@
  *  Date: 16/3/31.
  *  Description: 我的主页
  */
+
+const MockData_1 = [
+  {id: 0, uri: require('../../../assets/icons/1.png'), text: '消息中心'}
+];
+const MockData_2 = [
+  {id: 0, uri: require('../../../assets/icons/3.png'), text: '常用旅客'},
+  {id: 1, uri: require('../../../assets/icons/2.png'), text: '常用地址'}
+];
+const MockData_3 = [
+  {id: 0, uri: require('../../../assets/icons/4.png'), text: '设置'},
+  {id: 1, uri: require('../../../assets/icons/2.png'), text: '关于我们'}
+];
 import React from 'react-native';
 
-const { Component, View, Text } = React;
+const { Component, StyleSheet, View, Image, TouchableOpacity, Text } = React;
+import ButtonList from '../ButtonList';
 
+const styles = StyleSheet.create({
+  page: {flex: 1},
+  header: {height: 200, alignItems: 'center', justifyContent: 'center'},
+  logoContainer: {height: 200, width: 100, backgroundColor: 'transparent', paddingVertical: 50},
+  logo: {height: 80, width: 80, borderRadius: 40, marginBottom: 20},
+  text: {
+    color: '#FFF',
+    borderWidth: 1,
+    borderRadius: 5,
+    fontSize: 16,
+    borderColor: '#FFF',
+    height: 35,
+    padding: 7,
+    textAlign: 'center',
+    marginLeft: -16
+  }
+});
 export default class container extends Component {
-  // 默认属性
-  static defaultProps = {};
-
-  // 属性类型
-  static propTypes = {};
-
   // 构造
   constructor(props) {
     super(props);
@@ -22,18 +46,21 @@ export default class container extends Component {
     this.state = {};
   }
 
-  // 自定义方法
-  handle() {
-
-  }
-
   // 渲染
   render() {
     return (
-      <View>
-        <Text>
-          container
-        </Text>
+      <View style={styles.page}>
+        <Image style={styles.header} source={require('../../../assets/banner/1.png')}>
+          <View style={styles.logoContainer}>
+            <Image style={styles.logo} source={require('../../../assets/logo.jpg')} />
+            <TouchableOpacity>
+              <Text style={styles.text}>登陆/注册</Text>
+            </TouchableOpacity>
+          </View>
+        </Image>
+        <ButtonList buttons={MockData_1} />
+        <ButtonList style={{marginTop: 10}} buttons={MockData_2} />
+        <ButtonList style={{marginTop: 10}} buttons={MockData_3} />
       </View>
     );
   }

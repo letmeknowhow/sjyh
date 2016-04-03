@@ -79,7 +79,7 @@ export default class Application extends Component {
           <Scene key="bannerDetail" component={BannerDetail} title="详情" />
           <Scene key="tabBar" tabs={true} default="home" initial={true}>
             <Scene key="home" component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
-            <Scene key="order" component={Order} title={TAB_TITLE_ORDER} hideNavBar={hideNavBar} icon={TabIcon}/>
+            <Scene key="order" initial={true} component={Order} title={TAB_TITLE_ORDER} hideNavBar={hideNavBar} icon={TabIcon}/>
             <Scene key="favours" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={hideNavBar} icon={TabIcon}/>
             <Scene key="mine" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true} icon={TabIcon}/>
           </Scene>

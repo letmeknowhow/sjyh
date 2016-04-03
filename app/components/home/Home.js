@@ -88,6 +88,7 @@ const MockData_ICON = [
 import React from 'react-native';
 const { Component, View, StyleSheet, Platform, Text, Image, ScrollView, Dimensions, TouchableOpacity } = React;
 const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
 import Banner from '../../baseComponents/Banner';
 import Button from '../../baseComponents/Button';
 import GridView from 'react-native-grid-view';
@@ -97,20 +98,8 @@ const styles = StyleSheet.create(
   {
     page: {
       flex: 1,
-      backgroundColor: '#f3f2f3'
-    },
-    header: {
-      backgroundColor: '#ffda44'
-    },
-    badge: {
-      borderRadius: 5,
-      borderWidth: 0,
-      width: 10,
-      height: 10,
-      backgroundColor: '#dd2b37',
-      position: 'absolute',
-      top: 0,
-      right: 0
+      backgroundColor: '#f3f2f3',
+      marginTop: Platform.OS === 'ios' ? 20 : 0
     },
     button: {flex: 1, margin: 5, borderWidth: 0, height: 80},
     region1: {flex: 1, margin: 5, borderWidth: 0, height: 160, alignItems: 'stretch'},
@@ -139,8 +128,9 @@ export default class Home extends Component {
   // 渲染
   render() {
     return (
-        <View style={[styles.page, {marginTop: Platform.OS === 'ios' ? 20 : 0}]}>
+        <View style={[styles.page]}>
           <ScrollView
+            scrollsToTop={true}
             showsVerticalScrollIndicator={false}
             directionalLockEnabled={true}>
             <Banner
