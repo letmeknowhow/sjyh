@@ -14,7 +14,7 @@ import Order from '../components/order/container';
 import Favourite from '../components/favours/container';
 import Mine from '../components/mine/container';
 
-import BannerDetail from '../components/BannerDetail';
+import ProductDetail from '../components/ProductDetail';
 import ProductList from '../components/ProductList';
 
 const styles = StyleSheet.create({
@@ -77,7 +77,7 @@ export default class Application extends Component {
     return (
       <Router createReducer={reducerCreate} sceneStyle={{backgroundColor:'#F7F7F7'}}>
         <Scene key="root" hideNavBar={true}>
-          <Scene key="bannerDetail" component={BannerDetail} />
+          <Scene key="productDetail" component={ProductDetail} />
           <Scene key="productList" component={ProductList} />
           <Scene key="tabBar" tabs={true} default="home" initial={true}>
             <Scene key="home" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>

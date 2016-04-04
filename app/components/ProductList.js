@@ -4,26 +4,28 @@
  *  Date: 16/4/3.
  *  Description:
  */
-
+const MockUrl = require('../../assets/HelloWorld.html');
 const MockData_hot = [
   {
     id: '1', uri: require('../../assets/banner/1.png'),
     title: `<韩国首尔+济州岛5日超值跟团游>深起港止/升级一晚五花特二酒店/韩华水族馆/普罗旺斯村...`,
     text: '畅游韩国最具代表性建筑和国内热播并且收视率极高的韩剧拍摄地...',
-    price: '￥1999.0起/人'
-
+    price: '￥1999.0起/人',
+    url: MockUrl
   },
   {
     id: '2', uri: require('../../assets/banner/2.png'),
     title: `<韩国首尔+济州岛5日超值跟团游>深起港止/升级一晚五花特二酒店/韩华水族馆/普罗旺斯村...`,
     text: '畅游韩国最具代表性建筑和国内热播并且收视率极高的韩剧拍摄地...',
-    price: '￥599.0起/人'
+    price: '￥599.0起/人',
+    url: MockUrl
   },
   {
     id: '3', uri: require('../../assets/banner/3.png'),
     title: `<韩国首尔+济州岛5日超值跟团游>深起港止/升级一晚五花特二酒店/韩华水族馆/普罗旺斯村...`,
     text: '畅游韩国最具代表性建筑和国内热播并且收视率极高的韩剧拍摄地...',
-    price: '￥2999.0起/人'
+    price: '￥2999.0起/人',
+    url: MockUrl
   }
 ];
 
@@ -33,22 +35,24 @@ const MockData_gangao = [
     title: `[澳门]1日游 纯玩观光`,
     date: '多个团期',
     starting: '',
-    price: '￥138.0起/人'
-
+    price: '￥138.0起/人',
+    url: MockUrl
   },
   {
     id: '2', uri: require('../../assets/banner/2.png'),
     title: `[香港]1日游 深圳湾口岸出发/星光花园/太平山顶狮子厅/维多利亚海港...`,
     date: '多个团期',
     starting: '',
-    price: '￥263.0起/人'
+    price: '￥263.0起/人',
+    url: MockUrl
   },
   {
     id: '3', uri: require('../../assets/banner/3.png'),
     title: `[香港]1日游 迪士尼乐园+澳门3日游 畅玩香港迪士尼乐园/夜游维多利亚海港...`,
     date: '多个团期',
     starting: '',
-    price: '￥1480.0起/人'
+    price: '￥1480.0起/人',
+    url: MockUrl
   }
 ];
 
@@ -58,22 +62,24 @@ const MockData_mainland = [
     title: `<张家界+天门山+凤凰4日跟团游>深圳高铁往返/纯玩/黄龙洞...`,
     date: '多个团期',
     starting: '深圳',
-    price: '￥2570.0起/人'
-
+    price: '￥2570.0起/人',
+    url: MockUrl
   },
   {
     id: '2', uri: require('../../assets/banner/2.png'),
     title: `<九寨沟+牟尼沟+绵阳5日跟团游>深圳双飞往返/杜鹃山+特色藏寨+中...`,
     date: '多个团期',
     starting: '深圳',
-    price: '￥1399.0起/人'
+    price: '￥1399.0起/人',
+    url: MockUrl
   },
   {
     id: '3', uri: require('../../assets/banner/3.png'),
     title: `<三亚4日跟团游>深圳双飞+三亚进出+入住蜈支洲岛木楼别墅+海岛...`,
     date: '多个团期',
     starting: '深圳',
-    price: '￥1860.0起/人'
+    price: '￥1860.0起/人',
+    url: MockUrl
   }
 ];
 
@@ -211,7 +217,7 @@ export default class ProductList extends Component {
   renderRegion2(source) {
     return source.map((item) => {
       return (
-        <TouchableOpacity key={item.id} onPress={() => Actions.bannerDetail({data: item.title})}
+        <TouchableOpacity key={item.id} onPress={() => Actions.productDetail({data: item.title, url: item.url})}
                           style={{height: 80, width: deviceWidth - 10, flexDirection: 'row', marginVertical:3}}>
           <Image style={{width: 80, height: 80}} source={item.uri}/>
           <View style={{flex: 1, marginHorizontal: 10}}>

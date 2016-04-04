@@ -1,12 +1,12 @@
 /**
- *  Class: BannerDetail
+ *  Class: ProductDetail
  *  Author: Niu Xiaoyu
  *  Date: 16/4/1.
  *  Description:
  */
 import React from 'react-native';
 
-const { Component, View, Text, StyleSheet, Platform, TouchableOpacity } = React;
+const { Component, View, Text, StyleSheet, Platform, TouchableOpacity, WebView } = React;
 var Actions = require('react-native-router-flux').Actions;
 
 const styles = StyleSheet.create(
@@ -19,7 +19,7 @@ const styles = StyleSheet.create(
   }
 );
 
-export default class BannerDetail extends Component {
+export default class ProductDetail extends Component {
   // 默认属性
   static defaultProps = {};
 
@@ -47,9 +47,18 @@ export default class BannerDetail extends Component {
             <Text style={{fontSize: 28, color: 'red'}}>{'<'}</Text>
           </TouchableOpacity>
         </View>
-        <Text>
+        <Text style={{textAlign: 'center'}}>
           {this.props.data}
         </Text>
+        <WebView
+          refs={'web_view'}
+          automaticallyAdjustContentInsets={false}
+          style={{flex: 1, marginTop: 10}}
+          source={this.props.url}
+          javaScriptEnabledAndroid={true}
+          startInLoadingState={true}
+          scalesPageToFit={true}
+        />
       </View>
     );
   }
