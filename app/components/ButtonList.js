@@ -39,15 +39,15 @@ export default class ButtonList extends Component {
   render() {
     return (
       <View style={[styles.page, this.props.style]}>
-        {this.renderButton(this.props.buttons)}
+        {this.renderButton(this.props.buttons, this.props.action)}
       </View>
     );
   }
 
-  renderButton(buttons) {
+  renderButton(buttons, action) {
     return buttons.map((button) => {
       return (
-        <TouchableOpacity key={button.id} style={styles.button}>
+        <TouchableOpacity key={button.id} style={styles.button} onPress={()=> {action && action({data: button.text})}} >
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Image style={styles.icon} source={button.uri}/>
             <Text>{button.text}</Text>

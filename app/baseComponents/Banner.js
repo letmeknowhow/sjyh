@@ -86,7 +86,7 @@ class Banner extends Component {
         <TouchableOpacity key={item.id} onPress={() => Actions.productDetail({data:`来自banner${item.id}`, url: item.url})}>
           <Image
             source={item.uri}
-            style={{width: deviceWidth, height:this.props.height, resizeMode: Image.resizeMode.cover}}/>
+            style={{width: deviceWidth, height:this.props.height, resizeMode: Image.resizeMode.stretch}}/>
         </TouchableOpacity>
       );
     });

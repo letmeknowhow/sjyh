@@ -4,6 +4,34 @@
  *  Date: 16/4/1.
  *  Description:
  */
+const Mock_HTML = `
+<!DOCTYPE html>\n
+<html>
+  <head>
+    <title>Hello Static World</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320, user-scalable=no">
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+        font: 62.5% arial, sans-serif;
+        background: #ccc;
+      }
+      h1 {
+        padding: 45px;
+        margin: 0;
+        text-align: center;
+        color: #33f;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello Static World</h1>
+    <img src="http://img5.duitang.com/uploads/item/201508/08/20150808131549_wJR8i.png" />
+  </body>
+</html>
+`;
 import React from 'react-native';
 
 const { Component, View, Text, StyleSheet, Platform, TouchableOpacity, WebView } = React;
@@ -18,7 +46,6 @@ const styles = StyleSheet.create(
 
   }
 );
-
 export default class ProductDetail extends Component {
   // 默认属性
   static defaultProps = {};
@@ -33,28 +60,24 @@ export default class ProductDetail extends Component {
     this.state = {};
   }
 
-  // 自定义方法
-  handle() {
-
-  }
-
   // 渲染
   render() {
     return (
       <View style={[styles.page, {marginTop: Platform.OS === 'ios' ? 20 : 0}]}>
-        <View style={{height: 30, paddingLeft: 5}}>
+        <View style={{height: 30, paddingLeft: 5, paddingRight: 10, flexDirection: 'row', alignItems: 'center'}}>
           <TouchableOpacity onPress={Actions.pop}>
             <Text style={{fontSize: 28, color: 'red'}}>{'<'}</Text>
           </TouchableOpacity>
+          <Text style={{flex: 1, textAlign: 'center'}}>
+            {this.props.data}
+          </Text>
         </View>
-        <Text style={{textAlign: 'center'}}>
-          {this.props.data}
-        </Text>
         <WebView
           refs={'web_view'}
           automaticallyAdjustContentInsets={false}
           style={{flex: 1, marginTop: 10}}
           source={this.props.url}
+          //source={{html: Mock_HTML}}
           javaScriptEnabledAndroid={true}
           startInLoadingState={true}
           scalesPageToFit={true}

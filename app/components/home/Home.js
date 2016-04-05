@@ -7,7 +7,8 @@
 
 const MockUrl = require('../../../assets/HelloWorld.html');
 const MockData_banner = [
-  {id: '1', uri: require('../../../assets/banner/1.png'), url: MockUrl},
+  //{id: '1', uri: require('../../../assets/banner/usa.png'), url: {uri: 'http://pr.mangocity.com/us_trip/?zy=mgs_jx'}},
+  {id: '1', uri: require('../../../assets/banner/usa.png'), url: MockUrl},
   {id: '2', uri: require('../../../assets/banner/2.png'), url: MockUrl},
   {id: '3', uri: require('../../../assets/banner/3.png'), url: MockUrl},
   {id: '4', uri: require('../../../assets/banner/4.png'), url: MockUrl}

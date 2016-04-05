@@ -10,12 +10,23 @@ const { Component,View, Navigator, Text, StyleSheet, Platform, Image, Alert } = 
 //import LoadSpinner from '../components/LoadSpinner';
 /** 主tab 四页*/
 import Home from '../components/home/Home';
-import Order from '../components/order/container';
-import Favourite from '../components/favours/container';
-import Mine from '../components/mine/container';
+import Order from '../components/order/Container';
+import Favourite from '../components/favours/Container';
+import Mine from '../components/mine/Container';
 
-import ProductDetail from '../components/ProductDetail';
-import ProductList from '../components/ProductList';
+//销售项目
+import ProductDetail from '../components/product/ProductDetail';
+import ProductList from '../components/product/ProductList';
+
+//订单
+import OrderDetail from '../components/order/Detail';
+
+//收藏
+import FavoursDetail from '../components/favours/Detail';
+
+//我的
+import MyMessage from '../components/mine/MyMessage';
+import CommonUse from '../components/mine/CommonUse';
 
 const styles = StyleSheet.create({
   modal: {
@@ -79,6 +90,10 @@ export default class Application extends Component {
         <Scene key="root" hideNavBar={true}>
           <Scene key="productDetail" component={ProductDetail} />
           <Scene key="productList" component={ProductList} />
+          <Scene key="orderDetail" component={OrderDetail} />
+          <Scene key="favoursDetail" component={FavoursDetail} />
+          <Scene key="myMessage" component={MyMessage} />
+          <Scene key="commonUse" component={CommonUse} />
           <Scene key="tabBar" tabs={true} default="home" initial={true}>
             <Scene key="home" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
             <Scene key="order" component={Order} title={TAB_TITLE_ORDER} hideNavBar={hideNavBar} icon={TabIcon}/>

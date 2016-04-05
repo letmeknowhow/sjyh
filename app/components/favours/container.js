@@ -16,9 +16,10 @@ const MockData = [
 import React from 'react-native';
 
 const { Component } = React;
+const Actions = require('react-native-router-flux').Actions;
 import ButtonList from '../ButtonList';
 
-export default class container extends Component {
+export default class Container extends Component {
   // 构造
   constructor(props) {
     super(props);
@@ -34,7 +35,7 @@ export default class container extends Component {
   // 渲染
   render() {
     return (
-      <ButtonList style={{marginTop: 64, flex: 1}} buttons={MockData} />
+      <ButtonList style={{marginTop: 64, flex: 1}} buttons={MockData} action={Actions.favoursDetail} />
     );
   }
 }

@@ -19,6 +19,7 @@ const MockData_3 = [
 import React from 'react-native';
 
 const { Component, StyleSheet, View, Image, TouchableOpacity, Text } = React;
+const Actions = require('react-native-router-flux').Actions;
 import ButtonList from '../ButtonList';
 
 const styles = StyleSheet.create({
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     marginLeft: -16
   }
 });
-export default class container extends Component {
+export default class Container extends Component {
   // 构造
   constructor(props) {
     super(props);
@@ -58,8 +59,8 @@ export default class container extends Component {
             </TouchableOpacity>
           </View>
         </Image>
-        <ButtonList buttons={MockData_1} />
-        <ButtonList style={{marginTop: 10}} buttons={MockData_2} />
+        <ButtonList buttons={MockData_1} action={Actions.myMessage} />
+        <ButtonList style={{marginTop: 10}} buttons={MockData_2} action={Actions.commonUse}/>
         <ButtonList style={{marginTop: 10}} buttons={MockData_3} />
       </View>
     );
