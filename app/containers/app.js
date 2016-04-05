@@ -27,6 +27,7 @@ import FavoursDetail from '../components/favours/Detail';
 //我的
 import MyMessage from '../components/mine/MyMessage';
 import CommonUse from '../components/mine/CommonUse';
+import AboutUs from '../components/mine/AboutUs';
 
 const styles = StyleSheet.create({
   modal: {
@@ -94,6 +95,7 @@ export default class Application extends Component {
           <Scene key="favoursDetail" component={FavoursDetail} />
           <Scene key="myMessage" component={MyMessage} />
           <Scene key="commonUse" component={CommonUse} />
+          <Scene key="aboutUs" component={AboutUs} />
           <Scene key="tabBar" tabs={true} default="home" initial={true}>
             <Scene key="home" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
             <Scene key="order" component={Order} title={TAB_TITLE_ORDER} hideNavBar={hideNavBar} icon={TabIcon}/>
