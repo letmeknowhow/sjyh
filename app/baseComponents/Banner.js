@@ -5,7 +5,6 @@
  *  Description: 轮播图
  */
 import React from 'react-native';
-//import ViewPager from 'react-native-viewpager';
 import SwiperIOS from 'react-native-swiper';
 import SwiperAndroid from './react-native-page-swiper/index';
 var Actions = require('react-native-router-flux').Actions;
@@ -20,51 +19,14 @@ const styles = StyleSheet.create({
   },
 });
 
-//const dataSource = new ViewPager.DataSource({
-//  pageHasChanged: (p1, p2) => p1.id !== p2.id,
-//});
-
 class Banner extends Component {
 
   // 构造
   constructor(props) {
     super(props);
     // 初始状态
-    this.state = {
-      //dataSource: dataSource.cloneWithPages([]),
-    };
+    this.state = {};
   }
-  //use view_pager start
-  //render() {
-  //  return (
-  //    <View style={this.props.style}>
-  //      {this._renderViewPager()}
-  //    </View>
-  //  );
-  //}
-  //
-  //_renderPage(data, pageID) {
-  //  return (
-  //    <TouchableOpacity onPress={Actions.commodityDetail}>
-  //      <Image
-  //        source={data.url}
-  //        style={{width: deviceWidth, height:140, resizeMode: Image.resizeMode.cover}}/>
-  //    </TouchableOpacity>
-  //  );
-  //}
-  //
-  //
-  //_renderViewPager() {
-  //
-  //  return (
-  //    <ViewPager
-  //      dataSource={this.state.dataSource}
-  //      renderPage={this._renderPage.bind(this)}
-  //      isLoop={this.state.isLoop}
-  //      autoPlay={false}/>
-  //  );
-  //}
-  //use view_pager end
 
   //use swiper start
   render() {
