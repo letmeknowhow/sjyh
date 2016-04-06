@@ -7,7 +7,7 @@
 import React from 'react-native';
 
 const { Component, View, Text, StyleSheet, Platform, TouchableOpacity, Image } = React;
-const Actions = require('react-native-router-flux').Actions;
+import CommonHeader from '../CommonHeader';
 
 const styles = StyleSheet.create(
   {
@@ -78,14 +78,7 @@ export default class CommonUse extends Component {
   render() {
     return (
       <View style={[styles.page, {marginTop: Platform.OS === 'ios' ? 20 : 0}]}>
-        <View style={styles.header}>
-          <TouchableOpacity style={{paddingBottom: 3, backgroundColor: 'transparent'}} onPress={Actions.pop}>
-            <Text style={{fontSize: 28, height: 30, color: 'red'}}>{'<'}</Text>
-          </TouchableOpacity>
-          <Text style={{flex: 1, textAlign: 'center'}}>
-            {this.props.data}
-          </Text>
-        </View>
+        <CommonHeader data={this.props.data} />
         <View style={styles.body_content}>
           <Image style={{width: 100, height: 100}} source={require('../../../assets/logo.jpg')}  />
           <Text style={{fontWeight: '100'}}>{`暂时没有${this.props.data}`}</Text>

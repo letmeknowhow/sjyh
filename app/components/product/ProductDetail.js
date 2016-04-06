@@ -19,22 +19,23 @@ const Mock_HTML = `
         background: #ccc;
       }
       h1 {
-        padding: 45px;
-        margin: 0;
-        text-align: center;
-        color: #33f;
+            padding: 45px;
+            margin: 0;
+            text-align: center;
+            color: #ff081c;
       }
     </style>
   </head>
   <body>
     <h1>你好! 港中旅!</h1>
+    <h1>这是一个html页面</h3>
   </body>
 </html>
 `;
 import React from 'react-native';
 
 const { Component, View, Text, StyleSheet, Platform, TouchableOpacity, WebView } = React;
-var Actions = require('react-native-router-flux').Actions;
+import CommonHeader from '../CommonHeader';
 
 const styles = StyleSheet.create(
   {
@@ -63,22 +64,15 @@ export default class ProductDetail extends Component {
   render() {
     return (
       <View style={[styles.page, {marginTop: Platform.OS === 'ios' ? 20 : 0}]}>
-        <View style={{height: 30, paddingLeft: 5, paddingRight: 10, flexDirection: 'row', alignItems: 'center'}}>
-          <TouchableOpacity onPress={Actions.pop}>
-            <Text style={{fontSize: 28, color: 'red'}}>{'<'}</Text>
-          </TouchableOpacity>
-          <Text style={{flex: 1, textAlign: 'center'}}>
-            {this.props.data}
-          </Text>
-        </View>
+        <CommonHeader data={this.props.data} />
         <WebView
           refs={'web_view'}
           automaticallyAdjustContentInsets={false}
-          style={{flex: 1, marginTop: 10}}
+          style={{flex: 1}}
           //source={{uri: this.props.url}}
           source={{html: Mock_HTML}}
           javaScriptEnabled={true}
-          //startInLoadingState={true}
+          startInLoadingState={true}
           //scalesPageToFit={true}
         />
       </View>
