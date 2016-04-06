@@ -86,7 +86,8 @@ const MockData_mainland = [
 import React from 'react-native';
 
 const { Component, View, Text, StyleSheet, TouchableOpacity, Platform, Image, TextInput, Dimensions, ScrollView } = React;
-import Swiper from 'react-native-swiper';
+import SwiperIOS from 'react-native-swiper';
+import SwiperAndroid from '../../baseComponents/react-native-page-swiper/index';
 const deviceWidth = Dimensions.get('window').width;
 import CategoryTitle from './../CategoryTitle';
 var Actions = require('react-native-router-flux').Actions;
@@ -164,13 +165,7 @@ export default class ProductList extends Component {
           directionalLockEnabled={true}
         >
           <CategoryTitle style={{backgroundColor: '#FFF',paddingVertical: 12, marginBottom: 0, height: 40}} title='当季热卖'/>
-          <Swiper style={styles.banner} showsButtons={false} height={250}
-                  dot={<View style={{backgroundColor:'gray', width: 5, height: 5,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-                  activeDot={<View style={{backgroundColor: 'red', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-                  paginationStyle={{bottom: 0 }}
-          >
-            {this.renderHot()}
-          </Swiper>
+          {this.renderSwiper()}
           <CategoryTitle style={{backgroundColor: '#FFF',paddingVertical: 12, marginBottom: 0, height: 40}} title='港澳专区'/>
           <Image style={{width: deviceWidth - 10, height: 100, marginHorizontal: 5, justifyContent: 'flex-end'}}
                  resizeMode='stretch' source={require('../../../assets/hongkong.png')}
@@ -204,6 +199,26 @@ export default class ProductList extends Component {
         </ScrollView>
       </View>
     );
+  }
+
+  renderSwiper() {
+    if(Platform.OS === 'ios') {
+      return (
+        <SwiperIOS style={styles.banner} showsButtons={false} height={250}
+                   dot={<View style={{backgroundColor:'gray', width: 5, height: 5,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+                   activeDot={<View style={{backgroundColor: 'red', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+                   paginationStyle={{bottom: 0 }}
+        >
+          {this.renderHot()}
+        </SwiperIOS>
+      );
+    } else {
+      return (
+        <SwiperAndroid style={styles.wrapper} activeDotColor="red">
+          {this.renderHot()}
+        </SwiperAndroid>
+      );
+    }
   }
 
   renderHot() {

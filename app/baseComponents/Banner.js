@@ -6,9 +6,10 @@
  */
 import React from 'react-native';
 //import ViewPager from 'react-native-viewpager';
-import Swiper from 'react-native-swiper';
+import SwiperIOS from 'react-native-swiper';
+import SwiperAndroid from './react-native-page-swiper/index';
 var Actions = require('react-native-router-flux').Actions;
-const { Component, Dimensions, View, Image, TouchableOpacity, InteractionManager, StyleSheet } = React;
+const { Component, Dimensions, View, Image, TouchableOpacity, Platform, StyleSheet } = React;
 
 const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
@@ -67,17 +68,27 @@ class Banner extends Component {
 
   //use swiper start
   render() {
-    return (
-      <View style={this.props.style}>
-        <Swiper style={styles.banner} showsButtons={false} height={this.props.height}
-                dot={<View style={{backgroundColor:'gray', width: 20, height: 3,borderRadius: 0, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-                activeDot={<View style={{backgroundColor: '#FFF', width: 20, height: 3, borderRadius: 0, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-                paginationStyle={{bottom: 0 }}
-        >
-          {this.renderHot(this.props.source)}
-        </Swiper>
-      </View>
-    );
+    if(Platform.OS === 'ios') {
+      return (
+        <View style={this.props.style}>
+          <SwiperIOS style={styles.banner} showsButtons={false} height={this.props.height}
+                     dot={<View style={{backgroundColor:'gray', width: 20, height: 3,borderRadius: 0, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+                     activeDot={<View style={{backgroundColor: '#FFF', width: 20, height: 3, borderRadius: 0, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
+                     paginationStyle={{bottom: 0 }}
+          >
+            {this.renderHot(this.props.source)}
+          </SwiperIOS>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.banner}>
+          <SwiperAndroid style={styles.wrapper} activeDotColor="red">
+            {this.renderHot(this.props.source)}
+          </SwiperAndroid>
+        </View>
+      );
+    }
   }
 
   renderHot(source) {

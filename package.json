@@ -9,6 +9,7 @@
     "key-mirror": "^1.0.1",
     "lodash": "^3.10.1",
     "moment": "^2.11.2",
+    "react": "^0.14.8",
     "react-native": "^0.22.0",
     "react-native-code-push": "^1.10.0-beta",
     "react-native-grid-view": "^0.3.7",

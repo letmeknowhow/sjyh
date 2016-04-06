@@ -14,7 +14,9 @@ const MockData_2 = [
 ];
 const MockData_3 = [
   {id: 0, uri: require('../../../assets/icons/4.png'), text: '设置'},
-  {id: 1, uri: require('../../../assets/icons/2.png'), text: '关于我们'}
+];
+const MockData_4 = [
+  {id: 0, uri: require('../../../assets/icons/2.png'), text: '关于我们'}
 ];
 import React from 'react-native';
 
@@ -62,6 +64,7 @@ export default class Container extends Component {
         <ButtonList buttons={MockData_1} action={Actions.myMessage} />
         <ButtonList style={{marginTop: 10}} buttons={MockData_2} action={Actions.commonUse}/>
         <ButtonList style={{marginTop: 10}} buttons={MockData_3} />
+        <ButtonList style={{marginTop: 10}} buttons={MockData_4} action={Actions.aboutUs}/>
       </View>
     );
   }
