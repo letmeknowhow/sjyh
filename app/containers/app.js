@@ -108,6 +108,7 @@ export default class Application extends Component {
 
     return (
       <Router hideNavBar={true}>
+        <Schema name="tab" type="switch" icon={TabIcon} />
         <Route name="productDetail" component={ProductDetail} />
         <Route name="productList" component={ProductList} />
         <Route name="orderDetail" component={OrderDetail} />
@@ -116,11 +117,11 @@ export default class Application extends Component {
         <Route name="commonUse" component={CommonUse} />
         <Route name="aboutUs" component={AboutUs} />
         <Route name="tabBar" initial={true}>
-          <Router footer={TabBar} showNavigationBar={true}>
-            <Route name="home" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
-            <Route name="order" component={Order} title={TAB_TITLE_ORDER} hideNavBar={false} icon={TabIcon}/>
-            <Route name="favours" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={false} icon={TabIcon}/>
-            <Route name="mine" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true} icon={TabIcon}/>
+          <Router footer={TabBar} showNavigationBar={false}>
+            <Route name="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true}/>
+            <Route name="order" schema="tab" component={Order} title={TAB_TITLE_ORDER} hideNavBar={true} />
+            <Route name="favours" schema="tab" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={true}/>
+            <Route name="mine" schema="tab" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true}/>
           </Router>
         </Route>
       </Router>
