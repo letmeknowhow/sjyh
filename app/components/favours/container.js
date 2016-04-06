@@ -15,9 +15,27 @@ const MockData = [
 
 import React from 'react-native';
 
-const { Component } = React;
+const { Component, View, Text, StyleSheet, Platform } = React;
 const Actions = require('react-native-router-flux').Actions;
 import ButtonList from '../ButtonList';
+
+const styles = StyleSheet.create(
+  {
+    page: {
+      flex: 1,
+      backgroundColor: '#f3f2f3',
+      marginTop: Platform.OS === 'ios' ? 20 : 0,
+      paddingHorizontal: 5
+    },
+    header: {
+      height: 40,
+      backgroundColor: '#FFF',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 10
+    }
+  }
+);
 
 export default class Container extends Component {
   // 构造
@@ -35,7 +53,12 @@ export default class Container extends Component {
   // 渲染
   render() {
     return (
-      <ButtonList style={{marginTop: 64, flex: 1}} buttons={MockData} action={Actions.favoursDetail} />
+      <View style={styles.page}>
+        <View style={styles.header}>
+          <Text style={{fontSize: 16}}>我的收藏</Text>
+        </View>
+        <ButtonList style={{flex: 1}} buttons={MockData} action={Actions.favoursDetail} />
+      </View>
     );
   }
 }
