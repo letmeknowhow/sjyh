@@ -27,8 +27,7 @@ const Mock_HTML = `
     </style>
   </head>
   <body>
-    <h1>Hello Static World</h1>
-    <img src="http://img5.duitang.com/uploads/item/201508/08/20150808131549_wJR8i.png" />
+    <h1>你好! 港中旅!</h1>
   </body>
 </html>
 `;
@@ -76,11 +75,11 @@ export default class ProductDetail extends Component {
           refs={'web_view'}
           automaticallyAdjustContentInsets={false}
           style={{flex: 1, marginTop: 10}}
-          source={this.props.url}
-          //source={{html: Mock_HTML}}
-          javaScriptEnabledAndroid={true}
-          startInLoadingState={true}
-          scalesPageToFit={true}
+          //source={{uri: this.props.url}}
+          source={{html: Mock_HTML}}
+          javaScriptEnabled={true}
+          //startInLoadingState={true}
+          //scalesPageToFit={true}
         />
       </View>
     );

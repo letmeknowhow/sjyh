@@ -3,7 +3,7 @@
  */
 
 import React from 'react-native';
-import {Scene, Reducer, Router, Switch, TabBar, Modal, Schema, Actions} from 'react-native-router-flux'
+import {Router, Route, Schema, Animations, TabBar} from 'react-native-router-flux'
 const { Component,View, Navigator, Text, StyleSheet, Platform, Image, Alert } = React;
 
 
@@ -86,23 +86,43 @@ class TabIcon extends React.Component {
 export default class Application extends Component {
 
   render() {
+    //return (
+    //  <Router createReducer={reducerCreate} sceneStyle={{backgroundColor:'#F7F7F7'}}>
+    //    <Scene key="root" hideNavBar={true}>
+    //      <Scene key="productDetail" component={ProductDetail} />
+    //      <Scene key="productList" component={ProductList} />
+    //      <Scene key="orderDetail" component={OrderDetail} />
+    //      <Scene key="favoursDetail" component={FavoursDetail} />
+    //      <Scene key="myMessage" component={MyMessage} />
+    //      <Scene key="commonUse" component={CommonUse} />
+    //      <Scene key="aboutUs" component={AboutUs} />
+    //      <Scene key="tabBar" tabs={true} default="home" initial={true}>
+    //        <Scene key="home" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
+    //        <Scene key="order" component={Order} title={TAB_TITLE_ORDER} hideNavBar={hideNavBar} icon={TabIcon}/>
+    //        <Scene key="favours" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={hideNavBar} icon={TabIcon}/>
+    //        <Scene key="mine" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true} icon={TabIcon}/>
+    //      </Scene>
+    //    </Scene>
+    //  </Router>
+    //);
+
     return (
-      <Router createReducer={reducerCreate} sceneStyle={{backgroundColor:'#F7F7F7'}}>
-        <Scene key="root" hideNavBar={true}>
-          <Scene key="productDetail" component={ProductDetail} />
-          <Scene key="productList" component={ProductList} />
-          <Scene key="orderDetail" component={OrderDetail} />
-          <Scene key="favoursDetail" component={FavoursDetail} />
-          <Scene key="myMessage" component={MyMessage} />
-          <Scene key="commonUse" component={CommonUse} />
-          <Scene key="aboutUs" component={AboutUs} />
-          <Scene key="tabBar" tabs={true} default="home" initial={true}>
-            <Scene key="home" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
-            <Scene key="order" component={Order} title={TAB_TITLE_ORDER} hideNavBar={hideNavBar} icon={TabIcon}/>
-            <Scene key="favours" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={hideNavBar} icon={TabIcon}/>
-            <Scene key="mine" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true} icon={TabIcon}/>
-          </Scene>
-        </Scene>
+      <Router hideNavBar={true}>
+        <Route name="productDetail" component={ProductDetail} />
+        <Route name="productList" component={ProductList} />
+        <Route name="orderDetail" component={OrderDetail} />
+        <Route name="favoursDetail" component={FavoursDetail} />
+        <Route name="myMessage" component={MyMessage} />
+        <Route name="commonUse" component={CommonUse} />
+        <Route name="aboutUs" component={AboutUs} />
+        <Route name="tabBar" initial={true}>
+          <Router footer={TabBar} showNavigationBar={true}>
+            <Route name="home" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
+            <Route name="order" component={Order} title={TAB_TITLE_ORDER} hideNavBar={false} icon={TabIcon}/>
+            <Route name="favours" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={false} icon={TabIcon}/>
+            <Route name="mine" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true} icon={TabIcon}/>
+          </Router>
+        </Route>
       </Router>
     );
   }

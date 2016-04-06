@@ -5,7 +5,7 @@
  *  Description: 首页
  */
 
-const MockUrl = require('../../../assets/HelloWorld.html');
+const MockUrl = '../../../assets/HelloWorld.html';
 const MockData_banner = [
   //{id: '1', uri: require('../../../assets/banner/usa.png'), url: {uri: 'http://pr.mangocity.com/us_trip/?zy=mgs_jx'}},
   {id: '1', uri: require('../../../assets/banner/usa.png'), url: MockUrl},

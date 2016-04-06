@@ -4,7 +4,7 @@
  *  Date: 16/4/3.
  *  Description:
  */
-const MockUrl = require('../../../assets/HelloWorld.html');
+const MockUrl = '../../../assets/HelloWorld.html';
 const MockData_hot = [
   {
     id: '1', uri: require('../../../assets/banner/1.png'),
@@ -13,20 +13,20 @@ const MockData_hot = [
     price: '￥1999.0起/人',
     url: MockUrl
   },
-  //{
-  //  id: '2', uri: require('../../../assets/banner/2.png'),
-  //  title: `<韩国首尔+济州岛5日超值跟团游>深起港止/升级一晚五花特二酒店/韩华水族馆/普罗旺斯村...`,
-  //  text: '畅游韩国最具代表性建筑和国内热播并且收视率极高的韩剧拍摄地...',
-  //  price: '￥599.0起/人',
-  //  url: MockUrl
-  //},
-  //{
-  //  id: '3', uri: require('../../../assets/banner/3.png'),
-  //  title: `<韩国首尔+济州岛5日超值跟团游>深起港止/升级一晚五花特二酒店/韩华水族馆/普罗旺斯村...`,
-  //  text: '畅游韩国最具代表性建筑和国内热播并且收视率极高的韩剧拍摄地...',
-  //  price: '￥2999.0起/人',
-  //  url: MockUrl
-  //}
+  {
+    id: '2', uri: require('../../../assets/banner/2.png'),
+    title: `<韩国首尔+济州岛5日超值跟团游>深起港止/升级一晚五花特二酒店/韩华水族馆/普罗旺斯村...`,
+    text: '畅游韩国最具代表性建筑和国内热播并且收视率极高的韩剧拍摄地...',
+    price: '￥599.0起/人',
+    url: MockUrl
+  },
+  {
+    id: '3', uri: require('../../../assets/banner/3.png'),
+    title: `<韩国首尔+济州岛5日超值跟团游>深起港止/升级一晚五花特二酒店/韩华水族馆/普罗旺斯村...`,
+    text: '畅游韩国最具代表性建筑和国内热播并且收视率极高的韩剧拍摄地...',
+    price: '￥2999.0起/人',
+    url: MockUrl
+  }
 ];
 
 const MockData_gangao = [
@@ -88,6 +88,7 @@ import React from 'react-native';
 const { Component, View, Text, StyleSheet, TouchableOpacity, Platform, Image, TextInput, Dimensions, ScrollView } = React;
 import SwiperIOS from 'react-native-swiper';
 import SwiperAndroid from '../../baseComponents/react-native-page-swiper/index';
+import ViewPager from 'react-native-viewpager';
 const deviceWidth = Dimensions.get('window').width;
 import CategoryTitle from './../CategoryTitle';
 var Actions = require('react-native-router-flux').Actions;
@@ -140,8 +141,13 @@ export default class ProductList extends Component {
 
   constructor(props) {
     super(props);
+    let dataSource = new ViewPager.DataSource({
+      pageHasChanged: (p1, p2) => p1 !== p2,
+    });
     // 初始状态
-    this.state = {};
+    this.state = {
+      dataSource: dataSource.cloneWithPages(MockData_hot)
+    };
   }
 
   render() {
@@ -214,9 +220,9 @@ export default class ProductList extends Component {
       );
     } else {
       return (
-        <SwiperAndroid style={styles.wrapper} activeDotColor="red">
-          {this.renderHot()}
-        </SwiperAndroid>
+        <ViewPager
+          dataSource={this.state.dataSource}
+          renderPage={this.renderPage}/>
       );
     }
   }
@@ -227,6 +233,12 @@ export default class ProductList extends Component {
         <BannerSlider key={item.id} source={item} />
       );
     });
+  }
+
+  renderPage(data, pageIndex) {
+    return (
+      <BannerSlider key={pageIndex} source={data} />
+    );
   }
 
   renderRegion2(source) {
