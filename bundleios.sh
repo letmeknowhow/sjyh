@@ -8,5 +8,5 @@ react-native bundle \
 --bundle-output ./release/ios/main.jsbundle \
 --assets-dest ./release/ios \
 --dev false
-# ios下codepush支持文件夹发布
-code-push release NxyApp-ios  ./release/ios  1.0.0
+
+code-push release Travel-iOS  ./release/ios  1.0.0

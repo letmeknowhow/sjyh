@@ -171,7 +171,7 @@ export default class Home extends Component {
               scrollEnabled={false}
               renderItem={this.renderItem.bind(this)}
             />
-            <CategoryTitle title='旅行家'/>
+            <CategoryTitle title='旅行家123'/>
             <GridView style={{marginHorizontal: 0}}
               items={MockData_region1}
               scrollEnabled={false}

@@ -5,7 +5,8 @@
 import React from 'react-native';
 import {Router, Route, Schema, Animations, TabBar} from 'react-native-router-flux'
 const { Component,View, Navigator, Text, StyleSheet, Platform, Image, Alert } = React;
-
+import CodePush from 'react-native-code-push';
+import Modal from '../baseComponents/ModalBox';
 
 //import LoadSpinner from '../components/LoadSpinner';
 /** 主tab 四页*/
@@ -85,6 +86,84 @@ class TabIcon extends React.Component {
 
 export default class Application extends Component {
 
+  constructor(props) {
+    super(props);
+    // 初始状态
+    this.state = {
+      progress: false,
+    };
+  }
+
+  componentWillMount() {
+    let self = this;
+    CodePush.sync(
+      {
+        updateDialog: {
+          title: '升级提醒',
+          optionalUpdateMessage: '有一个可用的更新 是否需要安装?',
+          optionalInstallButtonLabel: '马上更新',
+          optionalIgnoreButtonLabel: '暂不更新'
+        },
+        installMode: CodePush.InstallMode.IMMEDIATE,
+      },
+      (syncStatus) => {
+        switch(syncStatus) {
+          case CodePush.SyncStatus.CHECKING_FOR_UPDATE:
+            self.setState({
+              syncMessage: '正在检查更新.'
+            });
+            break;
+          case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
+            self.setState({
+              syncMessage: '正在下载.'
+            });
+            this.refs.downloadBox.open();
+            break;
+          case CodePush.SyncStatus.AWAITING_USER_ACTION:
+            self.setState({
+              syncMessage: 'Awaiting user action.'
+            });
+            break;
+          case CodePush.SyncStatus.INSTALLING_UPDATE:
+            self.setState({
+              syncMessage: '正在安装.'
+            });
+            this.refs.downloadBox.close()
+            break;
+          case CodePush.SyncStatus.UP_TO_DATE:
+            self.setState({
+              syncMessage: '更新版本号到最新',
+              progress: false
+            });
+            break;
+          case CodePush.SyncStatus.UPDATE_IGNORED:
+            self.setState({
+              syncMessage: 'Update cancelled by user.',
+              progress: false
+            });
+            break;
+          case CodePush.SyncStatus.UPDATE_INSTALLED:
+            self.setState({
+              syncMessage: '更新已经安装,下次重启后应用更新内容',
+              progress: false
+            });
+            break;
+          case CodePush.SyncStatus.UNKNOWN_ERROR:
+            self.setState({
+              syncMessage: '一个未知错误',
+              progress: false
+            });
+            break;
+        }
+      },
+      (progress) => {
+        self.setState({
+          progress: progress
+        });
+      }
+    );
+  }
+
   render() {
     //return (
     //  <Router createReducer={reducerCreate} sceneStyle={{backgroundColor:'#F7F7F7'}}>
@@ -107,24 +186,33 @@ export default class Application extends Component {
     //);
 
     return (
-      <Router hideNavBar={true}>
-        <Schema name="tab" type="switch" icon={TabIcon} />
-        <Route name="productDetail" component={ProductDetail} />
-        <Route name="productList" component={ProductList} />
-        <Route name="orderDetail" component={OrderDetail} />
-        <Route name="favoursDetail" component={FavoursDetail} />
-        <Route name="myMessage" component={MyMessage} />
-        <Route name="commonUse" component={CommonUse} />
-        <Route name="aboutUs" component={AboutUs} />
-        <Route name="tabBar" initial={true}>
-          <Router footer={TabBar} showNavigationBar={false}>
-            <Route name="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true}/>
-            <Route name="order" schema="tab" component={Order} title={TAB_TITLE_ORDER} hideNavBar={true} />
-            <Route name="favours" schema="tab" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={true}/>
-            <Route name="mine" schema="tab" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true}/>
-          </Router>
-        </Route>
-      </Router>
+      <View style={{flex: 1}} >
+        <Router hideNavBar={true}>
+          <Schema name="tab" type="switch" icon={TabIcon} />
+          <Route name="productDetail" component={ProductDetail} />
+          <Route name="productList" component={ProductList} />
+          <Route name="orderDetail" component={OrderDetail} />
+          <Route name="favoursDetail" component={FavoursDetail} />
+          <Route name="myMessage" component={MyMessage} />
+          <Route name="commonUse" component={CommonUse} />
+          <Route name="aboutUs" component={AboutUs} />
+          <Route name="tabBar" initial={true}>
+            <Router footer={TabBar} showNavigationBar={false}>
+              <Route name="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true}/>
+              <Route name="order" schema="tab" component={Order} title={TAB_TITLE_ORDER} hideNavBar={true} />
+              <Route name="favours" schema="tab" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={true}/>
+              <Route name="mine" schema="tab" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true}/>
+            </Router>
+          </Route>
+        </Router>
+        <Modal style={[styles.modal]} swipeToClose={false} position={"center"} ref={"downloadBox"}>
+          <View>
+            <Text>{this.state.syncMessage}</Text>
+            {this.state.progress && (
+              <Text>{this.state.progress.receivedBytes} / {this.state.progress.totalBytes}</Text>)}
+          </View>
+        </Modal>
+      </View>
     );
   }
 }
