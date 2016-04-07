@@ -16,7 +16,7 @@ const MockData_1 = [
 import React from 'react-native';
 
 const { Component, StyleSheet, View, Image, TouchableOpacity, Text, Platform } = React;
-const Actions = require('react-native-router-flux').Actions;
+import CommonHeader from '../CommonHeader';
 import ButtonList from '../ButtonList';
 
 const styles = StyleSheet.create({
@@ -46,14 +46,7 @@ export default class AboutUs extends Component {
   render() {
     return (
       <View style={[styles.page, {marginTop: Platform.OS === 'ios' ? 20 : 0}]}>
-        <View style={styles.header}>
-          <TouchableOpacity style={{paddingBottom: 3, backgroundColor: 'transparent'}} onPress={Actions.pop}>
-            <Text style={{fontSize: 28, height: 30, color: 'red'}}>{'<'}</Text>
-          </TouchableOpacity>
-          <Text style={{flex: 1, textAlign: 'center'}}>
-            {this.props.data}
-          </Text>
-        </View>
+        <CommonHeader data={this.props.data} />
         <ButtonList buttons={MockData_1}/>
       </View>
     );

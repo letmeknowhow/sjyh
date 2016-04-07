@@ -6,8 +6,17 @@
  */
 import React from 'react-native';
 
-const { Component, View, Text } = React;
+const { Component, View, Text, StyleSheet } = React;
 
+const styles = {
+  page: {
+    height: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 10,
+    paddingHorizontal: 10
+  }
+};
 export default class CategoryTitle extends Component {
 
   constructor(props) {
@@ -19,8 +28,8 @@ export default class CategoryTitle extends Component {
   // 渲染
   render() {
     return (
-      <View style={[{height: 15,flexDirection: 'row', marginVertical: 10, paddingHorizontal: 10}, this.props.style]}>
-        <View style={{width: 8, backgroundColor: 'red'}} />
+      <View style={[styles.page, this.props.style]}>
+        <View style={{width: 8, height: 15, backgroundColor: 'red'}} />
         <Text style={{marginLeft: 10}}>{this.props.title}</Text>
       </View>
     );

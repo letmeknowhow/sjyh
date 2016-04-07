@@ -13,20 +13,20 @@ const MockData_hot = [
     price: '￥1999.0起/人',
     url: MockUrl
   },
-  //{
-  //  id: '2', uri: require('../../../assets/banner/2.png'),
-  //  title: `<韩国首尔+济州岛5日超值跟团游>深起港止/升级一晚五花特二酒店/韩华水族馆/普罗旺斯村...`,
-  //  text: '畅游韩国最具代表性建筑和国内热播并且收视率极高的韩剧拍摄地...',
-  //  price: '￥599.0起/人',
-  //  url: MockUrl
-  //},
-  //{
-  //  id: '3', uri: require('../../../assets/banner/3.png'),
-  //  title: `<韩国首尔+济州岛5日超值跟团游>深起港止/升级一晚五花特二酒店/韩华水族馆/普罗旺斯村...`,
-  //  text: '畅游韩国最具代表性建筑和国内热播并且收视率极高的韩剧拍摄地...',
-  //  price: '￥2999.0起/人',
-  //  url: MockUrl
-  //}
+  {
+    id: '2', uri: require('../../../assets/banner/2.png'),
+    title: `<韩国首尔+济州岛5日超值跟团游>深起港止/升级一晚五花特二酒店/韩华水族馆/普罗旺斯村...`,
+    text: '畅游韩国最具代表性建筑和国内热播并且收视率极高的韩剧拍摄地...',
+    price: '￥599.0起/人',
+    url: MockUrl
+  },
+  {
+    id: '3', uri: require('../../../assets/banner/3.png'),
+    title: `<韩国首尔+济州岛5日超值跟团游>深起港止/升级一晚五花特二酒店/韩华水族馆/普罗旺斯村...`,
+    text: '畅游韩国最具代表性建筑和国内热播并且收视率极高的韩剧拍摄地...',
+    price: '￥2999.0起/人',
+    url: MockUrl
+  }
 ];
 
 const MockData_gangao = [
@@ -91,7 +91,7 @@ import SwiperAndroid from '../../baseComponents/react-native-page-swiper/index';
 const deviceWidth = Dimensions.get('window').width;
 import CategoryTitle from './../CategoryTitle';
 var Actions = require('react-native-router-flux').Actions;
-
+const backIcon = require('../../../assets/icons/arrow_left.png');
 const styles = StyleSheet.create({
   page: {
     flex: 1,
@@ -135,6 +135,10 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     padding: 5
   },
+  back_img: {
+    height: 25,
+    height: 25
+  }
 });
 export default class ProductList extends Component {
 
@@ -149,7 +153,7 @@ export default class ProductList extends Component {
       <View style={styles.page}>
         <View style={styles.header}>
           <TouchableOpacity onPress={Actions.pop}>
-            <Text style={{fontSize: 28, color: 'red', textAlign: 'center'}}>{'<'}</Text>
+            <Image style={styles.back_img} source={backIcon} />
           </TouchableOpacity>
           <View style={styles.headerSearch}>
             <Text style={{fontSize: 14}}>{this.props.data}</Text>
@@ -157,7 +161,9 @@ export default class ProductList extends Component {
             <Image style={{height: 20, width: 20}} source={require('../../../assets/icons/search.png')} />
             <TextInput style={{flex: 1, fontSize: 14}} placeholder='目的地或关键字' />
           </View>
-          <Text style={{color: 'red', fontSize: 16}}>深圳 Ⅴ</Text>
+          <TouchableOpacity>
+            <Text style={{color: 'red', fontSize: 16}}>深圳 Ⅴ</Text>
+          </TouchableOpacity>
         </View>
         <ScrollView
           scrollsToTop={true}
@@ -259,7 +265,7 @@ class BannerSlider extends Component {
   render() {
     let item = this.props.source;
     return (
-      <View style={styles.slide} key={item.id}>
+      <TouchableOpacity style={styles.slide} key={item.id} onPress={() => Actions.productDetail({data: item.title, url: item.url})}>
         <Image style={{height: 150, width: deviceWidth - 10, resizeMode: 'stretch'}} source={item.uri}/>
         <View style={{width: deviceWidth - 10, marginHorizontal: 10}}>
           <Text style={{fontWeight: '400', fontSize: 13}}>{item.title}</Text>
@@ -268,7 +274,7 @@ class BannerSlider extends Component {
             <Text style={{flex: 1, fontSize: 18, color: 'red'}}>{item.price}</Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }
