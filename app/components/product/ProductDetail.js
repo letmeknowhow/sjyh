@@ -72,7 +72,7 @@ export default class ProductDetail extends Component {
           //source={{uri: this.props.url}}
           source={{html: Mock_HTML}}
           javaScriptEnabled={true}
-          startInLoadingState={true}
+          //startInLoadingState={true}
           //scalesPageToFit={true}
         />
       </View>
