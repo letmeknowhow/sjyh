@@ -6,11 +6,11 @@
  */
 
 const MockData = [
-  {id: 0, uri: require('../../../assets/icons/1.png'), text: '酒店收藏'},
-  {id: 1, uri: require('../../../assets/icons/2.png'), text: '跟团游收藏'},
-  {id: 2, uri: require('../../../assets/icons/3.png'), text: '游轮收藏'},
-  {id: 3, uri: require('../../../assets/icons/4.png'), text: '门票收藏'},
-  {id: 4, uri: require('../../../assets/icons/1.png'), text: '自助游收藏'}
+  {id: 0, uri: require('../../../assets/icons/jd.png'), text: '酒店收藏'},
+  {id: 1, uri: require('../../../assets/icons/gty.png'), text: '跟团游收藏'},
+  {id: 2, uri: require('../../../assets/icons/yl.png'), text: '游轮收藏'},
+  {id: 3, uri: require('../../../assets/icons/mp.png'), text: '门票收藏'},
+  {id: 4, uri: require('../../../assets/icons/zzy.png'), text: '自助游收藏'}
 ];
 
 import React from 'react-native';

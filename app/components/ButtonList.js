@@ -50,7 +50,7 @@ export default class ButtonList extends Component {
         <TouchableOpacity key={button.id} style={styles.button} onPress={()=> {action && action({data: button.text})}} >
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             {button.uri && <Image style={styles.icon} source={button.uri}/>}
-            <Text>{button.text}</Text>
+            <Text style={{fontSize: 18}}>{button.text}</Text>
           </View>
           <Text>{'>'}</Text>
         </TouchableOpacity>

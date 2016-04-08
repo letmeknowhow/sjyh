@@ -6,17 +6,17 @@
  */
 
 const MockData_1 = [
-  {id: 0, uri: require('../../../assets/icons/1.png'), text: '消息中心'}
+  {id: 0, uri: require('../../../assets/icons/mine/xxzx.png'), text: '消息中心'}
 ];
 const MockData_2 = [
-  {id: 0, uri: require('../../../assets/icons/3.png'), text: '常用旅客'},
-  {id: 1, uri: require('../../../assets/icons/2.png'), text: '常用地址'}
+  {id: 0, uri: require('../../../assets/icons/mine/cylk.png'), text: '常用旅客'},
+  {id: 1, uri: require('../../../assets/icons/mine/cydz.png'), text: '常用地址'}
 ];
 const MockData_3 = [
-  {id: 0, uri: require('../../../assets/icons/4.png'), text: '设置'},
+  {id: 0, uri: require('../../../assets/icons/mine/sz.png'), text: '设置'},
 ];
 const MockData_4 = [
-  {id: 0, uri: require('../../../assets/icons/2.png'), text: '关于我们'}
+  {id: 0, uri: require('../../../assets/icons/mine/gywm.png'), text: '关于我们'}
 ];
 import React from 'react-native';
 

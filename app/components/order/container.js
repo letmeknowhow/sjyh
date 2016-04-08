@@ -6,13 +6,13 @@
  */
 
 const MockData = [
-  {id: 0, uri: require('../../../assets/icons/1.png'), text: '跟团游订单'},
-  {id: 1, uri: require('../../../assets/icons/2.png'), text: '自助游订单'},
-  {id: 2, uri: require('../../../assets/icons/3.png'), text: '游轮订单'},
-  {id: 3, uri: require('../../../assets/icons/4.png'), text: '机票订单'},
-  {id: 4, uri: require('../../../assets/icons/1.png'), text: '酒店订单'},
-  {id: 5, uri: require('../../../assets/icons/2.png'), text: '门票订单'},
-  {id: 6, uri: require('../../../assets/icons/3.png'), text: '团购订单'}
+  {id: 0, uri: require('../../../assets/icons/gty.png'), text: '跟团游订单'},
+  {id: 1, uri: require('../../../assets/icons/zzy.png'), text: '自助游订单'},
+  {id: 2, uri: require('../../../assets/icons/yl.png'), text: '游轮订单'},
+  {id: 3, uri: require('../../../assets/icons/jp.png'), text: '机票订单'},
+  {id: 4, uri: require('../../../assets/icons/jd.png'), text: '酒店订单'},
+  {id: 5, uri: require('../../../assets/icons/mp.png'), text: '门票订单'},
+  {id: 6, uri: require('../../../assets/icons/tg.png'), text: '团购订单'}
 ];
 
 import React from 'react-native';

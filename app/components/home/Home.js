@@ -94,14 +94,14 @@ const MockData_region2 = [
   }
 ];
 const MockData_ICON = [
-  {name: '跟团游', icon: require('../../../assets/icons/1.png')},
-  {name: '自助游', icon: require('../../../assets/icons/2.png')},
-  {name: '游轮', icon: require('../../../assets/icons/3.png')},
-  {name: '门票', icon: require('../../../assets/icons/4.png')},
-  {name: '酒店', icon: require('../../../assets/icons/1.png')},
-  {name: '机票', icon: require('../../../assets/icons/2.png')},
-  {name: '包团', icon: require('../../../assets/icons/3.png')},
-  {name: '团购', icon: require('../../../assets/icons/4.png')},
+  {name: '跟团游', icon: require('../../../assets/icons/gty.png')},
+  {name: '自助游', icon: require('../../../assets/icons/zzy.png')},
+  {name: '游轮', icon: require('../../../assets/icons/yl.png')},
+  {name: '门票', icon: require('../../../assets/icons/mp.png')},
+  {name: '酒店', icon: require('../../../assets/icons/jd.png')},
+  {name: '机票', icon: require('../../../assets/icons/jp.png')},
+  {name: '包团', icon: require('../../../assets/icons/bt.png')},
+  {name: '团购', icon: require('../../../assets/icons/tg.png')},
 ];
 import React from 'react-native';
 const { Component, View, StyleSheet, Platform, Text, Image, ScrollView, Dimensions, TouchableOpacity } = React;
@@ -171,7 +171,7 @@ export default class Home extends Component {
               scrollEnabled={false}
               renderItem={this.renderItem.bind(this)}
             />
-            <CategoryTitle title='旅行家123'/>
+            <CategoryTitle title='旅行家'/>
             <GridView style={{marginHorizontal: 0}}
               items={MockData_region1}
               scrollEnabled={false}
@@ -194,7 +194,7 @@ export default class Home extends Component {
   renderItem(item) {
     return (
       <Button key={item.name} style={[styles.button]} onPress={() => Actions.productList({data: item.name, url: item.url})}>
-        <Image source={item.icon}>
+        <Image style={{height: 40, width: 40}} source={item.icon}>
           { item.badge && (<View style={styles.badge}/>) }
         </Image>
         <Text style={{marginTop: 10}}>
