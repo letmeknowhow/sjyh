@@ -4,9 +4,10 @@
 
 import React from 'react-native';
 import {Router, Route, Schema, Animations, TabBar} from 'react-native-router-flux'
-const { Component,View, Navigator, Text, StyleSheet, Platform, Image, Alert } = React;
+const { Component,View, Navigator, Text, StyleSheet, Platform, Image, Alert, BackAndroid } = React;
 import CodePush from 'react-native-code-push';
 import Modal from '../baseComponents/ModalBox';
+const Actions = require('react-native-router-flux').Actions;
 
 //import LoadSpinner from '../components/LoadSpinner';
 /** 主tab 四页*/
@@ -47,16 +48,19 @@ const TAB_TITLE_FAVOURS = '收藏';
 const TAB_TITLE_ORDER = '订单';
 const TAB_TITLE_MINE = '我的';
 
-let hideNavBar = Platform.OS !== 'ios';
-hideNavBar = false;
-
-const reducerCreate = params=>{
-  const defaultReducer = Reducer(params);
-  return (state, action)=>{
-    //console.log("ACTION:", action);
-    return defaultReducer(state, action);
-  }
-};
+if (Platform.OS === 'android') {
+  BackAndroid.addEventListener('hardwareBackPress', () => {
+    if (!Actions.pop()) {
+      Alert.alert('提示', '确定要退出应用吗?',
+        [
+          {text: '取消'},
+          {text: '退出', onPress: () => BackAndroid.exitApp()}
+        ]
+      );
+    }
+    return true; // 返回true,不退出程序
+  });
+}
 
 class TabIcon extends React.Component {
 
