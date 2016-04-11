@@ -112,6 +112,8 @@ import Button from '../../baseComponents/Button';
 import CategoryTitle from '../CategoryTitle';
 import GridView from 'react-native-grid-view';
 var Actions = require('react-native-router-flux').Actions;
+import SideMenu from 'react-native-side-menu';
+import MenuContent from './ConfigMenu';
 
 const styles = StyleSheet.create(
   {
@@ -149,12 +151,19 @@ export default class Home extends Component {
   // 构造
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isOpen: false
+    };
   }
 
   // 渲染
   render() {
     return (
+      <SideMenu
+        menu={<MenuContent />}
+        isOpen={this.state.isOpen}
+        menuPosition="left"
+        onChange={(isOpen) => this.updateMenuState(isOpen)}>
         <View style={[styles.page]}>
           <ScrollView
             scrollsToTop={true}
@@ -188,7 +197,12 @@ export default class Home extends Component {
             </View>
           </ScrollView>
         </View>
+      </SideMenu>
     );
+  }
+
+  updateMenuState(isOpen) {
+    this.setState({ isOpen, });
   }
 
   renderItem(item) {
