@@ -2,24 +2,27 @@
  *  Class: container
  *  Author: Niu Xiaoyu
  *  Date: 16/3/31.
- *  Description: 订单主页
+ *  Description: 手机银行
  */
 
-const MockData = [
-  {id: 0, uri: require('../../../assets/icons/gty.png'), text: '跟团游订单'},
-  {id: 1, uri: require('../../../assets/icons/zzy.png'), text: '自助游订单'},
-  {id: 2, uri: require('../../../assets/icons/yl.png'), text: '游轮订单'},
-  {id: 3, uri: require('../../../assets/icons/jp.png'), text: '机票订单'},
-  {id: 4, uri: require('../../../assets/icons/jd.png'), text: '酒店订单'},
-  {id: 5, uri: require('../../../assets/icons/mp.png'), text: '门票订单'},
-  {id: 6, uri: require('../../../assets/icons/tg.png'), text: '团购订单'}
+const MockData_ICON = [
+  {name: '我的账户', icon: require('../../../assets/icons/gty.png')},
+  {name: '转账汇款', icon: require('../../../assets/icons/zzy.png')},
+  {name: '跨行归集', icon: require('../../../assets/icons/yl.png')},
+  {name: '资金管理', icon: require('../../../assets/icons/mp.png')},
+  {name: '投资理财', icon: require('../../../assets/icons/jd.png')},
+  {name: '生活缴费', icon: require('../../../assets/icons/jp.png')},
+  {name: '个人中心', icon: require('../../../assets/icons/mp.png')},
+  {name: '小额循环贷', icon: require('../../../assets/icons/jd.png')},
+  {name: '安全退出', icon: require('../../../assets/icons/jp.png')},
 ];
 
 import React from 'react-native';
 
-const { Component, View, Text, StyleSheet, Platform } = React;
+const { Component, View, Text, StyleSheet, Platform, ScrollView, Image } = React;
 const Actions = require('react-native-router-flux').Actions;
-import ButtonList from '../ButtonList';
+import Button from '../../baseComponents/Button';
+import GridView from '../../baseComponents/GridView';
 
 const styles = StyleSheet.create(
   {
@@ -34,8 +37,9 @@ const styles = StyleSheet.create(
       backgroundColor: '#FFF',
       alignItems: 'center',
       justifyContent: 'center',
-      marginBottom: 10
-    }
+      marginBottom: 2
+    },
+    button: {flex: 1, margin: 0, borderWidth: 1, borderColor: '#f3f2f3', height: 100, borderRadius: 0, backgroundColor: '#FFF'},
   }
 );
 
@@ -47,24 +51,37 @@ export default class Container extends Component {
     this.state = {};
   }
 
-  // 自定义方法
-  handle() {
-
-  }
-
   // 渲染
   render() {
-
     return (
       <View style={styles.page}>
         <View style={styles.header}>
-          <Text style={{fontSize: 16}}>我的订单</Text>
+          <Text style={{fontSize: 16}}>手机银行</Text>
         </View>
-        <ButtonList style={{flex: 1}} buttons={MockData} action={Actions.orderDetail}/>
+        <ScrollView
+          scrollsToTop={true}
+          showsVerticalScrollIndicator={false}
+          directionalLockEnabled={true}>
+          <GridView style={{flex: 1}}
+                    items={MockData_ICON}
+                    itemsPerRow={3}
+                    scrollEnabled={false}
+                    rowHeight={100}
+                    renderItem={this.renderItem.bind(this)}
+          />
+        </ScrollView>
       </View>
     );
-    //return (
-    //  <ButtonList style={{marginTop: 64, flex: 1}} buttons={MockData}/>
-    //);
+  }
+
+  renderItem(item) {
+    return (
+      <Button key={item.name} style={[styles.button]} onPress={() => Actions.productList({data: item.name, url: item.url})}>
+        <Image style={{height: 40, width: 40}} source={item.icon} />
+        <Text style={{marginTop: 10}}>
+          {item.name}
+        </Text>
+      </Button>
+    );
   }
 }

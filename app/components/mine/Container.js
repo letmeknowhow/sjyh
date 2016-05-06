@@ -2,45 +2,44 @@
  *  Class: container
  *  Author: Niu Xiaoyu
  *  Date: 16/3/31.
- *  Description: 我的主页
+ *  Description: 手机银行
  */
 
-const MockData_1 = [
-  {id: 0, uri: require('../../../assets/icons/mine/xxzx.png'), text: '消息中心'}
+const MockData_ICON = [
+  {name: '手机充值', icon: require('../../../assets/icons/gty.png')},
+  {name: '电费缴费', icon: require('../../../assets/icons/zzy.png')},
+  {name: '水费缴费', icon: require('../../../assets/icons/yl.png')},
+  {name: '燃气缴费', icon: require('../../../assets/icons/mp.png')},
+  {name: '缴费查询', icon: require('../../../assets/icons/jd.png')},
+  {name: ''},
 ];
-const MockData_2 = [
-  {id: 0, uri: require('../../../assets/icons/mine/cylk.png'), text: '常用旅客'},
-  {id: 1, uri: require('../../../assets/icons/mine/cydz.png'), text: '常用地址'}
-];
-const MockData_3 = [
-  {id: 0, uri: require('../../../assets/icons/mine/sz.png'), text: '设置'},
-];
-const MockData_4 = [
-  {id: 0, uri: require('../../../assets/icons/mine/gywm.png'), text: '关于我们'}
-];
+
 import React from 'react-native';
 
-const { Component, StyleSheet, View, Image, TouchableOpacity, Text } = React;
+const { Component, View, Text, StyleSheet, Platform, ScrollView, Image } = React;
 const Actions = require('react-native-router-flux').Actions;
-import ButtonList from '../ButtonList';
+import Button from '../../baseComponents/Button';
+import GridView from '../../baseComponents/GridView';
 
-const styles = StyleSheet.create({
-  page: {flex: 1},
-  header: {height: 200, alignItems: 'center', justifyContent: 'center'},
-  logoContainer: {height: 200, width: 100, backgroundColor: 'transparent', paddingVertical: 50},
-  logo: {height: 80, width: 80, borderRadius: 40, marginBottom: 20},
-  text: {
-    color: '#FFF',
-    borderWidth: 1,
-    borderRadius: 5,
-    fontSize: 16,
-    borderColor: '#FFF',
-    height: 35,
-    padding: 7,
-    textAlign: 'center',
-    marginLeft: -16
+const styles = StyleSheet.create(
+  {
+    page: {
+      flex: 1,
+      backgroundColor: '#f3f2f3',
+      marginTop: Platform.OS === 'ios' ? 20 : 0,
+      paddingHorizontal: 5
+    },
+    header: {
+      height: 40,
+      backgroundColor: '#FFF',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 2
+    },
+    button: {flex: 1, margin: 0, borderWidth: 1, borderColor: '#f3f2f3', height: 100, borderRadius: 0, backgroundColor: '#FFF'},
   }
-});
+);
+
 export default class Container extends Component {
   // 构造
   constructor(props) {
@@ -53,19 +52,39 @@ export default class Container extends Component {
   render() {
     return (
       <View style={styles.page}>
-        <Image style={styles.header} source={require('../../../assets/banner/1.png')}>
-          <View style={styles.logoContainer}>
-            <Image style={styles.logo} source={require('../../../assets/logo.jpg')} />
-            <TouchableOpacity>
-              <Text style={styles.text}>登陆/注册</Text>
-            </TouchableOpacity>
-          </View>
-        </Image>
-        <ButtonList buttons={MockData_1} action={Actions.myMessage} />
-        <ButtonList style={{marginTop: 10}} buttons={MockData_2} action={Actions.commonUse}/>
-        <ButtonList style={{marginTop: 10}} buttons={MockData_3} />
-        <ButtonList style={{marginTop: 10}} buttons={MockData_4} action={Actions.aboutUs}/>
+        <View style={styles.header}>
+          <Text style={{fontSize: 16}}>更多服务</Text>
+        </View>
+        <ScrollView
+          scrollsToTop={true}
+          showsVerticalScrollIndicator={false}
+          directionalLockEnabled={true}>
+          <GridView style={{flex: 1}}
+                    items={MockData_ICON}
+                    itemsPerRow={3}
+                    scrollEnabled={false}
+                    rowHeight={100}
+                    renderItem={this.renderItem.bind(this)}
+          />
+        </ScrollView>
       </View>
+    );
+  }
+
+  renderItem(item) {
+    let buttonStyle = [];
+    if(item.name && item.icon) {
+      buttonStyle = [styles.button];
+    } else {
+      buttonStyle = [styles.button, {backgroundColor: 'transparent'}];
+    }
+    return (
+      <Button key={item.name} style={buttonStyle} onPress={() => Actions.productList({data: item.name, url: item.url})}>
+        <Image style={{height: 40, width: 40}} source={item.icon} />
+        <Text style={{marginTop: 10}}>
+          {item.name}
+        </Text>
+      </Button>
     );
   }
 }

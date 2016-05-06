@@ -44,9 +44,9 @@ const styles = StyleSheet.create({
   }
 });
 const TAB_TITLE_HOME = '首页';
-const TAB_TITLE_FAVOURS = '收藏';
-const TAB_TITLE_ORDER = '订单';
-const TAB_TITLE_MINE = '我的';
+const TAB_TITLE_ORDER = '手机银行';
+const TAB_TITLE_FAVOURS = '金融助手';
+const TAB_TITLE_MINE = '更多服务';
 
 if (Platform.OS === 'android') {
   BackAndroid.addEventListener('hardwareBackPress', () => {
@@ -80,9 +80,9 @@ class TabIcon extends React.Component {
         uri = require('../../assets/icons/Mine.png');
     }
     return (
-      <View>
-        <Image source={uri} style={{marginLeft: 0, tintColor: this.props.selected ? 'red' : null}} />
-        <Text style={{color: this.props.selected ? 'red' :'black', fontSize: 12}}>{this.props.title}</Text>
+      <View style={{alignItems: 'center'}}>
+        <Image source={uri} style={{ tintColor: this.props.selected ? 'red' : null}} />
+        <Text style={{color: this.props.selected ? 'red' :'black', fontSize: 12, marginTop: 3}}>{this.props.title}</Text>
       </View>
     );
   }
@@ -169,37 +169,18 @@ export default class Application extends Component {
   }
 
   render() {
-    //return (
-    //  <Router createReducer={reducerCreate} sceneStyle={{backgroundColor:'#F7F7F7'}}>
-    //    <Scene key="root" hideNavBar={true}>
-    //      <Scene key="productDetail" component={ProductDetail} />
-    //      <Scene key="productList" component={ProductList} />
-    //      <Scene key="orderDetail" component={OrderDetail} />
-    //      <Scene key="favoursDetail" component={FavoursDetail} />
-    //      <Scene key="myMessage" component={MyMessage} />
-    //      <Scene key="commonUse" component={CommonUse} />
-    //      <Scene key="aboutUs" component={AboutUs} />
-    //      <Scene key="tabBar" tabs={true} default="home" initial={true}>
-    //        <Scene key="home" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
-    //        <Scene key="order" component={Order} title={TAB_TITLE_ORDER} hideNavBar={hideNavBar} icon={TabIcon}/>
-    //        <Scene key="favours" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={hideNavBar} icon={TabIcon}/>
-    //        <Scene key="mine" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true} icon={TabIcon}/>
-    //      </Scene>
-    //    </Scene>
-    //  </Router>
-    //);
 
     return (
       <View style={{flex: 1}} >
         <Router hideNavBar={true}>
           <Schema name="tab" type="switch" icon={TabIcon} />
-          <Route name="productDetail" component={ProductDetail} />
-          <Route name="productList" component={ProductList} />
-          <Route name="orderDetail" component={OrderDetail} />
-          <Route name="favoursDetail" component={FavoursDetail} />
-          <Route name="myMessage" component={MyMessage} />
-          <Route name="commonUse" component={CommonUse} />
-          <Route name="aboutUs" component={AboutUs} />
+          <Route name="productDetail" component={ProductDetail} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
+          <Route name="productList" component={ProductList} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
+          <Route name="orderDetail" component={OrderDetail} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
+          <Route name="favoursDetail" component={FavoursDetail} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
+          <Route name="myMessage" component={MyMessage} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
+          <Route name="commonUse" component={CommonUse} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
+          <Route name="aboutUs" component={AboutUs} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="tabBar" initial={true}>
             <Router footer={TabBar} showNavigationBar={false}>
               <Route name="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true}/>
