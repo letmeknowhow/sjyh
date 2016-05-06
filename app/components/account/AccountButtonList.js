@@ -1,5 +1,5 @@
 /**
- *  Class: ButtonList
+ *  Class: AccountButtonList
  *  Author: Niu Xiaoyu
  *  Date: 16/4/3.
  *  Description:
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     fontSize: 12
   },
 });
-export default class ButtonList extends Component {
+export default class AccountButtonList extends Component {
   // 构造
   constructor(props) {
     super(props);
@@ -36,23 +36,25 @@ export default class ButtonList extends Component {
   // 渲染
   render() {
     return (
-      <View style={[styles.page, this.props.style]}>
+      <View style={[{height: this.props.buttons.length * 30}, this.props.style]}>
         {this.renderButton(this.props.buttons, this.props.action)}
       </View>
     );
   }
 
   renderButton(buttons, action) {
+    let i = 0;
     return buttons.map((button) => {
       if(button.clickable) {
         return (
-          <TouchableOpacity key={button.id} style={styles.button}
-                            onPress={()=> {action && action({data: button.text})}}>
+          <TouchableOpacity key={button.id} style={styles.button} >
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={styles.font}>{button.text}</Text>
             </View>
-            <Text style={[styles.font,{color: button.amountColor}]}>{this.formatMoney(button.amount)}</Text>
-            <Text>{'>'}</Text>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={[styles.font,{color: button.amountColor}]}>{this.formatMoney(button.amount)}</Text>
+              <Text>{'  >'}</Text>
+            </View>
           </TouchableOpacity>
         );
       } else {
@@ -70,7 +72,7 @@ export default class ButtonList extends Component {
   }
 
   formatMoney(money) {
-    if (/[^0-9\.]/.test(money)) return '0.00';
+    if (/[^0-9\.]/.test(money)) return money;
     money = money.replace(/^(\d*)$/, "$1.");
     money = (money + "00").replace(/(\d*\.\d\d)\d*/, "$1");
     money = money.replace(".", ",");

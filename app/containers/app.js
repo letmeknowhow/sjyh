@@ -32,7 +32,9 @@ import CommonUse from '../components/mine/CommonUse';
 import AboutUs from '../components/mine/AboutUs';
 
 //账户总览
-import AccountSummary from '../components/AccountSummary';
+import AccountSummary from '../components/account/AccountSummary';
+import DemandDepositSearch from '../components/account/DemandDepositSearch';
+import FixedDepositSearch from '../components/account/FixedDepositSearch';
 
 const styles = StyleSheet.create({
   modal: {
@@ -185,6 +187,8 @@ export default class Application extends Component {
           <Route name="commonUse" component={CommonUse} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="aboutUs" component={AboutUs} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="accountSummary" component={AccountSummary} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
+          <Route name="demandDepositSearch" component={DemandDepositSearch} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
+          <Route name="fixedDepositSearch" component={FixedDepositSearch} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="tabBar" initial={true}>
             <Router footer={TabBar} showNavigationBar={false}>
               <Route name="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true}/>
