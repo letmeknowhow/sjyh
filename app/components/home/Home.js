@@ -13,14 +13,7 @@ const MockData_banner = [
   {id: '3', uri: require('../../../assets/banner/3.png'), url: MockUrl},
   {id: '4', uri: require('../../../assets/banner/4.png'), url: MockUrl}
 ];
-const MockData_ICON = [
-  {name: '账户查询', icon: require('../../../assets/icons/gty.png')},
-  {name: '跨行转账', icon: require('../../../assets/icons/zzy.png')},
-  {name: '卡卡转账', icon: require('../../../assets/icons/yl.png')},
-  {name: '行内转账', icon: require('../../../assets/icons/mp.png')},
-  {name: '活期转定期', icon: require('../../../assets/icons/jd.png')},
-  {name: '添加', icon: require('../../../assets/icons/jp.png')},
-];
+
 import React from 'react-native';
 const { Component, View, StyleSheet, Platform, Text, Image, ScrollView, Dimensions, TouchableOpacity } = React;
 const deviceWidth = Dimensions.get('window').width;
@@ -32,6 +25,17 @@ import GridView from '../../baseComponents/GridView';
 var Actions = require('react-native-router-flux').Actions;
 import SideMenu from 'react-native-side-menu';
 import MenuContent from './ConfigMenu';
+
+const MockData_ICON = [
+  {name: '账户查询', icon: require('../../../assets/icons/gty.png'), action: Actions.accountSummary},
+  {name: '跨行转账', icon: require('../../../assets/icons/zzy.png')},
+  {name: '卡卡转账', icon: require('../../../assets/icons/yl.png')},
+  {name: '行内转账', icon: require('../../../assets/icons/mp.png')},
+  {name: '活期转定期', icon: require('../../../assets/icons/jd.png')},
+  {name: '添加', icon: require('../../../assets/icons/jp.png')},
+];
+
+
 
 const styles = StyleSheet.create(
   {
@@ -98,12 +102,16 @@ export default class Home extends Component {
 
   renderItem(item) {
     return (
-      <Button key={item.name} style={[styles.button]} onPress={() => Actions.productList({data: item.name, url: item.url})}>
+      <Button key={item.name} style={[styles.button]} onPress={() => {this.getAction()}}>
         <Image style={{height: 40, width: 40}} source={item.icon} />
         <Text style={{marginTop: 10}}>
           {item.name}
         </Text>
       </Button>
     );
+  }
+
+  getAction(button) {
+    Actions.accountSummary({data: '账户总览'});
   }
 }

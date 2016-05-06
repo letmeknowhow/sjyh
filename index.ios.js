@@ -6,4 +6,4 @@ const { AppRegistry, Platform, StatusBarIOS } = React;
 if (Platform.OS === 'ios') {
   StatusBarIOS.setStyle('default');
 }
-AppRegistry.registerComponent('Travel', () => Application);
+AppRegistry.registerComponent('sjyh', () => Application);

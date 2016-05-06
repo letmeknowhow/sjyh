@@ -5,4 +5,4 @@ import React from 'react-native';
 import Application from './app/containers/app';
 const { AppRegistry } = React;
 
-AppRegistry.registerComponent('Travel', () => Application);
+AppRegistry.registerComponent('sjyh', () => Application);

@@ -9,4 +9,4 @@ react-native bundle \
 --assets-dest ./release/ios \
 --dev false
 
-code-push release Travel-iOS  ./release/ios  1.0.0
+code-push release sjyh-iOS  ./release/ios  1.0.0

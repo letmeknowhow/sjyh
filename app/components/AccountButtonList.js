@@ -6,12 +6,12 @@
  */
 import React from 'react-native';
 
-const { Component, View, Text, StyleSheet, Image, TouchableOpacity } = React;
+const { Component, View, Text, StyleSheet, TouchableOpacity } = React;
 
 const styles = StyleSheet.create({
   //page: {margin: 15},
   button: {
-    height: 50,
+    height: 30,
     borderWidth: 0,
     borderBottomWidth: 1,
     borderColor: '#E7E7E7',
@@ -21,11 +21,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     paddingHorizontal: 15
   },
-  icon: {
-    height: 30,
-    width: 30,
-    marginRight: 20
-  }
+  font: {
+    fontSize: 12
+  },
 });
 export default class ButtonList extends Component {
   // 构造
@@ -51,9 +49,9 @@ export default class ButtonList extends Component {
           <TouchableOpacity key={button.id} style={styles.button}
                             onPress={()=> {action && action({data: button.text})}}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              {button.uri && <Image style={styles.icon} source={button.uri}/>}
-              <Text style={{fontSize: 18}}>{button.text}</Text>
+              <Text style={styles.font}>{button.text}</Text>
             </View>
+            <Text style={[styles.font,{color: button.amountColor}]}>{this.formatMoney(button.amount)}</Text>
             <Text>{'>'}</Text>
           </TouchableOpacity>
         );
@@ -62,13 +60,25 @@ export default class ButtonList extends Component {
           <View key={button.id} style={styles.button}
                             onPress={()=> {action && action({data: button.text})}}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              {button.uri && <Image style={styles.icon} source={button.uri}/>}
-              <Text style={{fontSize: 18}}>{button.text}</Text>
+              <Text style={styles.font}>{button.text}</Text>
             </View>
-            <Text>{'>'}</Text>
+            <Text style={[styles.font,{color: button.amountColor}]}>{this.formatMoney(button.amount)}</Text>
           </View>
         );
       }
     });
+  }
+
+  formatMoney(money) {
+    if (/[^0-9\.]/.test(money)) return '0.00';
+    money = money.replace(/^(\d*)$/, "$1.");
+    money = (money + "00").replace(/(\d*\.\d\d)\d*/, "$1");
+    money = money.replace(".", ",");
+    var re = /(\d)(\d{3},)/;
+    while (re.test(money)) {
+      money = money.replace(re, "$1,$2");
+    }
+    money = money.replace(/,(\d\d)$/, ".$1");
+    return '' + money.replace(/^\./, "0.");
   }
 }

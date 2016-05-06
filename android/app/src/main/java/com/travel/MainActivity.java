@@ -19,7 +19,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "Travel";
+        return "sjyh";
     }
 
     /**
@@ -51,7 +51,7 @@ public class MainActivity extends ReactActivity {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
         // new CodePush() <-- remove this generated line if you used RNPM for plugin installation.
-        new CodePush("1Jb19focPo-kPYAqU3UNvL6D6cd4V1PKFFtOx", this, BuildConfig.DEBUG)
+        new CodePush("KogmniRs416TmGKb2eOx_04se62jV1PKFFtOx", this, BuildConfig.DEBUG)
       );
     }
 }

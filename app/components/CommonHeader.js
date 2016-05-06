@@ -43,7 +43,7 @@ export default class CommonHeader extends Component {
         <TouchableOpacity style={{width: 30, alignItems: 'center', backgroundColor: 'transparent'}} onPress={Actions.pop}>
           <Image style={styles.back_img} source={backIcon} />
         </TouchableOpacity>
-        <Text style={{flex: 1, textAlign: 'center'}}>
+        <Text style={{flex: 1, textAlign: 'center', marginRight: 15}}>
           {this.props.data}
         </Text>
       </View>

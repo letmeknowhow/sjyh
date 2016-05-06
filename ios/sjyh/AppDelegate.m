@@ -45,7 +45,7 @@
 //  jsCodeLocation = [CodePush bundleURL];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"Travel"
+                                                      moduleName:@"sjyh"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
 
