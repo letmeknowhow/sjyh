@@ -6,15 +6,15 @@
  */
 
 const MockData_ICON = [
-  {name: '我的账户', icon: require('../../../assets/icons/gty.png')},
-  {name: '转账汇款', icon: require('../../../assets/icons/zzy.png')},
-  {name: '跨行归集', icon: require('../../../assets/icons/yl.png')},
-  {name: '资金管理', icon: require('../../../assets/icons/mp.png')},
-  {name: '投资理财', icon: require('../../../assets/icons/jd.png')},
-  {name: '生活缴费', icon: require('../../../assets/icons/jp.png')},
-  {name: '个人中心', icon: require('../../../assets/icons/mp.png')},
-  {name: '小额循环贷', icon: require('../../../assets/icons/jd.png')},
-  {name: '安全退出', icon: require('../../../assets/icons/jp.png')},
+  {name: '我的账户', icon: require('../../../assets/icons/wdzh.png')},
+  {name: '转账汇款', icon: require('../../../assets/icons/hnzz.png')},
+  {name: '跨行归集', icon: require('../../../assets/icons/khgj.png')},
+  {name: '资金管理', icon: require('../../../assets/icons/zjgl.png')},
+  {name: '投资理财', icon: require('../../../assets/icons/tzlc.png')},
+  {name: '生活缴费', icon: require('../../../assets/icons/shjf.png')},
+  {name: '个人中心', icon: require('../../../assets/icons/grzx.png')},
+  {name: '小额循环贷', icon: require('../../../assets/icons/kkzz.png')},
+  {name: '安全退出', icon: require('../../../assets/icons/quit.png')},
 ];
 
 import React from 'react-native';
@@ -76,12 +76,27 @@ export default class Container extends Component {
 
   renderItem(item) {
     return (
-      <Button key={item.name} style={[styles.button]} onPress={() => Actions.productList({data: item.name, url: item.url})}>
+      <Button key={item.name} style={[styles.button]} onPress={() => {this.getAction(item.name)}}>
         <Image style={{height: 40, width: 40}} source={item.icon} />
         <Text style={{marginTop: 10}}>
           {item.name}
         </Text>
       </Button>
     );
+  }
+
+  getAction(button) {
+    switch (button) {
+      case '我的账户':
+        Actions.accountSummary({data: button});
+        break;
+      case '转账汇款':
+        Actions.moneyTransfer({data: button});
+        break;
+
+      default:
+
+    }
+
   }
 }

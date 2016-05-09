@@ -27,12 +27,12 @@ import SideMenu from 'react-native-side-menu';
 import MenuContent from './ConfigMenu';
 
 const MockData_ICON = [
-  {name: '账户查询', icon: require('../../../assets/icons/gty.png'), action: Actions.accountSummary},
-  {name: '跨行转账', icon: require('../../../assets/icons/zzy.png')},
-  {name: '卡卡转账', icon: require('../../../assets/icons/yl.png')},
-  {name: '行内转账', icon: require('../../../assets/icons/mp.png')},
-  {name: '活期转定期', icon: require('../../../assets/icons/jd.png')},
-  {name: '添加', icon: require('../../../assets/icons/jp.png')},
+  {name: '账户查询', icon: require('../../../assets/icons/zhcx.png')},
+  {name: '跨行转账', icon: require('../../../assets/icons/khzz.png')},
+  {name: '卡卡转账', icon: require('../../../assets/icons/kkzz.png')},
+  {name: '行内转账', icon: require('../../../assets/icons/hnzz.png')},
+  {name: '活期转定期', icon: require('../../../assets/icons/hqzdq.png')},
+  {name: '添加', icon: require('../../../assets/icons/tj.png')},
 ];
 
 
@@ -102,7 +102,7 @@ export default class Home extends Component {
 
   renderItem(item) {
     return (
-      <Button key={item.name} style={[styles.button]} onPress={() => {this.getAction()}}>
+      <Button key={item.name} style={[styles.button]} onPress={() => {this.getAction(item.name)}}>
         <Image style={{height: 40, width: 40}} source={item.icon} />
         <Text style={{marginTop: 10}}>
           {item.name}
@@ -112,6 +112,25 @@ export default class Home extends Component {
   }
 
   getAction(button) {
-    Actions.accountSummary({data: '账户总览'});
+    switch (button) {
+      case '账户查询':
+        Actions.accountSummary({data: button});
+        break;
+      case '跨行转账':
+        Actions.moneyTransfer({data: button});
+        break;
+      case '卡卡转账':
+        Actions.moneyTransfer({data: button});
+        break;
+      case '行内转账':
+        Actions.moneyTransfer({data: button});
+        break;
+      case '活期转定期':
+        Actions.demand2Fixed({data: button});
+        break;
+      default:
+
+    }
+
   }
 }

@@ -9,19 +9,14 @@ import CodePush from 'react-native-code-push';
 import Modal from '../baseComponents/ModalBox';
 const Actions = require('react-native-router-flux').Actions;
 
-//import LoadSpinner from '../components/LoadSpinner';
+import SignInGesture from '../components/SignInGesture';
 /** 主tab 四页*/
 import Home from '../components/home/Home';
 import Order from '../components/order/Container';
 import Favourite from '../components/favours/Container';
 import Mine from '../components/mine/Container';
 
-//销售项目
 import ProductDetail from '../components/product/ProductDetail';
-import ProductList from '../components/product/ProductList';
-
-//订单
-import OrderDetail from '../components/order/Detail';
 
 //收藏
 import FavoursDetail from '../components/favours/Detail';
@@ -35,6 +30,10 @@ import AboutUs from '../components/mine/AboutUs';
 import AccountSummary from '../components/account/AccountSummary';
 import DemandDepositSearch from '../components/account/DemandDepositSearch';
 import FixedDepositSearch from '../components/account/FixedDepositSearch';
+import MoneyTransfer from '../components/account/MoneyTransfer';
+
+//定期转活期
+import Demand2Fixed from '../components/account/Demand2Fixed';
 
 const styles = StyleSheet.create({
   modal: {
@@ -179,9 +178,8 @@ export default class Application extends Component {
       <View style={{flex: 1}} >
         <Router hideNavBar={true}>
           <Schema name="tab" type="switch" icon={TabIcon} />
+          <Route name="signInGesture" component={SignInGesture} initial={true} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="productDetail" component={ProductDetail} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="productList" component={ProductList} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="orderDetail" component={OrderDetail} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="favoursDetail" component={FavoursDetail} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="myMessage" component={MyMessage} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="commonUse" component={CommonUse} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
@@ -189,7 +187,9 @@ export default class Application extends Component {
           <Route name="accountSummary" component={AccountSummary} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="demandDepositSearch" component={DemandDepositSearch} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="fixedDepositSearch" component={FixedDepositSearch} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="tabBar" initial={true}>
+          <Route name="moneyTransfer" component={MoneyTransfer} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
+          <Route name="demand2Fixed" component={Demand2Fixed} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
+          <Route name="tabBar" initial={false}>
             <Router footer={TabBar} showNavigationBar={false}>
               <Route name="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true}/>
               <Route name="order" schema="tab" component={Order} title={TAB_TITLE_ORDER} hideNavBar={true} />

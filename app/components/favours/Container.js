@@ -6,9 +6,9 @@
  */
 
 const MockData_ICON = [
-  {name: '银行公告', icon: require('../../../assets/icons/gty.png')},
-  {name: '网点查询', icon: require('../../../assets/icons/zzy.png')},
-  {name: '理财计算器', icon: require('../../../assets/icons/yl.png')},
+  {name: '银行公告', icon: require('../../../assets/icons/yhgg.png')},
+  {name: '网点查询', icon: require('../../../assets/icons/wddt.png')},
+  {name: '理财计算器', icon: require('../../../assets/icons/lcjsq.png')},
 ];
 
 import React from 'react-native';
@@ -70,7 +70,7 @@ export default class Container extends Component {
 
   renderItem(item) {
     return (
-      <Button key={item.name} style={[styles.button]} onPress={() => Actions.productList({data: item.name, url: item.url})}>
+      <Button key={item.name} style={[styles.button]} >
         <Image style={{height: 40, width: 40}} source={item.icon} />
         <Text style={{marginTop: 10}}>
           {item.name}

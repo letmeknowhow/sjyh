@@ -6,11 +6,11 @@
  */
 
 const MockData_ICON = [
-  {name: '手机充值', icon: require('../../../assets/icons/gty.png')},
-  {name: '电费缴费', icon: require('../../../assets/icons/zzy.png')},
-  {name: '水费缴费', icon: require('../../../assets/icons/yl.png')},
-  {name: '燃气缴费', icon: require('../../../assets/icons/mp.png')},
-  {name: '缴费查询', icon: require('../../../assets/icons/jd.png')},
+  {name: '手机充值', icon: require('../../../assets/icons/sjcz.png')},
+  {name: '电费缴费', icon: require('../../../assets/icons/dfjf.png')},
+  {name: '水费缴费', icon: require('../../../assets/icons/sfjf.png')},
+  {name: '燃气缴费', icon: require('../../../assets/icons/rqjf.png')},
+  {name: '缴费查询', icon: require('../../../assets/icons/jfcx.png')},
   {name: ''},
 ];
 
@@ -79,7 +79,7 @@ export default class Container extends Component {
       buttonStyle = [styles.button, {backgroundColor: 'transparent'}];
     }
     return (
-      <Button key={item.name} style={buttonStyle} onPress={() => Actions.productList({data: item.name, url: item.url})}>
+      <Button key={item.name} style={buttonStyle} >
         <Image style={{height: 40, width: 40}} source={item.icon} />
         <Text style={{marginTop: 10}}>
           {item.name}

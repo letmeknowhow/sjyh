@@ -22,7 +22,7 @@ const MockData_3 = [
 
 import React from 'react-native';
 
-const { Component, View, Text, StyleSheet, Platform } = React;
+const { Component, View, Text, StyleSheet, Platform, TouchableOpacity } = React;
 const Actions = require('react-native-router-flux').Actions;
 import AccountButtonList from './AccountButtonList';
 import CommonHeader from './../CommonHeader';
@@ -49,6 +49,21 @@ const styles = StyleSheet.create(
       paddingTop: 3,
       borderWidth: 1,
       borderColor: '#E7E7E7'
+    },
+    operationContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      //justifyContent: 'center',
+      height: 30,
+      backgroundColor: '#FFF'
+    },
+    operationButton: {
+      flex: 1,
+      alignItems: 'center'
+    },
+    operationText: {
+      color: '#399CE8',
+      fontSize: 12
     }
   }
 );
@@ -69,9 +84,34 @@ export default class Container extends Component {
         <AccountButtonList buttons={MockData_1}/>
         <View style={styles.debit}>
           <AccountButtonList buttons={MockData_2}/>
+          <View style={styles.operationContainer}>
+            <TouchableOpacity style={styles.operationButton}>
+              <Text style={styles.operationText}>转账汇款</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.operationButton, {borderLeftWidth: 1, borderRightWidth: 1}]}>
+              <Text style={styles.operationText}>购买理财</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.operationButton}>
+              <Text style={styles.operationText}>生活缴费</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={[styles.debit, {backgroundColor: 'red'}]}>
           <AccountButtonList buttons={MockData_3}/>
+          <View style={styles.operationContainer}>
+            <TouchableOpacity style={styles.operationButton}>
+              <Text style={styles.operationText}>快速还款</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.operationButton, {borderLeftWidth: 1, borderRightWidth: 1}]}>
+              <Text style={styles.operationText}>账单查询</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.operationButton, {borderRightWidth: 1}]}>
+              <Text style={styles.operationText}>账单分期</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.operationButton}>
+              <Text style={styles.operationText}>现金分期</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
