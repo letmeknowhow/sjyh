@@ -9,16 +9,16 @@ const MockData_1 = [
   {id: 0, text: '当前账号', amount: '1234********5678', amountColor: 'black', clickable: false},
 ];
 const MockData_2 = [
-  {id: 0, text: '活期结算户明细:', amount: '', amountColor: 'black', clickable: false},
+  {id: 0, text: '活期结算户明细:', amount: ' ', amountColor: 'black', clickable: false},
   {id: 1, text: '币种', amount: '人民币', amountColor: 'black', clickable: false},
   {id: 2, text: '余额', amount: '88888.88 元', amountColor: 'black', clickable: false},
   {id: 3, text: '利率', amount: '0.3000%', amountColor: 'black', clickable: false},
-  {id: 4, text: '状态', amount: '活动', amountColor: 'black', clickable: false}
+  {id: 4, text: '状态', amount: '活动', amountColor: 'black', clickable: false},
 ];
 
 import React from 'react-native';
 
-const { Component, View, Text, StyleSheet, Platform } = React;
+const { Component, View, Text, StyleSheet, Platform, TouchableOpacity } = React;
 const Actions = require('react-native-router-flux').Actions;
 import AccountButtonList from './AccountButtonList';
 import CommonHeader from './../CommonHeader';
@@ -45,6 +45,13 @@ const styles = StyleSheet.create(
       paddingTop: 3,
       borderWidth: 1,
       borderColor: '#E7E7E7'
+    },
+    searchButton: {
+      backgroundColor: '#399CE8',
+      height: 30,
+      marginHorizontal: 5,
+      alignItems: 'center',
+      justifyContent: 'center'
     }
   }
 );
@@ -61,9 +68,12 @@ export default class DemandDepositSearch extends Component {
   render() {
     return (
       <View style={styles.page}>
-        <CommonHeader data={this.props.data} />
-        <AccountButtonList buttons={MockData_1}/>
-        <AccountButtonList buttons={MockData_2}/>
+        <CommonHeader data='活期结算户' />
+        <AccountButtonList style={{marginBottom: 10}} buttons={MockData_1}/>
+        <AccountButtonList style={{marginBottom: 10}} buttons={MockData_2}/>
+        <TouchableOpacity style={styles.searchButton}>
+          <Text style={{color: '#FFF'}}>交易查询</Text>
+        </TouchableOpacity>
       </View>
     );
   }

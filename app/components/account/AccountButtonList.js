@@ -7,6 +7,7 @@
 import React from 'react-native';
 
 const { Component, View, Text, StyleSheet, TouchableOpacity } = React;
+const Actions = require('react-native-router-flux').Actions;
 
 const styles = StyleSheet.create({
   //page: {margin: 15},
@@ -43,11 +44,11 @@ export default class AccountButtonList extends Component {
   }
 
   renderButton(buttons, action) {
-    let i = 0;
     return buttons.map((button) => {
       if(button.clickable) {
         return (
-          <TouchableOpacity key={button.id} style={styles.button} >
+          <TouchableOpacity key={button.id} style={styles.button}
+                onPress={this.setButtonAction(button.text)}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={styles.font}>{button.text}</Text>
             </View>
@@ -60,7 +61,7 @@ export default class AccountButtonList extends Component {
       } else {
         return (
           <View key={button.id} style={styles.button}
-                            onPress={()=> {action && action({data: button.text})}}>
+                onPress={this.setButtonAction(button.text)}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={styles.font}>{button.text}</Text>
             </View>
@@ -69,6 +70,20 @@ export default class AccountButtonList extends Component {
         );
       }
     });
+  }
+
+  setButtonAction(text) {
+    let action;
+    switch (text){
+      case '活期结算户':
+        action = Actions.demandDepositSearch;
+        break;
+      case '定期结算户':
+        action = Actions.fixedDepositSearch;
+        break;
+      default:
+    }
+    return action;
   }
 
   formatMoney(money) {

@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   },
   back_img: {
     height: 25,
+    width: 25
   }
 });
 export default class CommonHeader extends Component {
