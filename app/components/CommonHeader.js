@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   back_img: {
-    height: 25,
-    width: 25
+    height: 30,
+    width: 30
   }
 });
 export default class CommonHeader extends Component {
