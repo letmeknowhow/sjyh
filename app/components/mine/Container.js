@@ -103,7 +103,7 @@ export default class Container extends Component {
         Actions.payment({data: button, feeType: '燃气费', label: '用户编号:', placeHolder: '请输入用户编号'});
         break;
       case '缴费查询':
-        Actions.paymentSearch();
+        Actions.paymentSearch({data: button});
         break;
       default:
     }
