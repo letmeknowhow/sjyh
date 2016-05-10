@@ -17,14 +17,6 @@ import Mine from '../components/mine/Container';
 
 import ProductDetail from '../components/product/ProductDetail';
 
-//收藏
-import FavoursDetail from '../components/favours/Detail';
-
-//我的
-import MyMessage from '../components/mine/MyMessage';
-import CommonUse from '../components/mine/CommonUse';
-import AboutUs from '../components/mine/AboutUs';
-
 //账户总览
 import AccountSummary from '../components/account/AccountSummary';
 import DemandDepositSearch from '../components/account/DemandDepositSearch';
@@ -191,10 +183,6 @@ export default class Application extends Component {
           <Scene key="root" hideNavBar={true}>
             <Scene key="signInGesture" component={SignInGesture} initial={true}/>
             <Scene key="productDetail" component={ProductDetail}  />
-            <Scene key="favoursDetail" component={FavoursDetail}  />
-            <Scene key="myMessage" component={MyMessage}  />
-            <Scene key="commonUse" component={CommonUse}  />
-            <Scene key="aboutUs" component={AboutUs}  />
             <Scene key="accountSummary" component={AccountSummary}  />
             <Scene key="demandDepositSearch" component={DemandDepositSearch}  />
             <Scene key="fixedDepositSearch" component={FixedDepositSearch}  />
