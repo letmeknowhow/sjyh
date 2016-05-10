@@ -1,6 +1,7 @@
 package com.sjyh;
 
 import com.facebook.react.ReactActivity;
+import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
@@ -34,7 +35,8 @@ public class MainActivity extends ReactActivity {
     @Override
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
-            new MainReactPackage()
+            new MainReactPackage(),
+            new CodePush("KogmniRs416TmGKb2eOx_04se62jV1PKFFtOx", this, BuildConfig.DEBUG)
         );
     }
 }

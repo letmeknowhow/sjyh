@@ -3,11 +3,10 @@
  */
 
 import React from 'react-native';
-import {Router, Route, Schema, Animations, TabBar} from 'react-native-router-flux'
+import {Scene, Router, TabBar, Modal, Schema, Actions, Reducer} from 'react-native-router-flux'
 const { Component,View, Navigator, Text, StyleSheet, Platform, Image, Alert, BackAndroid } = React;
 import CodePush from 'react-native-code-push';
-import Modal from '../baseComponents/ModalBox';
-const Actions = require('react-native-router-flux').Actions;
+import ModalBox from '../baseComponents/ModalBox';
 
 import SignInGesture from '../components/SignInGesture';
 /** 主tab 四页*/
@@ -96,6 +95,14 @@ class TabIcon extends React.Component {
   }
 }
 
+const reducerCreate = params=>{
+  const defaultReducer = Reducer(params);
+  return (state, action)=>{
+    console.log("ACTION:", action);
+    return defaultReducer(state, action);
+  }
+};
+
 export default class Application extends Component {
 
   constructor(props) {
@@ -180,37 +187,36 @@ export default class Application extends Component {
 
     return (
       <View style={{flex: 1}} >
-        <Router hideNavBar={true}>
-          <Schema name="tab" type="switch" icon={TabIcon} />
-          <Route name="signInGesture" component={SignInGesture} initial={true} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="productDetail" component={ProductDetail} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="favoursDetail" component={FavoursDetail} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="myMessage" component={MyMessage} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="commonUse" component={CommonUse} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="aboutUs" component={AboutUs} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="accountSummary" component={AccountSummary} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="demandDepositSearch" component={DemandDepositSearch} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="fixedDepositSearch" component={FixedDepositSearch} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="moneyTransfer" component={MoneyTransfer} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="demand2Fixed" component={Demand2Fixed} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="payment" component={Payment} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="paymentSearch" component={PaymentSearch} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
-          <Route name="tabBar" initial={false}>
-            <Router footer={TabBar} showNavigationBar={false}>
-              <Route name="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true}/>
-              <Route name="order" schema="tab" component={Order} title={TAB_TITLE_ORDER} hideNavBar={true} />
-              <Route name="favours" schema="tab" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={true}/>
-              <Route name="mine" schema="tab" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true}/>
-            </Router>
-          </Route>
+        <Router hideNavBar={true} createReducer={reducerCreate} sceneStyle={{backgroundColor:'#F7F7F7'}}>
+          <Scene key="root" hideNavBar={true}>
+            <Scene key="signInGesture" component={SignInGesture} initial={true}/>
+            <Scene key="productDetail" component={ProductDetail}  />
+            <Scene key="favoursDetail" component={FavoursDetail}  />
+            <Scene key="myMessage" component={MyMessage}  />
+            <Scene key="commonUse" component={CommonUse}  />
+            <Scene key="aboutUs" component={AboutUs}  />
+            <Scene key="accountSummary" component={AccountSummary}  />
+            <Scene key="demandDepositSearch" component={DemandDepositSearch}  />
+            <Scene key="fixedDepositSearch" component={FixedDepositSearch}  />
+            <Scene key="moneyTransfer" component={MoneyTransfer}  />
+            <Scene key="demand2Fixed" component={Demand2Fixed}  />
+            <Scene key="payment" component={Payment}  />
+            <Scene key="paymentSearch" component={PaymentSearch}  />
+            <Scene key="tabBar" tabs={true} default="home" initial={false}>
+              <Scene key="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
+              <Scene key="order" schema="tab" component={Order} title={TAB_TITLE_ORDER} hideNavBar={true} icon={TabIcon}/>
+              <Scene key="favours" schema="tab" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={true} icon={TabIcon}/>
+              <Scene key="mine" schema="tab" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true} icon={TabIcon}/>
+            </Scene>
+          </Scene>
         </Router>
-        <Modal style={[styles.modal]} swipeToClose={false} position={"center"} ref={"downloadBox"}>
+        <ModalBox style={[styles.modal]} swipeToClose={false} position={"center"} ref={"downloadBox"}>
           <View>
             <Text>{this.state.syncMessage}</Text>
             {this.state.progress && (
               <Text>{this.state.progress.receivedBytes} / {this.state.progress.totalBytes}</Text>)}
           </View>
-        </Modal>
+        </ModalBox>
       </View>
     );
   }
