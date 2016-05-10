@@ -35,6 +35,10 @@ import MoneyTransfer from '../components/account/MoneyTransfer';
 //定期转活期
 import Demand2Fixed from '../components/account/Demand2Fixed';
 
+//缴费
+import Payment from '../components/Payment';
+import PaymentSearch from '../components/PaymentSearch';
+
 const styles = StyleSheet.create({
   modal: {
     justifyContent: 'center',
@@ -189,6 +193,8 @@ export default class Application extends Component {
           <Route name="fixedDepositSearch" component={FixedDepositSearch} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="moneyTransfer" component={MoneyTransfer} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="demand2Fixed" component={Demand2Fixed} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
+          <Route name="payment" component={Payment} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
+          <Route name="paymentSearch" component={PaymentSearch} sceneConfig={Navigator.SceneConfigs.FloatFromRight} />
           <Route name="tabBar" initial={false}>
             <Router footer={TabBar} showNavigationBar={false}>
               <Route name="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true}/>

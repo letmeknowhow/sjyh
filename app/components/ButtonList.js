@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15
   },
   icon: {
-    height: 30,
-    width: 30,
+    height: 20,
+    width: 20,
     marginRight: 20
   }
 });
@@ -39,15 +39,15 @@ export default class ButtonList extends Component {
   render() {
     return (
       <View style={[styles.page, this.props.style]}>
-        {this.renderButton(this.props.buttons, this.props.action, this.props.buttonHeight)}
+        {this.renderButton(this.props.buttons, this.props.action, this.props.buttonType)}
       </View>
     );
   }
 
-  renderButton(buttons, action, buttonHeight) {
+  renderButton(buttons, action, buttonType) {
     return buttons.map((button) => {
       return (
-        <TouchableOpacity key={button.id} style={[styles.button, {height: buttonHeight}]}
+        <TouchableOpacity key={button.id} style={[styles.button, buttonType]}
                           onPress={()=> {action && action({data: button.text})}}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             {button.uri && <Image style={styles.icon} source={button.uri}/>}

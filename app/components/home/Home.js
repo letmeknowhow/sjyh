@@ -35,7 +35,8 @@ const MockData_ICON = [
   {name: '添加', icon: require('../../../assets/icons/tj.png')},
 ];
 
-
+const logo = require('../../../assets/logo_text.png');
+const myPortrait = require('../../../assets/icons/config.png');
 
 const styles = StyleSheet.create(
   {
@@ -44,7 +45,8 @@ const styles = StyleSheet.create(
       backgroundColor: '#f3f2f3',
       paddingHorizontal: 5
     },
-    banner: {height: 140, overflow: 'hidden', marginBottom: 10, marginTop: Platform.OS === 'ios' ? 20 : 0,},
+    logoContainer: {height: 50, alignItems: 'center', marginTop: Platform.OS === 'ios' ? 20 : 0, flexDirection: 'row'},
+    banner: {height: 140, overflow: 'hidden', marginBottom: 10},
     button: {flex: 1, margin: 0, borderWidth: 1, borderColor: '#f3f2f3', height: 100, borderRadius: 0, backgroundColor: '#FFF'},
 
   }
@@ -71,9 +73,16 @@ export default class Home extends Component {
       <SideMenu
         menu={<MenuContent />}
         isOpen={this.state.isOpen}
-        menuPosition="left"
+        menuPosition="right"
         onChange={(isOpen) => this.updateMenuState(isOpen)}>
         <View style={[styles.page]}>
+          <View style={styles.logoContainer}>
+            <Image style={{flex: 1, height: 40, resizeMode: Image.resizeMode.contain}} source={logo}/>
+            <TouchableOpacity style={{width: 40, height: 40, alignItems:'center', justifyContent: 'center'}}
+                              onPress={() => this.toggle()}>
+              <Image style={{height: 25, resizeMode: Image.resizeMode.contain}} source={myPortrait} />
+            </TouchableOpacity>
+          </View>
           <ScrollView
             scrollsToTop={true}
             showsVerticalScrollIndicator={false}
@@ -132,5 +141,12 @@ export default class Home extends Component {
 
     }
 
+  }
+
+
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
   }
 }

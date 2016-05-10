@@ -25,13 +25,13 @@ const { Component, View, Text, StyleSheet, Dimensions, ScrollView, Image } = Rea
 import ButtonList from '../ButtonList';
 
 const window = Dimensions.get('window');
-const myPortrait = require('../../../assets/icons/mine/sz.png');
+const myPortrait = require('../../../assets/icons/config.png');
 const styles = StyleSheet.create({
   menu: {
     flex: 1,
     width: window.width,
     height: window.height,
-    backgroundColor: 'gray',
+    backgroundColor: '#CCC9C9',
     padding: 20,
   },
   avatarContainer: {
@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: '#FFF',
+    width: 210
   },
   avatar: {
     width: 30,
@@ -59,23 +61,6 @@ const styles = StyleSheet.create({
 });
 
 export default class ConfigMenu extends Component {
-  // 默认属性
-  static defaultProps = {};
-
-  // 属性类型
-  static propTypes = {};
-
-  // 构造
-  constructor(props) {
-    super(props);
-    // 初始状态
-    this.state = {};
-  }
-
-  // 自定义方法
-  handle() {
-
-  }
 
   // 渲染
   render() {
@@ -87,9 +72,9 @@ export default class ConfigMenu extends Component {
             source={myPortrait}/>
           <Text style={styles.name}>设置</Text>
         </View>
-        <ButtonList style={{width: 210}} buttonHeight={30} buttons={MockData_1} />
-        <ButtonList style={{width: 210, marginTop: 10}} buttonHeight={30} buttons={MockData_2} />
-        <ButtonList style={{width: 210, marginTop: 10}} buttonHeight={30} buttons={MockData_3} />
+        <ButtonList style={{width: 210}} buttonType={{height: 30, backgroundColor: 'transparent'}} buttons={MockData_1} />
+        <ButtonList style={{width: 210, marginTop: 10}} buttonType={{height: 30, backgroundColor: 'transparent'}} buttons={MockData_2} />
+        <ButtonList style={{width: 210, marginTop: 10}} buttonType={{height: 30, backgroundColor: 'transparent'}} buttons={MockData_3} />
       </ScrollView>
     );
   }

@@ -79,12 +79,34 @@ export default class Container extends Component {
       buttonStyle = [styles.button, {backgroundColor: 'transparent'}];
     }
     return (
-      <Button key={item.name} style={buttonStyle} >
+      <Button key={item.name} style={buttonStyle} onPress={() => {this.getAction(item.name)}} >
         <Image style={{height: 40, width: 40}} source={item.icon} />
         <Text style={{marginTop: 10}}>
           {item.name}
         </Text>
       </Button>
     );
+  }
+
+  getAction(button) {
+    switch (button) {
+      case '手机充值':
+        Actions.payment({data: button, feeType: '手机缴费', label: '手机号码:', placeHolder: '请输入手机号码'});
+        break;
+      case '电费缴费':
+        Actions.payment({data: button, feeType: '电费', label: '用户编号:', placeHolder: '请输入用户编号'});
+        break;
+      case '水费缴费':
+        Actions.payment({data: button, feeType: '水费', label: '用户编号:', placeHolder: '请输入用户编号'});
+        break;
+      case '燃气缴费':
+        Actions.payment({data: button, feeType: '燃气费', label: '用户编号:', placeHolder: '请输入用户编号'});
+        break;
+      case '缴费查询':
+        Actions.paymentSearch();
+        break;
+      default:
+    }
+
   }
 }

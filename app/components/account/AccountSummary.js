@@ -35,27 +35,21 @@ const styles = StyleSheet.create(
       marginTop: Platform.OS === 'ios' ? 20 : 0,
       paddingHorizontal: 5
     },
-    header: {
-      height: 40,
-      backgroundColor: '#FFF',
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginBottom: 10
-    },
     debit: {
-      margin: 5,
       backgroundColor: '#399CE8',
       borderRadius: 5,
       paddingTop: 3,
       borderWidth: 1,
-      borderColor: '#E7E7E7'
+      borderColor: '#E7E7E7',
+      marginHorizontal: 5,
+      marginTop: 15
     },
     operationContainer: {
       flexDirection: 'row',
       alignItems: 'center',
       //justifyContent: 'center',
-      height: 30,
-      backgroundColor: '#FFF'
+      height: 35,
+      backgroundColor: '#FFF',
     },
     operationButton: {
       flex: 1,
@@ -63,7 +57,7 @@ const styles = StyleSheet.create(
     },
     operationText: {
       color: '#399CE8',
-      fontSize: 12
+      //fontSize: 12
     }
   }
 );
@@ -81,8 +75,8 @@ export default class Container extends Component {
     return (
       <View style={styles.page}>
         <CommonHeader data={this.props.data} />
-        <AccountButtonList buttons={MockData_1}/>
-        <View style={styles.debit}>
+        <AccountButtonList style={{marginBottom: 5}} buttons={MockData_1}/>
+        <View style={[styles.debit]}>
           <AccountButtonList buttons={MockData_2}/>
           <View style={styles.operationContainer}>
             <TouchableOpacity style={styles.operationButton}>

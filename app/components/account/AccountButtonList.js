@@ -8,11 +8,11 @@ import React from 'react-native';
 
 const { Component, View, Text, StyleSheet, TouchableOpacity } = React;
 const Actions = require('react-native-router-flux').Actions;
-
+const buttonHeight = 35;
 const styles = StyleSheet.create({
   //page: {margin: 15},
   button: {
-    height: 30,
+    height: buttonHeight,
     borderWidth: 0,
     borderBottomWidth: 1,
     borderColor: '#E7E7E7',
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15
   },
   font: {
-    fontSize: 12
+    fontSize: 14
   },
 });
 export default class AccountButtonList extends Component {
@@ -37,7 +37,7 @@ export default class AccountButtonList extends Component {
   // 渲染
   render() {
     return (
-      <View style={[{height: this.props.buttons.length * 30}, this.props.style]}>
+      <View style={[{height: this.props.buttons.length * buttonHeight}, this.props.style]}>
         {this.renderButton(this.props.buttons, this.props.action)}
       </View>
     );
