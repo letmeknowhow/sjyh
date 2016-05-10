@@ -105,14 +105,28 @@ import GridView from '../../baseComponents/GridView';
 var Actions = require('react-native-router-flux').Actions;
 import SideMenu from 'react-native-side-menu';
 import MenuContent from './ConfigMenu';
+import PageSwiper from '../../baseComponents/react-native-page-swiper/index';
 
-const MockData_ICON = [
+const MockData_ICON1 = [
   {name: '账户查询', icon: require('../../../assets/icons/zhcx.png')},
   {name: '跨行转账', icon: require('../../../assets/icons/khzz.png')},
   {name: '卡卡转账', icon: require('../../../assets/icons/kkzz.png')},
+  {name: '生活缴费', icon: require('../../../assets/icons/shjf.png')},
+  {name: '个人中心', icon: require('../../../assets/icons/grzx.png')},
   {name: '行内转账', icon: require('../../../assets/icons/hnzz.png')},
   {name: '活期转定期', icon: require('../../../assets/icons/hqzdq.png')},
   {name: '投资理财', icon: require('../../../assets/icons/tzlc.png')},
+];
+
+const MockData_ICON2 = [
+  {name: '我的账户', icon: require('../../../assets/icons/wdzh.png')},
+  {name: '转账汇款', icon: require('../../../assets/icons/hnzz.png')},
+  {name: '跨行归集', icon: require('../../../assets/icons/khgj.png')},
+  {name: '资金管理', icon: require('../../../assets/icons/zjgl.png')},
+  {name: '投资理财', icon: require('../../../assets/icons/tzlc.png')},
+  {name: '生活缴费', icon: require('../../../assets/icons/shjf.png')},
+  {name: '个人中心', icon: require('../../../assets/icons/grzx.png')},
+  {name: '小额循环贷', icon: require('../../../assets/icons/kkzz.png')},
 ];
 
 const logo = require('../../../assets/logo_text.png');
@@ -127,7 +141,7 @@ const styles = StyleSheet.create(
     },
     logoContainer: {height: 50, alignItems: 'center', marginTop: Platform.OS === 'ios' ? 20 : 0, flexDirection: 'row'},
     banner: {height: 140, overflow: 'hidden', marginBottom: 10},
-    button: {flex: 1, margin: 0, borderWidth: 1, borderColor: '#f3f2f3', height: 100, borderRadius: 0, backgroundColor: '#FFF'},
+    button: {flex: 1, margin: 0, borderWidth: 1, borderColor: '#f3f2f3', height: 70, borderRadius: 0, backgroundColor: '#FFF'},
     region1: {flex: 1, margin: 2, borderWidth: 0, height: 160, alignItems: 'stretch', justifyContent: 'center'},
     nestedText: {
       marginLeft: 12,
@@ -183,14 +197,25 @@ export default class Home extends Component {
               style={styles.banner}
               source={MockData_banner}
               height={140}
+              autoPlay={true}
             />
-            <GridView style={{flex: 1}}
-              items={MockData_ICON}
-              itemsPerRow={3}
-              scrollEnabled={false}
-              rowHeight={100}
-              renderItem={this.renderItem.bind(this)}
-            />
+            <PageSwiper style={styles.wrapper}>
+              <GridView style={{flex: 1}}
+                        items={MockData_ICON1}
+                        itemsPerRow={4}
+                        scrollEnabled={false}
+                        rowHeight={70}
+                        renderItem={this.renderItem.bind(this)}
+              />
+              <GridView style={{flex: 1}}
+                        items={MockData_ICON2}
+                        itemsPerRow={4}
+                        scrollEnabled={false}
+                        rowHeight={70}
+                        renderItem={this.renderItem.bind(this)}
+              />
+            </PageSwiper>
+
             <CategoryTitle title='理财产品'/>
             <GridView style={{marginHorizontal: 0}}
                       items={MockData_region1}
@@ -219,8 +244,8 @@ export default class Home extends Component {
   renderItem(item) {
     return (
       <Button key={item.name} style={[styles.button]} onPress={() => {this.getAction(item.name)}}>
-        <Image style={{height: 40, width: 40}} source={item.icon} />
-        <Text style={{marginTop: 10}}>
+        <Image style={{height: 30, width: 30}} source={item.icon} />
+        <Text style={{marginTop: 3}}>
           {item.name}
         </Text>
       </Button>

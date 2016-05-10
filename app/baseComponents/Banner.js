@@ -36,8 +36,7 @@ class Banner extends Component {
           <SwiperIOS style={styles.banner} showsButtons={false} height={this.props.height}
                      dot={<View style={{backgroundColor:'gray', width: 20, height: 3,borderRadius: 0, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
                      activeDot={<View style={{backgroundColor: '#FFF', width: 20, height: 3, borderRadius: 0, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-                     paginationStyle={{bottom: 0 }}
-          >
+                     paginationStyle={{bottom: 0 }} autoplay={this.props.autoPlay}>
             {this.renderHot(this.props.source)}
           </SwiperIOS>
         </View>

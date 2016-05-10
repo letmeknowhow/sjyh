@@ -139,7 +139,7 @@ export default class Application extends Component {
             self.setState({
               syncMessage: '正在安装.'
             });
-            this.refs.downloadBox.close()
+            this.refs.downloadBox.close();
             break;
           case CodePush.SyncStatus.UP_TO_DATE:
             self.setState({
