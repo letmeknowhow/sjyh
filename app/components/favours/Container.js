@@ -70,7 +70,7 @@ export default class Container extends Component {
 
   renderItem(item) {
     return (
-      <Button key={item.name} style={[styles.button]} >
+      <Button key={item.name} style={[styles.button]} delayLongPress={2000} onLongPress={()=>console.log('onLongPress')}>
         <Image style={{height: 40, width: 40}} source={item.icon} />
         <Text style={{marginTop: 10}}>
           {item.name}

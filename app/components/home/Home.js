@@ -197,7 +197,7 @@ export default class Home extends Component {
               style={styles.banner}
               source={MockData_banner}
               height={140}
-              autoPlay={true}
+              autoPlay={false}
             />
             <PageSwiper style={styles.wrapper}>
               <GridView style={{flex: 1}}
