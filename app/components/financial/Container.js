@@ -153,7 +153,7 @@ const styles = StyleSheet.create(
       //width: 35
     },
     button_reg: {
-      height: 80,
+      height: 90,
       flexDirection: 'row',
       borderWidth: 0,
       borderBottomWidth: 1,

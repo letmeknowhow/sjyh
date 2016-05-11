@@ -35,7 +35,7 @@ class SignInGesture extends Component {
   onStart() {
     this.setState({
       status: 'normal',
-      message: '请输入密码'
+      message: '滑动解锁(密码为1->2->3)'
     });
   }
   // 构造
@@ -43,7 +43,7 @@ class SignInGesture extends Component {
     super(props);
     // 初始状态
     this.state = {
-      message: '请输入密码',
+      message: '滑动解锁(密码为1->2->3)',
       status: 'normal'
     };
   }

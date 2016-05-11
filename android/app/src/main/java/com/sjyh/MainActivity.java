@@ -7,6 +7,9 @@ import com.facebook.react.shell.MainReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
+// 1. Import the plugin class (if you used RNPM to install the plugin, this
+// should already be done for you automatically so you can skip this step).
+import com.microsoft.codepush.react.CodePush;
 
 public class MainActivity extends ReactActivity {
 
@@ -26,6 +29,14 @@ public class MainActivity extends ReactActivity {
     @Override
     protected boolean getUseDeveloperSupport() {
         return BuildConfig.DEBUG;
+    }
+
+    // 2. Override the getJSBundleFile method in order to let
+    // the CodePush runtime determine where to get the JS
+    // bundle location from on each app start
+    @Override
+    protected String getJSBundleFile() {
+        return CodePush.getBundleUrl();
     }
 
     /**
