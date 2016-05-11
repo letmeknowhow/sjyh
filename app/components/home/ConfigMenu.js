@@ -17,11 +17,13 @@ const MockData_2 = [
 const MockData_3 = [
   {id: 0, uri: require('../../../assets/icons/mine/qb.png'), text: '手势密码'},
   {id: 1, uri: require('../../../assets/icons/mine/sz.png'), text: '短信提醒管理'},
-  {id: 2, uri: require('../../../assets/icons/mine/sz.png'), text: '检查更新'},
+];
+const MockData_4 = [
+  {id: 0, uri: require('../../../assets/icons/mine/sz.png'), text: '检查更新'},
 ];
 import React from 'react-native';
 
-const { Component, View, Text, StyleSheet, Dimensions, ScrollView, Image } = React;
+const { Component, View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } = React;
 
 import ButtonList from '../ButtonList';
 import ModalBox from '../../baseComponents/ModalBox';
@@ -81,6 +83,22 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOffset: {width: 5, height: 5},
     backgroundColor: '#fff'
+  },
+  button: {
+    height: 30,
+    borderWidth: 0,
+    borderBottomWidth: 1,
+    borderColor: '#E7E7E7',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: 'transparent',
+    paddingHorizontal: 15
+  },
+  icon: {
+    height: 25,
+    width: 25,
+    marginRight: 20
   }
 });
 
@@ -103,12 +121,17 @@ export default class ConfigMenu extends Component {
             source={myPortrait}/>
           <Text style={styles.name}>设置</Text>
         </View>
-        <ButtonList style={{width: 210}} buttonType={{height: 30, backgroundColor: 'transparent'}} buttons={MockData_1} />
-        <ButtonList style={{width: 210, marginTop: 10}} buttonType={{height: 30, backgroundColor: 'transparent'}} buttons={MockData_2} />
+        <ButtonList style={{width: 210}}
+                    buttonType={{height: 30, backgroundColor: 'transparent'}}
+                    buttons={MockData_1} />
         <ButtonList style={{width: 210, marginTop: 10}}
                     buttonType={{height: 30, backgroundColor: 'transparent'}}
-                    buttons={MockData_3} actions={this.getActions3()}
-        />
+                    buttons={MockData_2} />
+        <ButtonList style={{width: 210, marginTop: 10}}
+                    buttonType={{height: 30, backgroundColor: 'transparent'}}
+                    buttons={MockData_3} />
+        <ButtonList style={{width: 210, marginTop: 10}}
+                    buttons={MockData_4}  renderButton={this.renderButton.bind(this)}/>
         <ModalBox style={[styles.modal]} swipeToClose={false} position={"center"} ref={"downloadBox"}>
           <View style={styles.message}>
             <Text>{this.state.syncMessage}</Text>
@@ -123,12 +146,28 @@ export default class ConfigMenu extends Component {
     );
   }
 
-  getActions3() {
-    return [
-      null,
-      null,
-      this.check4Update.bind(this)
-    ];
+  renderButton(button) {
+    return (
+      <TouchableOpacity key={button.id} style={[styles.button]}
+                        onPress={this.getAction(button.text)}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image style={styles.icon} source={button.uri}/>
+          <Text style={{fontSize: 16}}>{button.text}</Text>
+        </View>
+        <Text>{'>'}</Text>
+      </TouchableOpacity>
+    );
+  }
+
+  getAction(button) {
+    let action;
+    switch (button) {
+      case '检查更新':
+        action = this.check4Update.bind(this);
+        break;
+      default:
+    }
+    return action;
   }
 
   check4Update() {

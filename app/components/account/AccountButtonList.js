@@ -47,7 +47,7 @@ export default class AccountButtonList extends Component {
     return buttons.map((button) => {
       if(button.clickable) {
         return (
-          <TouchableOpacity key={button.id} style={styles.button}
+          <TouchableOpacity key={button.id} style={styles.button} activeOpacity={0.8}
                 onPress={this.setButtonAction(button.text)}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={styles.font}>{button.text}</Text>

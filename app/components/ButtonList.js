@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15
   },
   icon: {
-    height: 20,
-    width: 20,
+    height: 25,
+    width: 25,
     marginRight: 20
   }
 });
@@ -39,25 +39,27 @@ export default class ButtonList extends Component {
   render() {
     return (
       <View style={[styles.page, this.props.style]}>
-        {this.renderButton(this.props.buttons, this.props.actions, this.props.buttonType)}
+        {this.renderButton(this.props.buttons, this.props.actions, this.props.buttonType, this.props.renderButton)}
       </View>
     );
   }
 
-  renderButton(buttons, actions, buttonType) {
-    let i = -1;
+  renderButton(buttons, action, buttonType, renderFn) {
     return buttons.map((button) => {
-      i += 1;
-      return (
-        <TouchableOpacity key={button.id} style={[styles.button, buttonType]}
-                          onPress={()=> {actions[i] && actions[i]({data: button.text})}}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            {button.uri && <Image style={styles.icon} source={button.uri}/>}
-            <Text style={{fontSize: 12}}>{button.text}</Text>
-          </View>
-          <Text>{'>'}</Text>
-        </TouchableOpacity>
-      );
+      if(renderFn) {
+        return renderFn(button);
+      } else {
+        return (
+          <TouchableOpacity key={button.id} style={[styles.button, buttonType]}
+                            onPress={()=> {action && action({data: button.text})}}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              {button.uri && <Image style={styles.icon} source={button.uri}/>}
+              <Text style={{fontSize: 16}}>{button.text}</Text>
+            </View>
+            <Text>{'>'}</Text>
+          </TouchableOpacity>
+        );
+      }
     });
   }
 }

@@ -11,6 +11,7 @@ import ModalBox from '../baseComponents/ModalBox';
 import SignInGesture from '../components/SignInGesture';
 /** 主tab 四页*/
 import Home from '../components/home/Home';
+import Financial from '../components/financial/Container';
 import Order from '../components/order/Container';
 import Favourite from '../components/favours/Container';
 import Mine from '../components/mine/Container';
@@ -43,9 +44,10 @@ const styles = StyleSheet.create({
   }
 });
 const TAB_TITLE_HOME = '首页';
-const TAB_TITLE_ORDER = '手机银行';
-const TAB_TITLE_FAVOURS = '金融助手';
-const TAB_TITLE_MINE = '更多服务';
+const TAB_TITLE_FINANCIAL = '理财';
+const TAB_TITLE_ORDER = '出行';
+const TAB_TITLE_FAVOURS = '助手';
+const TAB_TITLE_MINE = '我的';
 
 if (Platform.OS === 'android') {
   BackAndroid.addEventListener('hardwareBackPress', () => {
@@ -69,6 +71,9 @@ class TabIcon extends React.Component {
       case TAB_TITLE_HOME:
         uri = require('../../assets/icons/Home.png');
         break;
+      case TAB_TITLE_FINANCIAL:
+        uri = require('../../assets/icons/financial.png');
+        break;
       case TAB_TITLE_ORDER:
         uri = require('../../assets/icons/Order.png');
         break;
@@ -80,7 +85,7 @@ class TabIcon extends React.Component {
     }
     return (
       <View style={{alignItems: 'center'}}>
-        <Image source={uri} style={{ tintColor: this.props.selected ? '#2897EC' : null}} />
+        <Image source={uri} style={{width: 23, height: 23, resizeMode:'contain', tintColor: this.props.selected ? '#2897EC' : null}} />
         <Text style={{color: this.props.selected ? '#2897EC' :'black', fontSize: 12, marginTop: 3}}>{this.props.title}</Text>
       </View>
     );
@@ -90,7 +95,7 @@ class TabIcon extends React.Component {
 const reducerCreate = params=>{
   const defaultReducer = Reducer(params);
   return (state, action)=>{
-    console.log("ACTION:", action);
+    //console.log("ACTION:", action);
     return defaultReducer(state, action);
   }
 };
@@ -192,6 +197,7 @@ export default class Application extends Component {
             <Scene key="paymentSearch" component={PaymentSearch}  />
             <Scene key="tabBar" tabs={true} default="home" initial={false}>
               <Scene key="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
+              <Scene key="financial" schema="tab" component={Financial} title={TAB_TITLE_FINANCIAL} hideNavBar={true} icon={TabIcon}/>
               <Scene key="order" schema="tab" component={Order} title={TAB_TITLE_ORDER} hideNavBar={true} icon={TabIcon}/>
               <Scene key="favours" schema="tab" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={true} icon={TabIcon}/>
               <Scene key="mine" schema="tab" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true} icon={TabIcon}/>

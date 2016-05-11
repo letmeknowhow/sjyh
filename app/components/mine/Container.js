@@ -53,7 +53,7 @@ export default class Container extends Component {
     return (
       <View style={styles.page}>
         <View style={styles.header}>
-          <Text style={{fontSize: 16}}>更多服务</Text>
+          <Text style={{fontSize: 16}}>我的</Text>
         </View>
         <ScrollView
           scrollsToTop={true}

@@ -2,21 +2,30 @@
  *  Class: container
  *  Author: Niu Xiaoyu
  *  Date: 16/3/31.
- *  Description: 手机银行
+ *  Description: 收藏主页
  */
 
-const MockData_ICON = [
-  {name: '银行公告', icon: require('../../../assets/icons/yhgg.png')},
-  {name: '网点查询', icon: require('../../../assets/icons/wddt.png')},
-  {name: '理财计算器', icon: require('../../../assets/icons/lcjsq.png')},
+const MockData = [
+  {id: 0, uri: require('../../../assets/icons/khzz.png'), text: '存款计算器'},
+  {id: 1, uri: require('../../../assets/icons/lcjsq.png'), text: '国债计算器'},
+  {id: 2, uri: require('../../../assets/icons/khgj.png'), text: '贷款计算器'},
+  {id: 3, uri: require('../../../assets/icons/jymx.png'), text: '按揭贷款计算器'},
+  {id: 4, uri: require('../../../assets/icons/sfjf.png'), text: '账单分期计算器'}
+];
+
+const MockData_2 = [
+  {id: 0, uri: require('../../../assets/icons/sjcz.png'), text: '手机充值'},
+  {id: 1, uri: require('../../../assets/icons/dfjf.png'), text: '电费缴费'},
+  {id: 2, uri: require('../../../assets/icons/sfjf.png'), text: '水费缴费'},
+  {id: 3, uri: require('../../../assets/icons/rqjf.png'), text: '燃气缴费'},
+  {id: 4, uri: require('../../../assets/icons/jfcx.png'), text: '缴费查询'}
 ];
 
 import React from 'react-native';
 
-const { Component, View, Text, StyleSheet, Platform, ScrollView, Image } = React;
+const { Component, View, Text, StyleSheet, Platform, TouchableOpacity, Image } = React;
 const Actions = require('react-native-router-flux').Actions;
-import Button from '../../baseComponents/Button';
-import GridView from '../../baseComponents/GridView';
+import ButtonList from '../ButtonList';
 
 const styles = StyleSheet.create(
   {
@@ -31,9 +40,24 @@ const styles = StyleSheet.create(
       backgroundColor: '#FFF',
       alignItems: 'center',
       justifyContent: 'center',
-      marginBottom: 2
+      marginBottom: 10
     },
-    button: {flex: 1, margin: 0, borderWidth: 1, borderColor: '#f3f2f3', height: 100, borderRadius: 0, backgroundColor: '#FFF'},
+    button: {
+      height: 50,
+      borderWidth: 0,
+      borderBottomWidth: 1,
+      borderColor: '#E7E7E7',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      backgroundColor: '#FFF',
+      paddingHorizontal: 15
+    },
+    icon: {
+      height: 25,
+      width: 25,
+      marginRight: 20
+    }
   }
 );
 
@@ -45,37 +69,57 @@ export default class Container extends Component {
     this.state = {};
   }
 
+  // 自定义方法
+  handle() {
+
+  }
+
   // 渲染
   render() {
     return (
       <View style={styles.page}>
         <View style={styles.header}>
-          <Text style={{fontSize: 16}}>金融助手</Text>
+          <Text style={{fontSize: 16}}>助手</Text>
         </View>
-        <ScrollView
-          scrollsToTop={true}
-          showsVerticalScrollIndicator={false}
-          directionalLockEnabled={true}>
-          <GridView style={{flex: 1}}
-                    items={MockData_ICON}
-                    itemsPerRow={3}
-                    scrollEnabled={false}
-                    rowHeight={100}
-                    renderItem={this.renderItem.bind(this)}
-          />
-        </ScrollView>
+        <ButtonList style={{marginBottom: 10}}  buttons={MockData}/>
+        <ButtonList  buttons={MockData_2} renderButton={this.renderButton.bind(this)}/>
       </View>
     );
   }
 
-  renderItem(item) {
+  renderButton(button) {
     return (
-      <Button key={item.name} style={[styles.button]} delayLongPress={2000} onLongPress={()=>console.log('onLongPress')}>
-        <Image style={{height: 40, width: 40}} source={item.icon} />
-        <Text style={{marginTop: 10}}>
-          {item.name}
-        </Text>
-      </Button>
+      <TouchableOpacity key={button.id} style={[styles.button]}
+                        onPress={()=>this.getAction(button.text)}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image style={styles.icon} source={button.uri}/>
+          <Text style={{fontSize: 16}}>{button.text}</Text>
+        </View>
+        <Text>{'>'}</Text>
+      </TouchableOpacity>
     );
+  }
+
+  getAction(button) {
+    let action;
+    switch (button) {
+      case '手机充值':
+        action = Actions.payment({data: button, feeType: '手机缴费', label: '手机号码:', placeHolder: '请输入手机号码'});
+        break;
+      case '电费缴费':
+        action = Actions.payment({data: button, feeType: '电费', label: '用户编号:', placeHolder: '请输入用户编号'});
+        break;
+      case '水费缴费':
+        action = Actions.payment({data: button, feeType: '水费', label: '用户编号:', placeHolder: '请输入用户编号'});
+        break;
+      case '燃气缴费':
+        action = Actions.payment({data: button, feeType: '燃气费', label: '用户编号:', placeHolder: '请输入用户编号'});
+        break;
+      case '缴费查询':
+        action = Actions.paymentSearch({data: button});
+        break;
+      default:
+    }
+    return action;
   }
 }
