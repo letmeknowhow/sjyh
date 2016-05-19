@@ -23,6 +23,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8F0B16861CB6393700705F8F /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F0B167B1CB638E500705F8F /* libCodePush.a */; };
+		8F200B181CED673B00CFC0DB /* logo_text.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F200B171CED673B00CFC0DB /* logo_text.png */; };
 		8F61ECF31C61B14B009DC3FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F61ECF21C61B14B009DC3FD /* SystemConfiguration.framework */; };
 		8F61ECF51C61B15A009DC3FD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F61ECF41C61B15A009DC3FD /* CoreTelephony.framework */; };
 		8F61ECF71C61B18A009DC3FD /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F61ECF61C61B18A009DC3FD /* libsqlite3.0.tbd */; };
@@ -131,6 +132,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		87412CD003C0455CBF6F6279 /* libRCTActionSheet.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTActionSheet.a; sourceTree = "<group>"; };
 		8F0B16761CB638E400705F8F /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
+		8F200B171CED673B00CFC0DB /* logo_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_text.png; path = ../assets/logo_text.png; sourceTree = "<group>"; };
 		8F61ECF21C61B14B009DC3FD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8F61ECF41C61B15A009DC3FD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		8F61ECF61C61B18A009DC3FD /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -280,6 +282,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				8F200B171CED673B00CFC0DB /* logo_text.png */,
 				8F61ECF81C61B19B009DC3FD /* libc++.tbd */,
 				8F61ECF61C61B18A009DC3FD /* libsqlite3.0.tbd */,
 				8F61ECF41C61B15A009DC3FD /* CoreTelephony.framework */,
@@ -496,6 +499,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				8F200B181CED673B00CFC0DB /* logo_text.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

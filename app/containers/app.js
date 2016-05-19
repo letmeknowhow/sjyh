@@ -186,16 +186,16 @@ export default class Application extends Component {
       <View style={{flex: 1}} >
         <Router hideNavBar={true} createReducer={reducerCreate} sceneStyle={{backgroundColor:'#F7F7F7'}}>
           <Scene key="root" hideNavBar={true}>
-            <Scene key="signInGesture" component={SignInGesture} initial={true}/>
+            <Scene key="signInGesture" component={SignInGesture} initial={false}/>
             <Scene key="productDetail" component={ProductDetail}  />
-            <Scene key="accountSummary" component={AccountSummary}  />
+            <Scene key="accountSummary" component={AccountSummary} title="账户查询"  />
             <Scene key="demandDepositSearch" component={DemandDepositSearch}  />
             <Scene key="fixedDepositSearch" component={FixedDepositSearch}  />
             <Scene key="moneyTransfer" component={MoneyTransfer}  />
             <Scene key="demand2Fixed" component={Demand2Fixed}  />
             <Scene key="payment" component={Payment}  />
             <Scene key="paymentSearch" component={PaymentSearch}  />
-            <Scene key="tabBar" tabs={true} default="home" initial={false}>
+            <Scene key="tabBar" tabs={true} default="home" initial={true}>
               <Scene key="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
               <Scene key="financial" schema="tab" component={Financial} title={TAB_TITLE_FINANCIAL} hideNavBar={true} icon={TabIcon}/>
               <Scene key="order" schema="tab" component={Order} title={TAB_TITLE_ORDER} hideNavBar={true} icon={TabIcon}/>

@@ -19,7 +19,7 @@ class SignInGesture extends Component {
     if (password === '123') {
       this.setState({
         status: 'right',
-        message: '密码输入成功'
+        message: '滑动解锁(密码为1->2->3)'
       });
       Actions.tabBar();
       // your codes to close this view
