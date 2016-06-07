@@ -5,34 +5,34 @@
  *  Description:
  */
 const MockData_1 = [
-  {id: 0, uri: require('../../../assets/icons/mine/xxzx.png'), text: '登录密码修改'},
-  {id: 1, uri: require('../../../assets/icons/mine/cydz.png'), text: '限额设置'},
-  {id: 2, uri: require('../../../assets/icons/mine/cylk.png'), text: '用户名设置'}
+  {id: 0, uri: require('../../assets/icons/mine/xxzx.png'), text: '登录密码修改'},
+  {id: 1, uri: require('../../assets/icons/mine/cydz.png'), text: '限额设置'},
+  {id: 2, uri: require('../../assets/icons/mine/cylk.png'), text: '用户名设置'}
 ];
 const MockData_2 = [
-  {id: 0, uri: require('../../../assets/icons/mine/gywm.png'), text: '账号保护'},
-  {id: 1, uri: require('../../../assets/icons/mine/qb.png'), text: '预留信息设置'},
-  {id: 2, uri: require('../../../assets/icons/mine/sz.png'), text: '交易密码修改'}
+  {id: 0, uri: require('../../assets/icons/mine/gywm.png'), text: '账号保护'},
+  {id: 1, uri: require('../../assets/icons/mine/qb.png'), text: '预留信息设置'},
+  {id: 2, uri: require('../../assets/icons/mine/sz.png'), text: '交易密码修改'}
 ];
 const MockData_3 = [
-  {id: 0, uri: require('../../../assets/icons/mine/qb.png'), text: '手势密码'},
-  {id: 1, uri: require('../../../assets/icons/mine/sz.png'), text: '短信提醒管理'},
+  {id: 0, uri: require('../../assets/icons/mine/qb.png'), text: '手势密码'},
+  {id: 1, uri: require('../../assets/icons/mine/sz.png'), text: '短信提醒管理'},
 ];
 const MockData_4 = [
-  {id: 0, uri: require('../../../assets/icons/mine/sz.png'), text: '检查更新'},
+  {id: 0, uri: require('../../assets/icons/mine/sz.png'), text: '检查更新'},
 ];
 import React from 'react-native';
 
 const { Component, View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } = React;
 
-import ButtonList from '../ButtonList';
-import ModalBox from '../../baseComponents/ModalBox';
+import ButtonList from '../components/ButtonList';
+import ModalBox from '../baseComponents/ModalBox';
 const Actions = require('react-native-router-flux').Actions;
 
 import CodePush from 'react-native-code-push';
 
 const window = Dimensions.get('window');
-const myPortrait = require('../../../assets/icons/config.png');
+const myPortrait = require('../../assets/icons/config.png');
 const styles = StyleSheet.create({
   menu: {
     flex: 1,

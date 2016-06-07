@@ -7,6 +7,7 @@ import {Scene, Router, TabBar, Modal, Schema, Actions, Reducer} from 'react-nati
 const { Component,View, Navigator, Text, StyleSheet, Platform, Image, Alert, BackAndroid } = React;
 import CodePush from 'react-native-code-push';
 import ModalBox from '../baseComponents/ModalBox';
+import Drawer from './Drawer';
 
 import SignInGesture from '../components/SignInGesture';
 /** 主tab 四页*/
@@ -195,12 +196,14 @@ export default class Application extends Component {
             <Scene key="demand2Fixed" component={Demand2Fixed}  />
             <Scene key="payment" component={Payment}  />
             <Scene key="paymentSearch" component={PaymentSearch}  />
-            <Scene key="tabBar" tabs={true} default="home" initial={true}>
-              <Scene key="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
-              <Scene key="financial" schema="tab" component={Financial} title={TAB_TITLE_FINANCIAL} hideNavBar={true} icon={TabIcon}/>
-              <Scene key="order" schema="tab" component={Order} title={TAB_TITLE_ORDER} hideNavBar={true} icon={TabIcon}/>
-              <Scene key="favours" schema="tab" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={true} icon={TabIcon}/>
-              <Scene key="mine" schema="tab" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true} icon={TabIcon}/>
+            <Scene key="drawer" component={Drawer} initial={true}>
+              <Scene key="tabBar" tabs={true} default="home">
+                <Scene key="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
+                <Scene key="financial" schema="tab" component={Financial} title={TAB_TITLE_FINANCIAL} hideNavBar={true} icon={TabIcon}/>
+                <Scene key="order" schema="tab" component={Order} title={TAB_TITLE_ORDER} hideNavBar={true} icon={TabIcon}/>
+                <Scene key="favours" schema="tab" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={true} icon={TabIcon}/>
+                <Scene key="mine" schema="tab" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true} icon={TabIcon}/>
+              </Scene>
             </Scene>
           </Scene>
         </Router>

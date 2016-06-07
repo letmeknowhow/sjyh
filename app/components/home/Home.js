@@ -104,7 +104,7 @@ import CategoryTitle from '../CategoryTitle';
 import GridView from '../../baseComponents/GridView';
 var Actions = require('react-native-router-flux').Actions;
 import SideMenu from 'react-native-side-menu';
-import MenuContent from './ConfigMenu';
+
 import PageSwiper from '../../baseComponents/react-native-page-swiper/index';
 
 const MockData_ICON1 = [
@@ -176,11 +176,6 @@ export default class Home extends Component {
   // 渲染
   render() {
     return (
-      <SideMenu
-        menu={<MenuContent />}
-        isOpen={this.state.isOpen}
-        menuPosition="right"
-        onChange={(isOpen) => this.updateMenuState(isOpen)}>
         <View style={[styles.page]}>
           <View style={styles.logoContainer}>
             <Image style={{flex: 1, height: 40, resizeMode: Image.resizeMode.contain}} source={logo}/>
@@ -233,12 +228,7 @@ export default class Home extends Component {
             </View>
           </ScrollView>
         </View>
-      </SideMenu>
     );
-  }
-
-  updateMenuState(isOpen) {
-    this.setState({ isOpen, });
   }
 
   renderItem(item) {
