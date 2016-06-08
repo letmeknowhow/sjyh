@@ -28,6 +28,7 @@
 		8F61ECF51C61B15A009DC3FD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F61ECF41C61B15A009DC3FD /* CoreTelephony.framework */; };
 		8F61ECF71C61B18A009DC3FD /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F61ECF61C61B18A009DC3FD /* libsqlite3.0.tbd */; };
 		8F61ECF91C61B19B009DC3FD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F61ECF81C61B19B009DC3FD /* libc++.tbd */; };
+		8F82FD251D06E2F7007A344B /* libReact-Native-Webview-Bridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F82FD231D06E2A2007A344B /* libReact-Native-Webview-Bridge.a */; };
 		D2743B1A1C4775950043C8CC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D2743B191C4775950043C8CC /* libz.tbd */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +110,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = CodePush;
 		};
+		8F82FD221D06E2A2007A344B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F82FD141D06E2A2007A344B /* React-Native-Webview-Bridge.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4114DC4C1C187C3A003CD988;
+			remoteInfo = "React-Native-Webview-Bridge";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +145,7 @@
 		8F61ECF41C61B15A009DC3FD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		8F61ECF61C61B18A009DC3FD /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		8F61ECF81C61B19B009DC3FD /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		8F82FD141D06E2A2007A344B /* React-Native-Webview-Bridge.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "React-Native-Webview-Bridge.xcodeproj"; path = "../node_modules/react-native-webview-bridge/ios/React-Native-Webview-Bridge.xcodeproj"; sourceTree = "<group>"; };
 		D2743B191C4775950043C8CC /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -145,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F82FD251D06E2F7007A344B /* libReact-Native-Webview-Bridge.a in Frameworks */,
 				8F0B16861CB6393700705F8F /* libCodePush.a in Frameworks */,
 				D2743B1A1C4775950043C8CC /* libz.tbd in Frameworks */,
 				8F61ECF91C61B19B009DC3FD /* libc++.tbd in Frameworks */,
@@ -256,6 +266,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8F82FD141D06E2A2007A344B /* React-Native-Webview-Bridge.xcodeproj */,
 				8F0B16761CB638E400705F8F /* CodePush.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -309,6 +320,14 @@
 			isa = PBXGroup;
 			children = (
 				8F0B167B1CB638E500705F8F /* libCodePush.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8F82FD151D06E2A2007A344B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F82FD231D06E2A2007A344B /* libReact-Native-Webview-Bridge.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -401,6 +420,10 @@
 					ProjectRef = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
 				},
 				{
+					ProductGroup = 8F82FD151D06E2A2007A344B /* Products */;
+					ProjectRef = 8F82FD141D06E2A2007A344B /* React-Native-Webview-Bridge.xcodeproj */;
+				},
+				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
@@ -488,6 +511,13 @@
 			fileType = archive.ar;
 			path = libCodePush.a;
 			remoteRef = 8F0B167A1CB638E500705F8F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8F82FD231D06E2A2007A344B /* libReact-Native-Webview-Bridge.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libReact-Native-Webview-Bridge.a";
+			remoteRef = 8F82FD221D06E2A2007A344B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

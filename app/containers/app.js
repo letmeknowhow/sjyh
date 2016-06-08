@@ -3,10 +3,14 @@
  */
 
 import React from 'react-native';
-import {Scene, Router, TabBar, Modal, Schema, Actions, Reducer} from 'react-native-router-flux'
+import {Scene, Router, TabBar, Modal, Schema, Actions} from 'react-native-mobx';
 const { Component,View, Navigator, Text, StyleSheet, Platform, Image, Alert, BackAndroid } = React;
 import CodePush from 'react-native-code-push';
 import ModalBox from '../baseComponents/ModalBox';
+//model
+import sjyhStore from '../model';
+
+//侧边菜单
 import Drawer from './Drawer';
 
 import SignInGesture from '../components/SignInGesture';
@@ -93,14 +97,6 @@ class TabIcon extends React.Component {
   }
 }
 
-const reducerCreate = params=>{
-  const defaultReducer = Reducer(params);
-  return (state, action)=>{
-    //console.log("ACTION:", action);
-    return defaultReducer(state, action);
-  }
-};
-
 export default class Application extends Component {
 
   constructor(props) {
@@ -185,7 +181,7 @@ export default class Application extends Component {
 
     return (
       <View style={{flex: 1}} >
-        <Router hideNavBar={true} createReducer={reducerCreate} sceneStyle={{backgroundColor:'#F7F7F7'}}>
+        <Router hideNavBar={true} store={sjyhStore} sceneStyle={{backgroundColor:'#F7F7F7'}}>
           <Scene key="root" hideNavBar={true}>
             <Scene key="signInGesture" component={SignInGesture} initial={false}/>
             <Scene key="productDetail" component={ProductDetail}  />

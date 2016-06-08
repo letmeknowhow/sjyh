@@ -175,12 +175,13 @@ export default class Home extends Component {
 
   // 渲染
   render() {
+    const store = this.props.store;
     return (
         <View style={[styles.page]}>
           <View style={styles.logoContainer}>
             <Image style={{flex: 1, height: 40, resizeMode: Image.resizeMode.contain}} source={logo}/>
             <TouchableOpacity style={{width: 40, height: 40, alignItems:'center', justifyContent: 'center'}}
-                              onPress={() => this.toggle()}>
+                              onPress={() => store.sidemenu.switchSidemenu(true)}>
               <Image style={{height: 25, resizeMode: Image.resizeMode.contain}} source={myPortrait} />
             </TouchableOpacity>
           </View>
