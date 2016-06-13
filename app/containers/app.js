@@ -1,6 +1,3 @@
-/**
- * Created by gaoletian on 15/11/25.
- */
 
 import React from 'react-native';
 import {Scene, Router, TabBar, Modal, Schema, Actions} from 'react-native-mobx';

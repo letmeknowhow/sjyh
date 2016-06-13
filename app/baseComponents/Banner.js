@@ -54,10 +54,16 @@ class Banner extends Component {
 
   renderHot(source) {
     return source.map((item) => {
+      let imageSource;
+      if("string" === typeof item.uri){
+        imageSource = {uri: item.uri};
+      } else {
+        imageSource = item.uri;
+      }
       return (
         <TouchableOpacity key={item.id} onPress={() => Actions.productDetail({data:`来自banner${item.id}`, url: item.url})}>
           <Image
-            source={item.uri}
+            source={imageSource}
             style={{width: deviceWidth, height:this.props.height, resizeMode: Image.resizeMode.stretch}}/>
         </TouchableOpacity>
       );

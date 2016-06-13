@@ -1,5 +1,6 @@
 import {action, reaction, observable, observe, computed, autorun} from 'mobx';
 import autobind from 'autobind-decorator';
+import WebAPI from '../../libs/WebAPI';
 
 @autobind
 class BannerStore {
@@ -17,6 +18,21 @@ class BannerStore {
       {id: '3', uri: require('../../../assets/banner/3.png'), url: MockUrl},
       {id: '4', uri: require('../../../assets/banner/4.png'), url: MockUrl}
     ];
+
+    /**
+     * http请求远程图片
+     */
+    //WebAPI.banners({columnId:784})
+    //.then((data) => {
+    //  const bannerList = data.json.columnIssueList;
+    //  this.bannerSource = bannerList.map((banner, ind) => {
+    //    return {
+    //      id: ind,
+    //      uri: banner.picUrl,
+    //      url: banner.link
+    //    };
+    //  });
+    //});
   }
 }
 
