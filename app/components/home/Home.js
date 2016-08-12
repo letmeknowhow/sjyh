@@ -14,6 +14,7 @@ import Button from '../../baseComponents/Button';
 import CategoryTitle from '../CategoryTitle';
 import GridView from '../../baseComponents/GridView';
 const Actions = require('react-native-router-flux').Actions;
+import SceneHeader from '../../baseComponents/SceneHeader';
 
 import PageSwiper from '../../baseComponents/react-native-page-swiper/index';
 import {observer} from 'mobx-react/native';
@@ -50,7 +51,6 @@ const styles = StyleSheet.create(
       backgroundColor: '#f3f2f3',
       paddingHorizontal: 5
     },
-    logoContainer: {height: 50, alignItems: 'center', marginTop: Platform.OS === 'ios' ? 20 : 0, flexDirection: 'row'},
     banner: {height: 140, overflow: 'hidden', marginBottom: 10},
     button: {flex: 1, margin: 0, borderWidth: 1, borderColor: '#f3f2f3', height: 70, borderRadius: 0, backgroundColor: '#FFF'},
     region1: {flex: 1, margin: 2, borderWidth: 0, height: 160, alignItems: 'stretch', justifyContent: 'center'},
@@ -97,13 +97,7 @@ export default class Home extends Component {
     const store = this.props.store;
     return (
         <View style={[styles.page]}>
-          <View style={styles.logoContainer}>
-            <Image style={{flex: 1, height: 40, resizeMode: Image.resizeMode.contain}} source={logo}/>
-            <TouchableOpacity style={{width: 40, height: 40, alignItems: 'center', justifyContent: 'center'}}
-                              onPress={() => store.sidemenu.switchSidemenu(true)}>
-              <Image style={{height: 25, resizeMode: Image.resizeMode.contain}} source={myPortrait} />
-            </TouchableOpacity>
-          </View>
+          <SceneHeader sceneStore={store.sidemenu} />
           <ScrollView
             scrollsToTop={true}
             showsVerticalScrollIndicator={false}

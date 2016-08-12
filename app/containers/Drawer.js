@@ -18,26 +18,17 @@ export default class Drawer extends Component {
   constructor(props) {
     super(props);
     // 初始状态
-    this.state = {
-      isOpen: false
-    };
+    this.state = {};
     this.updateMenuState.bind(this);
   }
 
-  componentDidMount() {
-    console.log('drawer didmount');
-    console.log(this.props);
-  }
-
   render() {
-    console.log('drawer');
-    console.log(this.props);
-    //const store = this.props.store.sidemenu;
+    const store = this.props.sceneStore.sidemenu;
     const children = this.props.navigationState.children;
     return (
       <Sidemenu
         menu={<MenuContent />}
-        isOpen={this.state.isOpen}
+        isOpen={store.isOpen}
         menuPosition="right"
         onChange={(isOpen) => {this.updateMenuState(isOpen);}}>
         <DefaultRenderer navigationState={children[0]} onNavigate={this.props.onNavigate} />
@@ -46,6 +37,6 @@ export default class Drawer extends Component {
   }
 
   updateMenuState(isOpen) {
-    this.setState({ isOpen });
+    this.props.sceneStore.sidemenu.switchSidemenu(isOpen);
   }
 }

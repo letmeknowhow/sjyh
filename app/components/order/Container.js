@@ -21,13 +21,13 @@ import React from 'react-native';
 const { Component, View, Text, StyleSheet, Platform } = React;
 const Actions = require('react-native-router-flux').Actions;
 import ButtonList from '../ButtonList';
+import SceneHeader from '../../baseComponents/SceneHeader';
 
 const styles = StyleSheet.create(
   {
     page: {
       flex: 1,
       backgroundColor: '#f3f2f3',
-      marginTop: Platform.OS === 'ios' ? 20 : 0,
       paddingHorizontal: 5
     },
     header: {
@@ -49,12 +49,10 @@ export default class Container extends Component {
   }
 
   render() {
-
+    const store = this.props.store.sidemenu;
     return (
       <View style={styles.page}>
-        <View style={styles.header}>
-          <Text style={{fontSize: 16}}>出行</Text>
-        </View>
+        <SceneHeader sceneStore={store} title="出行" />
         <ButtonList style={{flex: 1}} buttons={MockData} />
       </View>
     );

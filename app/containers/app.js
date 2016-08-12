@@ -1,4 +1,3 @@
-
 import React from 'react-native';
 import {Scene, Router, TabBar, Modal, Schema, Actions} from 'react-native-mobx';
 const { Component, View, Navigator, Text, StyleSheet, Platform, Image, Alert, BackAndroid } = React;
@@ -87,8 +86,9 @@ class TabIcon extends React.Component {
     }
     return (
       <View style={{alignItems: 'center'}}>
-        <Image source={uri} style={{width: 25, height: 25, tintColor: this.props.selected ? '#2897EC' : null}} />
-        <Text style={{color: this.props.selected ? '#2897EC' : 'black', fontSize: 12, marginTop: 3}}>{this.props.title}</Text>
+        <Image source={uri} style={{width: 25, height: 25, tintColor: this.props.selected ? '#2897EC' : null}}/>
+        <Text
+          style={{color: this.props.selected ? '#2897EC' : 'black', fontSize: 12, marginTop: 3}}>{this.props.title}</Text>
       </View>
     );
   }
@@ -179,25 +179,30 @@ export default class Application extends Component {
   render() {
 
     return (
-      <View style={{flex: 1}} >
+      <View style={{flex: 1}}>
         <Router hideNavBar={true} store={sjyhStore} sceneStyle={{backgroundColor: '#F7F7F7'}}>
           <Scene key="root" hideNavBar={true}>
             <Scene key="signInGesture" component={SignInGesture} initial={false}/>
-            <Scene key="productDetail" component={ProductDetail} />
-            <Scene key="accountSummary" component={AccountSummary} title="账户查询" />
-            <Scene key="demandDepositSearch" component={DemandDepositSearch} />
-            <Scene key="fixedDepositSearch" component={FixedDepositSearch} />
-            <Scene key="moneyTransfer" component={MoneyTransfer} />
-            <Scene key="demand2Fixed" component={Demand2Fixed} />
-            <Scene key="payment" component={Payment} />
-            <Scene key="paymentSearch" component={PaymentSearch} />
-            <Scene key="drawer" component={Drawer1} initial={true}>
+            <Scene key="productDetail" component={ProductDetail}/>
+            <Scene key="accountSummary" component={AccountSummary} title="账户查询"/>
+            <Scene key="demandDepositSearch" component={DemandDepositSearch}/>
+            <Scene key="fixedDepositSearch" component={FixedDepositSearch}/>
+            <Scene key="moneyTransfer" component={MoneyTransfer}/>
+            <Scene key="demand2Fixed" component={Demand2Fixed}/>
+            <Scene key="payment" component={Payment}/>
+            <Scene key="paymentSearch" component={PaymentSearch}/>
+            <Scene key="drawer" component={Drawer1} sceneStore={sjyhStore} initial={true}>
               <Scene key="tabBar" tabs={true} default="home">
-                <Scene key="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
-                <Scene key="financial" schema="tab" component={Financial} title={TAB_TITLE_FINANCIAL} hideNavBar={true} icon={TabIcon}/>
-                <Scene key="order" schema="tab" component={Order} title={TAB_TITLE_ORDER} hideNavBar={true} icon={TabIcon}/>
-                <Scene key="favours" schema="tab" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={true} icon={TabIcon}/>
-                <Scene key="mine" schema="tab" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true} icon={TabIcon}/>
+                <Scene key="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true}
+                       icon={TabIcon}/>
+                <Scene key="financial" schema="tab" component={Financial} title={TAB_TITLE_FINANCIAL} hideNavBar={true}
+                       icon={TabIcon}/>
+                <Scene key="order" schema="tab" component={Order} title={TAB_TITLE_ORDER} hideNavBar={true}
+                       icon={TabIcon}/>
+                <Scene key="favours" schema="tab" component={Favourite} title={TAB_TITLE_FAVOURS} hideNavBar={true}
+                       icon={TabIcon}/>
+                <Scene key="mine" schema="tab" component={Mine} title={TAB_TITLE_MINE} hideNavBar={true}
+                       icon={TabIcon}/>
               </Scene>
             </Scene>
           </Scene>

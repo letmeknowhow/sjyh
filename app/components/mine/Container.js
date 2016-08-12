@@ -5,7 +5,7 @@
  *  Description: 手机银行
  */
 
-const MockData_ICON = [
+const MOCKDATA_ICON = [
   {name: '手机充值', icon: require('../../../assets/icons/sjcz.png')},
   {name: '电费缴费', icon: require('../../../assets/icons/dfjf.png')},
   {name: '水费缴费', icon: require('../../../assets/icons/sfjf.png')},
@@ -20,13 +20,14 @@ const { Component, View, Text, StyleSheet, Platform, ScrollView, Image } = React
 const Actions = require('react-native-router-flux').Actions;
 import Button from '../../baseComponents/Button';
 import GridView from '../../baseComponents/GridView';
+import SceneHeader from '../../baseComponents/SceneHeader';
 
 const styles = StyleSheet.create(
   {
     page: {
       flex: 1,
       backgroundColor: '#f3f2f3',
-      marginTop: Platform.OS === 'ios' ? 20 : 0,
+      //marginTop: Platform.OS === 'ios' ? 20 : 0,
       paddingHorizontal: 5
     },
     header: {
@@ -50,17 +51,16 @@ export default class Container extends Component {
 
   // 渲染
   render() {
+    const store = this.props.store.sidemenu;
     return (
       <View style={styles.page}>
-        <View style={styles.header}>
-          <Text style={{fontSize: 16}}>我的</Text>
-        </View>
+        <SceneHeader sceneStore={store} title="我的" />
         <ScrollView
           scrollsToTop={true}
           showsVerticalScrollIndicator={false}
           directionalLockEnabled={true}>
           <GridView style={{flex: 1}}
-                    items={MockData_ICON}
+                    items={MOCKDATA_ICON}
                     itemsPerRow={3}
                     scrollEnabled={false}
                     rowHeight={100}
@@ -73,13 +73,13 @@ export default class Container extends Component {
 
   renderItem(item) {
     let buttonStyle = [];
-    if(item.name && item.icon) {
+    if (item.name && item.icon) {
       buttonStyle = [styles.button];
     } else {
       buttonStyle = [styles.button, {backgroundColor: 'transparent'}];
     }
     return (
-      <Button key={item.name} style={buttonStyle} onPress={() => {this.getAction(item.name)}} >
+      <Button key={item.name} style={buttonStyle} onPress={() => {this.getAction(item.name);}} >
         <Image style={{height: 40, width: 40}} source={item.icon} />
         <Text style={{marginTop: 10}}>
           {item.name}

@@ -13,7 +13,7 @@ const MockData = [
   {id: 4, uri: require('../../../assets/icons/sfjf.png'), text: '账单分期计算器'}
 ];
 
-const MockData_2 = [
+const MOCKDATA_2 = [
   {id: 0, uri: require('../../../assets/icons/sjcz.png'), text: '手机充值'},
   {id: 1, uri: require('../../../assets/icons/dfjf.png'), text: '电费缴费'},
   {id: 2, uri: require('../../../assets/icons/sfjf.png'), text: '水费缴费'},
@@ -26,13 +26,13 @@ import React from 'react-native';
 const { Component, View, Text, StyleSheet, Platform, TouchableOpacity, Image } = React;
 const Actions = require('react-native-router-flux').Actions;
 import ButtonList from '../ButtonList';
+import SceneHeader from '../../baseComponents/SceneHeader';
 
 const styles = StyleSheet.create(
   {
     page: {
       flex: 1,
       backgroundColor: '#f3f2f3',
-      marginTop: Platform.OS === 'ios' ? 20 : 0,
       paddingHorizontal: 5
     },
     header: {
@@ -76,13 +76,12 @@ export default class Container extends Component {
 
   // 渲染
   render() {
+    const store = this.props.store.sidemenu;
     return (
       <View style={styles.page}>
-        <View style={styles.header}>
-          <Text style={{fontSize: 16}}>助手</Text>
-        </View>
-        <ButtonList style={{marginBottom: 10}}  buttons={MockData}/>
-        <ButtonList  buttons={MockData_2} renderButton={this.renderButton.bind(this)}/>
+        <SceneHeader sceneStore={store} title="助手" />
+        <ButtonList style={{marginBottom: 10}} buttons={MockData}/>
+        <ButtonList buttons={MOCKDATA_2} renderButton={this.renderButton.bind(this)}/>
       </View>
     );
   }
@@ -90,7 +89,7 @@ export default class Container extends Component {
   renderButton(button) {
     return (
       <TouchableOpacity key={button.id} style={[styles.button]}
-                        onPress={()=>this.getAction(button.text)}>
+                        onPress={() => this.getAction(button.text)}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Image style={styles.icon} source={button.uri}/>
           <Text style={{fontSize: 16}}>{button.text}</Text>

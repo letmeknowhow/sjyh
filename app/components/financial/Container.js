@@ -6,20 +6,20 @@
  */
 
 const MockUrl = '../../../assets/HelloWorld.html';
-const MockData_banner = [
+const MOCKDATA_BANNER = [
   //{id: '1', uri: require('../../../assets/banner/usa.png'), url: {uri: 'http://pr.mangocity.com/us_trip/?zy=mgs_jx'}},
   {id: '1', uri: require('../../../assets/banner/3.png'), url: MockUrl},
   {id: '2', uri: require('../../../assets/banner/4.png'), url: MockUrl},
   {id: '3', uri: require('../../../assets/banner/1.png'), url: MockUrl},
   {id: '4', uri: require('../../../assets/banner/2.png'), url: MockUrl}
 ];
-const MockData_region1 = [
-  {id: '1', title: '鑫盛理财(2016年第68期)', start: '50,000.00', duration: '33', expected:'4.3%',raise:'2016-05-06至2016-05-12',  url: MockUrl},
-  {id: '2', title: '鑫盛理财(2016年第69期)', start: '50,000.00', duration: '90', expected:'4.2%',raise:'2016-05-06至2016-05-12',  url: MockUrl},
-  {id: '3', title: '鑫盛理财(2016年第70期)', start: '50,000.00', duration: '364', expected:'4.2%',raise:'2016-05-06至2016-05-12',  url: MockUrl},
-  {id: '4', title: '鑫盛理财(2016年第71期)', start: '50,000.00', duration: '30', expected:'4.2%',raise:'2016-05-10至2016-05-16',  url: MockUrl},
+const MOCKDATA_REGION1 = [
+  {id: '1', title: '鑫盛理财(2016年第68期)', start: '50,000.00', duration: '33', expected: '4.3%', raise: '2016-05-06至2016-05-12', url: MockUrl},
+  {id: '2', title: '鑫盛理财(2016年第69期)', start: '50,000.00', duration: '90', expected: '4.2%', raise: '2016-05-06至2016-05-12', url: MockUrl},
+  {id: '3', title: '鑫盛理财(2016年第70期)', start: '50,000.00', duration: '364', expected: '4.2%', raise: '2016-05-06至2016-05-12', url: MockUrl},
+  {id: '4', title: '鑫盛理财(2016年第71期)', start: '50,000.00', duration: '30', expected: '4.2%', raise: '2016-05-10至2016-05-16', url: MockUrl},
 ];
-const MockData_region2 = [
+const MOCKDATA_REGION2 = [
   {
     id: '1', uri: require('../../../assets/banner/1.png'),
     title: `"权威人士"重磅发声 透露赚钱方向`,
@@ -94,11 +94,12 @@ import Button from '../../baseComponents/Button';
 import CategoryTitle from '../CategoryTitle';
 import GridView from '../../baseComponents/GridView';
 import ButtonList from '../ButtonList';
-var Actions = require('react-native-router-flux').Actions;
+import SceneHeader from '../../baseComponents/SceneHeader';
+const Actions = require('react-native-router-flux').Actions;
 
 import PageSwiper from '../../baseComponents/react-native-page-swiper/index';
 
-const MockData_ICON1 = [
+const MOCKDATA_ICON1 = [
   {name: '我的资产', icon: require('../../../assets/icons/zhcx.png')},
   {name: '自选产品', icon: require('../../../assets/icons/khzz.png')},
   {name: '财经早晚餐', icon: require('../../../assets/icons/kkzz.png')},
@@ -109,7 +110,7 @@ const MockData_ICON1 = [
   {name: '产品大全', icon: require('../../../assets/icons/tzlc.png')},
 ];
 
-const MockData_ICON2 = [
+const MOCKDATA_ICON2 = [
   {name: '银证转账', icon: require('../../../assets/icons/wdzh.png')},
   {name: '风险评估', icon: require('../../../assets/icons/hnzz.png')},
   {name: '凭证式国债', icon: require('../../../assets/icons/khgj.png')},
@@ -127,7 +128,6 @@ const styles = StyleSheet.create(
       flex: 1,
       backgroundColor: '#f3f2f3',
       paddingHorizontal: 5,
-      marginTop: Platform.OS === 'ios' ? 20 : 0,
     },
     header: {
       height: 40,
@@ -181,31 +181,30 @@ export default class Container extends Component {
 
   // 渲染
   render() {
+    const store = this.props.store.sidemenu;
     return (
       <View style={[styles.page]}>
-        <View style={styles.header}>
-          <Text style={{fontSize: 16}}>理财</Text>
-        </View>
+        <SceneHeader sceneStore={store} title="理财" />
         <ScrollView
           scrollsToTop={true}
           showsVerticalScrollIndicator={false}
           directionalLockEnabled={true}>
           <Banner
             style={styles.banner}
-            source={MockData_banner}
+            source={MOCKDATA_BANNER}
             height={140}
             autoPlay={false}
           />
           <PageSwiper style={styles.wrapper}>
             <GridView style={{flex: 1}}
-                      items={MockData_ICON1}
+                      items={MOCKDATA_ICON1}
                       itemsPerRow={4}
                       scrollEnabled={false}
                       rowHeight={70}
                       renderItem={this.renderItem.bind(this)}
             />
             <GridView style={{flex: 1}}
-                      items={MockData_ICON2}
+                      items={MOCKDATA_ICON2}
                       itemsPerRow={4}
                       scrollEnabled={false}
                       rowHeight={70}
@@ -213,10 +212,10 @@ export default class Container extends Component {
             />
           </PageSwiper>
 
-          <CategoryTitle title='投资热点'/>
-          <ButtonList buttons={MockData_region1}  renderButton={this.renderRegion1.bind(this)} />
+          <CategoryTitle title="投资热点"/>
+          <ButtonList buttons={MOCKDATA_REGION1} renderButton={this.renderRegion1.bind(this)} />
           <View style={{height: 3, marginVertical: 5, backgroundColor: 'gray'}} />
-          <CategoryTitle title='财经资讯'/>
+          <CategoryTitle title="财经资讯"/>
           <View style={{marginHorizontal: 5}}>
             {this.renderRegion2()}
           </View>
@@ -230,7 +229,7 @@ export default class Container extends Component {
 
   renderItem(item) {
     return (
-      <Button key={item.name} style={[styles.button]} onPress={() => {this.getAction(item.name)}}>
+      <Button key={item.name} style={[styles.button]} onPress={() => {this.getAction(item.name);}}>
         <Image style={{height: 30, width: 30}} source={item.icon} />
         <Text style={{marginTop: 3}}>
           {item.name}
@@ -288,14 +287,14 @@ export default class Container extends Component {
   }
 
   renderRegion2() {
-    return MockData_region2.map((item) => {
+    return MOCKDATA_REGION2.map((item) => {
       let bgColor = {backgroundColor: 'green'};
-      if(item.category === '要闻直击') {
-        bgColor = {backgroundColor: 'orange'}
+      if (item.category === '要闻直击') {
+        bgColor = {backgroundColor: 'orange'};
       }
       return (
         <TouchableOpacity key={item.id} onPress={() => Actions.productDetail({data: item.title, url: item.url})}
-                          style={{height: 80, width: deviceWidth - 10, flexDirection: 'row', marginVertical:3, backgroundColor: '#fff'}}>
+                          style={{height: 80, width: deviceWidth - 10, flexDirection: 'row', marginVertical: 3, backgroundColor: '#fff'}}>
           <Image style={{width: 80, height: 80}} source={item.uri}>
             <Text style={[styles.nestedText2, bgColor]}>{item.category}</Text>
           </Image>
