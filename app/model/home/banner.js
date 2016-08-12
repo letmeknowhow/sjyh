@@ -6,7 +6,7 @@ import WebAPI from '../../libs/WebAPI';
 class BannerStore {
   @observable bannerSource = [];
 
-  constructor(){
+  constructor() {
     //reaction(()=>this.counter, this.increaseTotal);
   }
 
@@ -36,4 +36,4 @@ class BannerStore {
   }
 }
 
-export default  new BannerStore();
+export default new BannerStore();

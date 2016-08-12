@@ -1,14 +1,14 @@
 
 import React from 'react-native';
 import {Scene, Router, TabBar, Modal, Schema, Actions} from 'react-native-mobx';
-const { Component,View, Navigator, Text, StyleSheet, Platform, Image, Alert, BackAndroid } = React;
+const { Component, View, Navigator, Text, StyleSheet, Platform, Image, Alert, BackAndroid } = React;
 import CodePush from 'react-native-code-push';
 import ModalBox from '../baseComponents/ModalBox';
 //model
 import sjyhStore from '../model';
 
 //侧边菜单
-import Drawer from './Drawer';
+import Drawer1 from './Drawer';
 
 import SignInGesture from '../components/SignInGesture';
 /** 主tab 四页*/
@@ -67,9 +67,9 @@ if (Platform.OS === 'android') {
 
 class TabIcon extends React.Component {
 
-  render(){
+  render() {
     let uri;
-    switch(this.props.title) {
+    switch (this.props.title) {
       case TAB_TITLE_HOME:
         uri = require('../../assets/icons/Home.png');
         break;
@@ -88,7 +88,7 @@ class TabIcon extends React.Component {
     return (
       <View style={{alignItems: 'center'}}>
         <Image source={uri} style={{width: 25, height: 25, tintColor: this.props.selected ? '#2897EC' : null}} />
-        <Text style={{color: this.props.selected ? '#2897EC' :'black', fontSize: 12, marginTop: 3}}>{this.props.title}</Text>
+        <Text style={{color: this.props.selected ? '#2897EC' : 'black', fontSize: 12, marginTop: 3}}>{this.props.title}</Text>
       </View>
     );
   }
@@ -117,7 +117,7 @@ export default class Application extends Component {
         installMode: CodePush.InstallMode.IMMEDIATE,
       },
       (syncStatus) => {
-        switch(syncStatus) {
+        switch (syncStatus) {
           case CodePush.SyncStatus.CHECKING_FOR_UPDATE:
             self.setState({
               syncMessage: '正在检查更新.'
@@ -164,11 +164,13 @@ export default class Application extends Component {
               progress: false
             });
             break;
+          default:
+
         }
       },
       (progress) => {
         self.setState({
-          progress: progress
+          progress
         });
       }
     );
@@ -178,18 +180,18 @@ export default class Application extends Component {
 
     return (
       <View style={{flex: 1}} >
-        <Router hideNavBar={true} store={sjyhStore} sceneStyle={{backgroundColor:'#F7F7F7'}}>
+        <Router hideNavBar={true} store={sjyhStore} sceneStyle={{backgroundColor: '#F7F7F7'}}>
           <Scene key="root" hideNavBar={true}>
             <Scene key="signInGesture" component={SignInGesture} initial={false}/>
-            <Scene key="productDetail" component={ProductDetail}  />
-            <Scene key="accountSummary" component={AccountSummary} title="账户查询"  />
-            <Scene key="demandDepositSearch" component={DemandDepositSearch}  />
-            <Scene key="fixedDepositSearch" component={FixedDepositSearch}  />
-            <Scene key="moneyTransfer" component={MoneyTransfer}  />
-            <Scene key="demand2Fixed" component={Demand2Fixed}  />
-            <Scene key="payment" component={Payment}  />
-            <Scene key="paymentSearch" component={PaymentSearch}  />
-            <Scene key="drawer" component={Drawer} initial={true}>
+            <Scene key="productDetail" component={ProductDetail} />
+            <Scene key="accountSummary" component={AccountSummary} title="账户查询" />
+            <Scene key="demandDepositSearch" component={DemandDepositSearch} />
+            <Scene key="fixedDepositSearch" component={FixedDepositSearch} />
+            <Scene key="moneyTransfer" component={MoneyTransfer} />
+            <Scene key="demand2Fixed" component={Demand2Fixed} />
+            <Scene key="payment" component={Payment} />
+            <Scene key="paymentSearch" component={PaymentSearch} />
+            <Scene key="drawer" component={Drawer1} initial={true}>
               <Scene key="tabBar" tabs={true} default="home">
                 <Scene key="home" schema="tab" initial={true} component={Home} title={TAB_TITLE_HOME} hideNavBar={true} icon={TabIcon}/>
                 <Scene key="financial" schema="tab" component={Financial} title={TAB_TITLE_FINANCIAL} hideNavBar={true} icon={TabIcon}/>

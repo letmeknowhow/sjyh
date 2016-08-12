@@ -5,7 +5,7 @@ import autobind from 'autobind-decorator';
 class Region2Store {
   @observable region2Source = [];
 
-  constructor(){
+  constructor() {
     //reaction(()=>this.counter, this.increaseTotal);
   }
 
@@ -88,4 +88,4 @@ class Region2Store {
   }
 }
 
-export default  new Region2Store();
+export default new Region2Store();

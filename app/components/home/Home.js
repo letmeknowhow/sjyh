@@ -13,13 +13,12 @@ import Banner from '../../baseComponents/Banner';
 import Button from '../../baseComponents/Button';
 import CategoryTitle from '../CategoryTitle';
 import GridView from '../../baseComponents/GridView';
-var Actions = require('react-native-router-flux').Actions;
-import SideMenu from 'react-native-side-menu';
+const Actions = require('react-native-router-flux').Actions;
 
 import PageSwiper from '../../baseComponents/react-native-page-swiper/index';
 import {observer} from 'mobx-react/native';
 
-const MockData_ICON1 = [
+const MOCKDATA_ICON1 = [
   {name: '账户查询', icon: require('../../../assets/icons/zhcx.png')},
   {name: '跨行转账', icon: require('../../../assets/icons/khzz.png')},
   {name: '卡卡转账', icon: require('../../../assets/icons/kkzz.png')},
@@ -30,7 +29,7 @@ const MockData_ICON1 = [
   {name: '投资理财', icon: require('../../../assets/icons/tzlc.png')},
 ];
 
-const MockData_ICON2 = [
+const MOCKDATA_ICON2 = [
   {name: '我的账户', icon: require('../../../assets/icons/wdzh.png')},
   {name: '转账汇款', icon: require('../../../assets/icons/hnzz.png')},
   {name: '跨行归集', icon: require('../../../assets/icons/khgj.png')},
@@ -100,7 +99,7 @@ export default class Home extends Component {
         <View style={[styles.page]}>
           <View style={styles.logoContainer}>
             <Image style={{flex: 1, height: 40, resizeMode: Image.resizeMode.contain}} source={logo}/>
-            <TouchableOpacity style={{width: 40, height: 40, alignItems:'center', justifyContent: 'center'}}
+            <TouchableOpacity style={{width: 40, height: 40, alignItems: 'center', justifyContent: 'center'}}
                               onPress={() => store.sidemenu.switchSidemenu(true)}>
               <Image style={{height: 25, resizeMode: Image.resizeMode.contain}} source={myPortrait} />
             </TouchableOpacity>
@@ -117,14 +116,14 @@ export default class Home extends Component {
             />
             <PageSwiper style={styles.wrapper}>
               <GridView style={{flex: 1}}
-                        items={MockData_ICON1}
+                        items={MOCKDATA_ICON1}
                         itemsPerRow={4}
                         scrollEnabled={false}
                         rowHeight={70}
                         renderItem={this.renderItem.bind(this)}
               />
               <GridView style={{flex: 1}}
-                        items={MockData_ICON2}
+                        items={MOCKDATA_ICON2}
                         itemsPerRow={4}
                         scrollEnabled={false}
                         rowHeight={70}
@@ -132,7 +131,7 @@ export default class Home extends Component {
               />
             </PageSwiper>
 
-            <CategoryTitle title='理财产品'/>
+            <CategoryTitle title="理财产品"/>
             <GridView style={{marginHorizontal: 0}}
                       items={store.home.region1.region1Source}
                       scrollEnabled={false}
@@ -140,7 +139,7 @@ export default class Home extends Component {
                       renderItem={this.renderRegion1.bind(this)}
             />
             <View style={{height: 3, marginVertical: 5, backgroundColor: 'gray'}} />
-            <CategoryTitle title='旅游推荐'/>
+            <CategoryTitle title="旅游推荐"/>
             <View style={{marginHorizontal: 5}}>
               {this.renderRegion2(store.home.region2.region2Source)}
             </View>
@@ -154,7 +153,7 @@ export default class Home extends Component {
 
   renderItem(item) {
     return (
-      <Button key={item.name} style={[styles.button]} onPress={() => {this.getAction(item.name)}}>
+      <Button key={item.name} style={[styles.button]} onPress={() => {this.getAction(item.name); } }>
         <Image style={{height: 30, width: 30}} source={item.icon} />
         <Text style={{marginTop: 3}}>
           {item.name}
@@ -200,12 +199,12 @@ export default class Home extends Component {
   renderRegion2(source) {
     return source.map((item) => {
       let bgColor = {backgroundColor: 'green'};
-      if(item.category === '跟团游') {
-        bgColor = {backgroundColor: 'orange'}
+      if (item.category === '跟团游') {
+        bgColor = {backgroundColor: 'orange'};
       }
       return (
         <TouchableOpacity key={item.id} onPress={() => Actions.productDetail({data: item.title, url: item.url})}
-                          style={{height: 80, width: deviceWidth - 10, flexDirection: 'row', marginVertical:3}}>
+                          style={{height: 80, width: deviceWidth - 10, flexDirection: 'row', marginVertical: 3}}>
           <Image style={{width: 80, height: 80}} source={item.uri}>
             <Text style={[styles.nestedText2, bgColor]}>{item.category}</Text>
           </Image>

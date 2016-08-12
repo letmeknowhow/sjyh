@@ -5,12 +5,12 @@ import autobind from 'autobind-decorator';
 class SidemenuStore {
   @observable isOpen = false;
 
-  constructor(){
+  constructor() {
     //reaction(()=>this.counter, this.increaseTotal);
   }
 
   switchSidemenu(open) {
-    if(this.isOpen === open){
+    if (this.isOpen === open) {
       return;
     }
     this.isOpen = open;
@@ -18,4 +18,4 @@ class SidemenuStore {
   }
 }
 
-export default  new SidemenuStore();
+export default new SidemenuStore();
